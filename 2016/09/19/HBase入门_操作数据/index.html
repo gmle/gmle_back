@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hadoop,MacOS,Spark," />
+  <meta name="keywords" content="Hadoop,HBase,CRUD," />
 
 
 
@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="首先，准备MacOS环境略过Java、Scala、Python的环境安装，从Hadoop和Spark说起">
-<meta name="keywords" content="Hadoop,MacOS,Spark">
+<meta name="description" content="HBase中数据表的增删改查 其实底层还是最普通的MR(MapReduce)操作。 Source源码地址 GitHub/hbase">
+<meta name="keywords" content="Hadoop,HBase,CRUD">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MacOS下配置Hadoop、Spark">
-<meta property="og:url" content="http://gmle.github.io/2016/09/19/MacOS安装Hadoop与Spark/index.html">
+<meta property="og:title" content="HBase入门 — 操作数据表">
+<meta property="og:url" content="http://gmle.github.io/2016/09/19/HBase入门_操作数据/index.html">
 <meta property="og:site_name" content="忘lelele">
-<meta property="og:description" content="首先，准备MacOS环境略过Java、Scala、Python的环境安装，从Hadoop和Spark说起">
-<meta property="og:updated_time" content="2017-05-02T07:47:29.000Z">
+<meta property="og:description" content="HBase中数据表的增删改查 其实底层还是最普通的MR(MapReduce)操作。 Source源码地址 GitHub/hbase">
+<meta property="og:updated_time" content="2016-05-04T10:02:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MacOS下配置Hadoop、Spark">
-<meta name="twitter:description" content="首先，准备MacOS环境略过Java、Scala、Python的环境安装，从Hadoop和Spark说起">
+<meta name="twitter:title" content="HBase入门 — 操作数据表">
+<meta name="twitter:description" content="HBase中数据表的增删改查 其实底层还是最普通的MR(MapReduce)操作。 Source源码地址 GitHub/hbase">
 
 
 
@@ -115,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/2016/09/19/MacOS安装Hadoop与Spark/"/>
+  <link rel="canonical" href="http://gmle.github.io/2016/09/19/HBase入门_操作数据/"/>
 
-  <title> MacOS下配置Hadoop、Spark | 忘lelele </title>
+  <title> HBase入门 — 操作数据表 | 忘lelele </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +280,7 @@
             
             
               
-                MacOS下配置Hadoop、Spark
+                HBase入门 — 操作数据表
               
             
           </h1>
@@ -303,8 +303,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/MacOS安装Hadoop与Spark/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/MacOS安装Hadoop与Spark/" itemprop="commentsCount"></span>
+                <a href="/2016/09/19/HBase入门_操作数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/HBase入门_操作数据/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,26 +327,16 @@
       
 
       
-        <h2 id="首先，准备MacOS环境"><a href="#首先，准备MacOS环境" class="headerlink" title="首先，准备MacOS环境"></a>首先，准备MacOS环境</h2><pre><code>略过Java、Scala、Python的环境安装，从Hadoop和Spark说起
-</code></pre><a id="more"></a>
-<h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><p>安装Hadoop，最简单的安装方式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install hadoop</div></pre></td></tr></table></figure></p>
-<h4 id="找到安装目录"><a href="#找到安装目录" class="headerlink" title="找到安装目录"></a>找到安装目录</h4><pre><code>安装完成后，找到Hadoop配置文件目录：
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/hadoop/2.7.3/libexec/etc/hadoop</div></pre></td></tr></table></figure>
-<h4 id="修改core-site-xml"><a href="#修改core-site-xml" class="headerlink" title="修改core-site.xml"></a>修改core-site.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/Cellar/hadoop/2.7.3/libexec/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="修改hdfs-site-xml"><a href="#修改hdfs-site-xml" class="headerlink" title="修改hdfs-site.xml"></a>修改hdfs-site.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/Cellar/hadoop/2.7.3/libexec/tmp/dfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/Cellar/hadoop/2.7.3/libexec/tmp/dfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Hadoop environment configs  </span></div><div class="line"><span class="built_in">export</span> HADOOP_HOME=/usr/<span class="built_in">local</span>/Cellar/hadoop/2.7.3/libexec  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$&#123;HADOOP_HOME&#125;</span>/bin</div></pre></td></tr></table></figure>
-<h4 id="格式化HDFS"><a href="#格式化HDFS" class="headerlink" title="格式化HDFS"></a>格式化HDFS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/hadoop/2.7.3/bin  </div><div class="line">./hdfs namenode -format</div></pre></td></tr></table></figure>
-<h4 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/hadoop/2.7.3/sbin  </div><div class="line">./start-all.sh</div></pre></td></tr></table></figure>
-<p>在终端输入 jps 查看java进程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1206 DataNode  </div><div class="line">1114 NameNode  </div><div class="line">1323 SecondaryNameNode</div></pre></td></tr></table></figure></p>
-<h2 id="安装Spark"><a href="#安装Spark" class="headerlink" title="安装Spark"></a>安装Spark</h2><p>Spark的安装也是使用 brew<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install apache-spark</div></pre></td></tr></table></figure></p>
-<h4 id="找到安装目录-1"><a href="#找到安装目录-1" class="headerlink" title="找到安装目录"></a>找到安装目录</h4><p>找到Spark配置文件目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/apache-spark/2.1.0/libexec/conf</div></pre></td></tr></table></figure></p>
-<h4 id="修改spark-env-sh"><a href="#修改spark-env-sh" class="headerlink" title="修改spark-env.sh"></a>修改spark-env.sh</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cp spark-env.sh.template spark-env.sh</div><div class="line">vi spark-env.sh</div><div class="line"><span class="built_in">export</span> SPARK_HOME=/usr/<span class="built_in">local</span>/Cellar/apache-spark/2.1.0/libexec  </div><div class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home</div></pre></td></tr></table></figure>
-<h4 id="加入环境变量"><a href="#加入环境变量" class="headerlink" title="加入环境变量"></a>加入环境变量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> SPARK_HOME=/usr/<span class="built_in">local</span>/Cellar/apache-spark/2.1.0/libexec  </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$&#123;SPARK_HOME&#125;</span>/bin</div></pre></td></tr></table></figure>
-<h4 id="启动Spark"><a href="#启动Spark" class="headerlink" title="启动Spark"></a>启动Spark</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/Cellar/apache-spark/1.6.0/bin  </div><div class="line">./start-all.sh</div></pre></td></tr></table></figure>
-<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jps</div><div class="line"></div><div class="line">6052 Worker</div><div class="line">6022 Master</div><div class="line">6728 Jps</div><div class="line">5546 NameNode</div><div class="line">5739 SecondaryNameNode</div><div class="line">5947 NodeManager</div><div class="line">5630 DataNode</div><div class="line">5855 ResourceManager</div></pre></td></tr></table></figure>
-<h2 id="配置Pycharm开发spark应用"><a href="#配置Pycharm开发spark应用" class="headerlink" title="配置Pycharm开发spark应用"></a>配置Pycharm开发spark应用</h2><p>打开Pycharm（我的python版本是2.7）<br>新建xxxx，新建类：一个简单的wordcount<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</div><div class="line"></div><div class="line">logFile = <span class="string">"/Users/admin/Desktop/BackUp"</span></div><div class="line">sc = SparkContext(<span class="string">"local"</span>,<span class="string">"Simple App"</span>)</div><div class="line">logData = sc.textFile(logFile).cache()</div><div class="line"></div><div class="line">numAs = logData.filter(<span class="keyword">lambda</span> s: <span class="string">'a'</span> <span class="keyword">in</span> s).count()</div><div class="line">numBs = logData.filter(<span class="keyword">lambda</span> s: <span class="string">'b'</span> <span class="keyword">in</span> s).count()</div><div class="line"></div><div class="line">print(<span class="string">"Lines with a: %i, lines with b: %i"</span>%(numAs, numBs))</div></pre></td></tr></table></figure></p>
-<p>F4打开当前可运行代码的配置项<br>Environment Variables 选项填写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PYTHONPATH    /usr/<span class="built_in">local</span>/Cellar/apache-spark/2.1.0/libexec/python</div></pre></td></tr></table></figure></p>
-<p>至此，环境完成。</p>
+        <pre><code>HBase中数据表的增删改查
+其实底层还是最普通的MR(MapReduce)操作。
+</code></pre><h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p><a href="https://github.com/gmle/hbase" target="_blank" rel="external">源码地址 GitHub/hbase</a></p>
+<a id="more"></a>
+<h2 id="Compile-environment"><a href="#Compile-environment" class="headerlink" title="Compile environment"></a>Compile environment</h2><pre><code>Oracle JDK_1.8
+</code></pre><h2 id="create-table"><a href="#create-table" class="headerlink" title="create table:"></a>create table:</h2><p>Position: cn.lesion.operateTable.Create_Table;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Create_Table</span> </span>&#123;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="drop-table"><a href="#drop-table" class="headerlink" title="drop table"></a>drop table</h2><p>Position: cn.lesion.operateTable.Drop_Table;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Drop_Table</span> </span>&#123;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="delete-data"><a href="#delete-data" class="headerlink" title="delete data"></a>delete data</h2><p>Position: cn.lesion.operateTable.Delete_Data;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Delete_Data</span> </span>&#123;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Insert-Data"><a href="#Insert-Data" class="headerlink" title="Insert Data"></a>Insert Data</h2><p>Position: cn.lesion.operateTable.Insert_Data;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Insert_Data</span> </span>&#123;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Query-Data"><a href="#Query-Data" class="headerlink" title="Query Data"></a>Query Data</h2><p>Position: cn.lesion.operateTable.Query_Data;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Query_Data</span> </span>&#123;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -392,13 +382,31 @@
           
             <a href="/tags/Hadoop/" rel="tag">#Hadoop</a>
           
-            <a href="/tags/MacOS/" rel="tag">#MacOS</a>
+            <a href="/tags/HBase/" rel="tag">#HBase</a>
           
-            <a href="/tags/Spark/" rel="tag">#Spark</a>
+            <a href="/tags/CRUD/" rel="tag">#CRUD</a>
           
         </div>
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/Scala中的几个类型/" rel="next" title="Scala中的 Option、Some、None、Null、Nil、Nothing">
+                <i class="fa fa-chevron-left"></i> Scala中的 Option、Some、None、Null、Nil、Nothing
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/HSFS中文件的一些操作命令/" rel="prev" title="Hadoop与HDFS的一些常用命令">
+                Hadoop与HDFS的一些常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -410,10 +418,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/09/19/MacOS安装Hadoop与Spark/"
-     data-title="MacOS下配置Hadoop、Spark"
+        <div class="ds-share flat" data-thread-key="2016/09/19/HBase入门_操作数据/"
+     data-title="HBase入门 — 操作数据表"
      data-content=""
-     data-url="http://gmle.github.io/2016/09/19/MacOS安装Hadoop与Spark/">
+     data-url="http://gmle.github.io/2016/09/19/HBase入门_操作数据/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -440,8 +448,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/19/MacOS安装Hadoop与Spark/"
-           data-title="MacOS下配置Hadoop、Spark" data-url="http://gmle.github.io/2016/09/19/MacOS安装Hadoop与Spark/">
+      <div class="ds-thread" data-thread-key="2016/09/19/HBase入门_操作数据/"
+           data-title="HBase入门 — 操作数据表" data-url="http://gmle.github.io/2016/09/19/HBase入门_操作数据/">
       </div>
     
   </div>
@@ -486,7 +494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -525,7 +533,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，准备MacOS环境"><span class="nav-number">1.</span> <span class="nav-text">首先，准备MacOS环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hadoop"><span class="nav-number">2.</span> <span class="nav-text">安装Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#找到安装目录"><span class="nav-number">2.0.1.</span> <span class="nav-text">找到安装目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改core-site-xml"><span class="nav-number">2.0.2.</span> <span class="nav-text">修改core-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改hdfs-site-xml"><span class="nav-number">2.0.3.</span> <span class="nav-text">修改hdfs-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加环境变量"><span class="nav-number">2.0.4.</span> <span class="nav-text">添加环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#格式化HDFS"><span class="nav-number">2.0.5.</span> <span class="nav-text">格式化HDFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动Hadoop"><span class="nav-number">2.0.6.</span> <span class="nav-text">启动Hadoop</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Spark"><span class="nav-number">3.</span> <span class="nav-text">安装Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#找到安装目录-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">找到安装目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改spark-env-sh"><span class="nav-number">3.0.2.</span> <span class="nav-text">修改spark-env.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加入环境变量"><span class="nav-number">3.0.3.</span> <span class="nav-text">加入环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动Spark"><span class="nav-number">3.0.4.</span> <span class="nav-text">启动Spark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看进程"><span class="nav-number">3.0.5.</span> <span class="nav-text">查看进程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Pycharm开发spark应用"><span class="nav-number">4.</span> <span class="nav-text">配置Pycharm开发spark应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Source"><span class="nav-number">1.</span> <span class="nav-text">Source</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compile-environment"><span class="nav-number"></span> <span class="nav-text">Compile environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-table"><span class="nav-number"></span> <span class="nav-text">create table:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#drop-table"><span class="nav-number"></span> <span class="nav-text">drop table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#delete-data"><span class="nav-number"></span> <span class="nav-text">delete data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insert-Data"><span class="nav-number"></span> <span class="nav-text">Insert Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-Data"><span class="nav-number"></span> <span class="nav-text">Query Data</span></a></div>
             
           </div>
         </section>

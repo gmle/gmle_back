@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, Gmle, gmle, wangle, 王乐，Hadoop，hadoop,hbase,HBase,java,scala,Java,JAVA,Scala,Spark,大数据，BigData，HDFS," />
+  <meta name="keywords" content="Hadoop,HBase," />
 
 
 
@@ -84,12 +84,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="忘lelele">
-<meta property="og:url" content="http://gmle.github.io/tags/Hadoop/index.html">
+<meta name="description" content="HBase的CRUD ###源码链接https://github.com/gmle/hbase">
+<meta name="keywords" content="Hadoop,HBase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBase的配置(伪分布式)">
+<meta property="og:url" content="http://gmle.github.io/2016/09/19/HBase的配置(伪分布式)/index.html">
 <meta property="og:site_name" content="忘lelele">
+<meta property="og:description" content="HBase的CRUD ###源码链接https://github.com/gmle/hbase">
+<meta property="og:updated_time" content="2016-05-04T09:52:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="忘lelele">
+<meta name="twitter:title" content="HBase的配置(伪分布式)">
+<meta name="twitter:description" content="HBase的CRUD ###源码链接https://github.com/gmle/hbase">
 
 
 
@@ -110,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/tags/Hadoop/"/>
+  <link rel="canonical" href="http://gmle.github.io/2016/09/19/HBase的配置(伪分布式)/"/>
 
-  <title> 标签: Hadoop | 忘lelele </title>
+  <title> HBase的配置(伪分布式) | 忘lelele </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,7 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,302 +259,176 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Hadoop
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/02/MacOS安装Hadoop&Spark/" itemprop="url">
-              
-                <span itemprop="name">MacOS下配置Hadoop和Spark</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-02T15:49:44+08:00"
-              content="2017-05-02" >
-          05-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/玩转HDFS-ACL/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_玩转 HDFS之 ACL</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的列簇/" itemprop="url">
-              
-                <span itemprop="name">HBase的列簇</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的配置(伪分布式)/" itemprop="url">
-              
-                <span itemprop="name">HBase的配置(伪分布式)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的数据模型/" itemprop="url">
-              
-                <span itemprop="name">HBase的数据模型</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HDFS的文件操作/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_对HDFS中文件的操作</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的JavaAPI详解/" itemprop="url">
-              
-                <span itemprop="name">HBase的Java API</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase入门_操作数据/" itemprop="url">
-              
-                <span itemprop="name">HBase入门 — 操作数据表</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/Hadoop_新手的开始/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_我的入门</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/MapReduce架构原理/" itemprop="url">
-              
-                <span itemprop="name">MapReduce架构及原理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/Hadoop/page/2/">2</a><a class="extend next" rel="next" href="/tags/Hadoop/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HBase的配置(伪分布式)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T08:53:20+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/HBase的配置(伪分布式)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/HBase的配置(伪分布式)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>HBase的CRUD
+</code></pre><p>###源码链接<br><a href="https://github.com/gmle/hbase" target="_blank" rel="external">https://github.com/gmle/hbase</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/wechat.png" alt="王乐 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpg" alt="王乐 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop/" rel="tag">#Hadoop</a>
+          
+            <a href="/tags/HBase/" rel="tag">#HBase</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/HBase的数据模型/" rel="next" title="HBase的数据模型">
+                <i class="fa fa-chevron-left"></i> HBase的数据模型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/HBase的列簇/" rel="prev" title="HBase的列簇">
+                HBase的列簇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/19/HBase的配置(伪分布式)/"
+     data-title="HBase的配置(伪分布式)"
+     data-content=""
+     data-url="http://gmle.github.io/2016/09/19/HBase的配置(伪分布式)/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -557,6 +436,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/HBase的配置(伪分布式)/"
+           data-title="HBase的配置(伪分布式)" data-url="http://gmle.github.io/2016/09/19/HBase的配置(伪分布式)/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -576,8 +463,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://lesion.cn/wp-content/uploads/2016/03/author.jpg"
@@ -620,6 +516,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -716,6 +623,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

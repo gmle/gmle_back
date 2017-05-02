@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, Gmle, gmle, wangle, 王乐，Hadoop，hadoop,hbase,HBase,java,scala,Java,JAVA,Scala,Spark,大数据，BigData，HDFS," />
+  <meta name="keywords" content="Hadoop,MapReduce,架构,原理," />
 
 
 
@@ -84,12 +84,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="忘lelele">
-<meta property="og:url" content="http://gmle.github.io/tags/Hadoop/index.html">
+<meta name="description" content="Hadoop中MapReduce的架构以及原理。 MapReduce介绍 MapReduce 编程模型 Google提出的框架 主要用于搜索领域 一种分布式计算模型框架解决海量数据的计算问题 MapReduce将整个并行计算过程抽象到两个函数 map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行 Reduce（化简）：队一个列表的元素进行合并   一个简单的MapRed">
+<meta name="keywords" content="Hadoop,MapReduce,架构,原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MapReduce架构及原理">
+<meta property="og:url" content="http://gmle.github.io/2016/09/19/MapReduce架构原理/index.html">
 <meta property="og:site_name" content="忘lelele">
+<meta property="og:description" content="Hadoop中MapReduce的架构以及原理。 MapReduce介绍 MapReduce 编程模型 Google提出的框架 主要用于搜索领域 一种分布式计算模型框架解决海量数据的计算问题 MapReduce将整个并行计算过程抽象到两个函数 map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行 Reduce（化简）：队一个列表的元素进行合并   一个简单的MapRed">
+<meta property="og:image" content="http://7xt0cb.com2.z0.glb.clouddn.com/mapreduce键值对格式.png">
+<meta property="og:updated_time" content="2016-04-26T06:57:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="忘lelele">
+<meta name="twitter:title" content="MapReduce架构及原理">
+<meta name="twitter:description" content="Hadoop中MapReduce的架构以及原理。 MapReduce介绍 MapReduce 编程模型 Google提出的框架 主要用于搜索领域 一种分布式计算模型框架解决海量数据的计算问题 MapReduce将整个并行计算过程抽象到两个函数 map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行 Reduce（化简）：队一个列表的元素进行合并   一个简单的MapRed">
+<meta name="twitter:image" content="http://7xt0cb.com2.z0.glb.clouddn.com/mapreduce键值对格式.png">
 
 
 
@@ -110,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/tags/Hadoop/"/>
+  <link rel="canonical" href="http://gmle.github.io/2016/09/19/MapReduce架构原理/"/>
 
-  <title> 标签: Hadoop | 忘lelele </title>
+  <title> MapReduce架构及原理 | 忘lelele </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,302 +261,229 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Hadoop
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/02/MacOS安装Hadoop&Spark/" itemprop="url">
-              
-                <span itemprop="name">MacOS下配置Hadoop和Spark</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-02T15:49:44+08:00"
-              content="2017-05-02" >
-          05-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/玩转HDFS-ACL/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_玩转 HDFS之 ACL</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的列簇/" itemprop="url">
-              
-                <span itemprop="name">HBase的列簇</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的配置(伪分布式)/" itemprop="url">
-              
-                <span itemprop="name">HBase的配置(伪分布式)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的数据模型/" itemprop="url">
-              
-                <span itemprop="name">HBase的数据模型</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HDFS的文件操作/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_对HDFS中文件的操作</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase的JavaAPI详解/" itemprop="url">
-              
-                <span itemprop="name">HBase的Java API</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/HBase入门_操作数据/" itemprop="url">
-              
-                <span itemprop="name">HBase入门 — 操作数据表</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/Hadoop_新手的开始/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_我的入门</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/19/MapReduce架构原理/" itemprop="url">
-              
-                <span itemprop="name">MapReduce架构及原理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-19T08:53:20+08:00"
-              content="2016-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/Hadoop/page/2/">2</a><a class="extend next" rel="next" href="/tags/Hadoop/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MapReduce架构及原理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T08:53:20+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/MapReduce架构原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/MapReduce架构原理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>Hadoop中MapReduce的架构以及原理。
+</code></pre><h2 id="MapReduce介绍"><a href="#MapReduce介绍" class="headerlink" title="MapReduce介绍"></a>MapReduce介绍</h2><ul>
+<li>MapReduce 编程模型<ul>
+<li>Google提出的框架 主要用于搜索领域</li>
+<li>一种分布式计算模型框架解决海量数据的计算问题</li>
+<li>MapReduce将整个并行计算过程抽象到两个函数<ul>
+<li>map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行</li>
+<li>Reduce（化简）：队一个列表的元素进行合并</li>
+</ul>
+</li>
+<li>一个简单的MapReduce程序只需要指定map()、reduce()、input和output，剩下的事由框架来执行。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="MapReduce特点"><a href="#MapReduce特点" class="headerlink" title="MapReduce特点"></a>MapReduce特点</h2><pre><code>- 高容错
+- 高扩展
+- 编程简单
+- 适合大数据离线批量处理
+</code></pre><h2 id="Map任务处理"><a href="#Map任务处理" class="headerlink" title="Map任务处理"></a>Map任务处理</h2><pre><code>* 读取输入文件内容，解析成key，value对。对输入文件的没一行，解析成key，value对。每一个键值对调用一次map函数
+* 写自己的逻辑，处理输入的key，value，转换成新的key，value输出
+* 对输出的key、value进行分区
+* 对不同分区的数据，按照key进行排序】分组。相同的key的value放到一个集合中。
+</code></pre><h2 id="reduce-任务处理"><a href="#reduce-任务处理" class="headerlink" title="reduce 任务处理"></a>reduce 任务处理</h2><pre><code>* 对多个map任务的输出，按照不用的分区，通过网络copy到不同的reduce节点
+* 对多个map任务的输出进行合并、排序。写reduce函数自己的逻辑，对哦输入的key、value处理，转换成新的key、value输出。
+* 把reduce的输出保存到文件中
+</code></pre><p>MapReduce键值对格式：<br><img src="http://7xt0cb.com2.z0.glb.clouddn.com/mapreduce键值对格式.png" alt="键值对格式 "><br>因为会有不同的结果，所以Reduce的 v2 会是数组的形式存储多个值。</p>
+<h2 id="MR过程中各个角色的作用："><a href="#MR过程中各个角色的作用：" class="headerlink" title="MR过程中各个角色的作用："></a>MR过程中各个角色的作用：</h2><pre><code>* jobClient：提交作业
+* jobTracker：初始化作业，分配作业，TaskTracker与其进行通信，协调监控整个作业
+* TaskTracker：定期与JobTracker通信，执行Map任务和Reduce任务
+* HDFS：保存作业的数据、配置、jar包、结果等。
+</code></pre><h2 id="作业提交流程"><a href="#作业提交流程" class="headerlink" title="作业提交流程"></a>作业提交流程</h2><pre><code>* 提交作业准备
+    * 编写自己的MR程序
+    * 配置作业，保罗输入输出路径等等
+* 提交作业
+    *配置完成后，通过JobClient提交作业
+* 具体功能
+    * 与JobTracker通信得到一个jar的存储路径和JobId
+    * 输入输出路径检查、讲job jar拷贝到的HDFS
+    * 写job.xml、真正提交作业。
+</code></pre><h2 id="作业初始化"><a href="#作业初始化" class="headerlink" title="作业初始化"></a>作业初始化</h2><pre><code>* 客户端提交作业后，jobTracker会讲作业加入到队列，然后进行调度，默认的是FIFO方式
+* 具体功能
+    * 作业初始化主要是指 JobInProgress中完成的
+    * 读取分片信息
+    * 创建task包括Map和Reduce创建task包括Map和Reduce任务
+</code></pre><p>##　任务分配</p>
+<pre><code>* TaskTracker 与JobTracker之间的通信和任务分配是通过心跳机制实现的
+* TaskTracker会主动定期向JobTracker发送报告 询问是否有任务要做， 如果有，就会申请到任务
+</code></pre><h2 id="任务执行"><a href="#任务执行" class="headerlink" title="任务执行"></a>任务执行</h2><pre><code>* 如果TaskTracker拿到任务，会将所有信息拷贝到本地，包括代码、配置、分片信息等
+* TarkTacker中的localizeJob()方法会被调用进行本地化，拷贝job.jar,jobconf.job.xml到本地
+* TaskTracker调用launchTaskForJob()方法加载启动任务
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/pay/wechat.png" alt="王乐 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/pay/alipay.jpg" alt="王乐 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop/" rel="tag">#Hadoop</a>
+          
+            <a href="/tags/MapReduce/" rel="tag">#MapReduce</a>
+          
+            <a href="/tags/架构/" rel="tag">#架构</a>
+          
+            <a href="/tags/原理/" rel="tag">#原理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/Yarn架构详解/" rel="next" title="Hadoop_Yarn架构详解">
+                <i class="fa fa-chevron-left"></i> Hadoop_Yarn架构详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/Scala中的几个类型/" rel="prev" title="Scala中的 Option、Some、None、Null、Nil、Nothing">
+                Scala中的 Option、Some、None、Null、Nil、Nothing <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/19/MapReduce架构原理/"
+     data-title="MapReduce架构及原理"
+     data-content=""
+     data-url="http://gmle.github.io/2016/09/19/MapReduce架构原理/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -557,6 +491,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/MapReduce架构原理/"
+           data-title="MapReduce架构及原理" data-url="http://gmle.github.io/2016/09/19/MapReduce架构原理/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -576,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://lesion.cn/wp-content/uploads/2016/03/author.jpg"
@@ -620,6 +571,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce介绍"><span class="nav-number">1.</span> <span class="nav-text">MapReduce介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MapReduce特点"><span class="nav-number">2.</span> <span class="nav-text">MapReduce特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map任务处理"><span class="nav-number">3.</span> <span class="nav-text">Map任务处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce-任务处理"><span class="nav-number">4.</span> <span class="nav-text">reduce 任务处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MR过程中各个角色的作用："><span class="nav-number">5.</span> <span class="nav-text">MR过程中各个角色的作用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业提交流程"><span class="nav-number">6.</span> <span class="nav-text">作业提交流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业初始化"><span class="nav-number">7.</span> <span class="nav-text">作业初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务执行"><span class="nav-number">8.</span> <span class="nav-text">任务执行</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -716,6 +678,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
