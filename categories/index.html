@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hadoop,Yarn," />
+  <meta name="keywords" content="Hexo, Gmle, gmle, wangle, 王乐，Hadoop，hadoop,hbase,HBase,java,scala,Java,JAVA,Scala,Spark,大数据，BigData，HDFS," />
 
 
 
@@ -84,17 +84,13 @@
 
 
 
-<meta name="description" content="Yarn架构概述 Yarn Shell操作 Yarn 高可用的配置 Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)     * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)     * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)">
-<meta name="keywords" content="Hadoop,Yarn">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop_Yarn架构详解">
-<meta property="og:url" content="http://gmle.github.io/2016/09/19/Yarn架构详解/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://gmle.github.io/categories/index.html">
 <meta property="og:site_name" content="忘lelele">
-<meta property="og:description" content="Yarn架构概述 Yarn Shell操作 Yarn 高可用的配置 Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)     * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)     * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)">
-<meta property="og:updated_time" content="2017-04-21T11:42:25.000Z">
+<meta property="og:updated_time" content="2017-05-03T02:19:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop_Yarn架构详解">
-<meta name="twitter:description" content="Yarn架构概述 Yarn Shell操作 Yarn 高可用的配置 Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)     * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)     * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)">
+<meta name="twitter:title" content="categories">
 
 
 
@@ -115,9 +111,15 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/2016/09/19/Yarn架构详解/"/>
+  <link rel="canonical" href="http://gmle.github.io/categories/"/>
 
-  <title> Hadoop_Yarn架构详解 | 忘lelele </title>
+  <title>
+  
+
+  
+    分类 | 忘lelele
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,286 +273,24 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Hadoop_Yarn架构详解
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T08:53:20+08:00" content="2016-09-19">
-              2016-09-19
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/19/Yarn架构详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/Yarn架构详解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+      <div class="category-all-page">
+        <div class="category-all-title">
+            暂无分类
+        </div>
+        <div class="category-all">
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <pre><code>Yarn架构概述
-Yarn Shell操作
-Yarn 高可用的配置
-</code></pre><h2 id="Yarn-架构概述"><a href="#Yarn-架构概述" class="headerlink" title="Yarn 架构概述"></a>Yarn 架构概述</h2><pre><code>* 直接源于MRv1的缺陷(原MapReduce框架的不足)
-    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
-    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
-</code></pre><a id="more"></a>
-<pre><code>* 在taskTracker端，用map/reduce task作为资源的表示过于简单，没有考虑到cpu、内存等资源情况，当把两个需要消耗大内存的task调度到一起，很容易出现OOM
-* 把资源强制划分为map/reduce slot,当只有map task时，reduce slot不能用；当只有reduce task时，map slot不能用，容易造成资源利用不足。(多计算框架各自为战，数据共享困难).
-</code></pre><h3 id="Hadoop-Yarn基本架构"><a href="#Hadoop-Yarn基本架构" class="headerlink" title="Hadoop Yarn基本架构"></a>Hadoop Yarn基本架构</h3><pre><code>* Yarn 各模块组成
-    * ResourceManager
-        * 处理客户端请求
-        * 启动/监控ApplicationMaster
-        * 监控NodeManager
-        * 资源分配与调度
-    * NodeManager
-        * 单个节点上的资源管理
-        * 处理来自ResourceManager的名年龄
-        * 处理来自ApplicationMaster的命令
-    * ApplicationMaster
-        * 数据切分
-        * 为应用程序申请资源，并分配给内部任务
-        * 任务监控与容错
-* Yarn的容错
-    * ResourceManager
-        * 存在单点故障
-        * 2.X版本基于ZooKeeper实现HA
-    * NodeManager
-        * 失败后，RM将失败任务告诉对应的AM
-        * AM决定如何处理失败的任务
-    * ApplicationMaster
-        * 失败后，由RM负责重启，AM需处理内部任务的容错问题
-- Hadoop Yarn调度框架
-    * 双层电镀框架
-        * RM将资源分配给AM
-        * AM讲资源进一步分配给各个Task
-    * 基于资源预留的调度策略
-        * 资源不足时，会为Task预留，知道资源充足
-        * 与“all or nothing”策略不同（Apache Mesos）
-    * HadoopYarn资源调度器
-        * 多类型资源调度
-            * 采用DRF算法
-            * 目前只支持CPU和内存两种资源
-        * 提供多种资源调度器
-            * FIFO：先进先出
-            * Fair Scheduler：公平调度器
-            * Capacity Scheduler：容量调度器
-            * 多租户资源调度器
-                * 支持资源按比例分配
-                * 支持层级队列划分方式
-                * 支持资源抢占
-    * Hadoop Yarn 的资源隔离方案
-        * 支持内存和CPU两种资源隔离
-            * 内存是一种 “决定生死`” 的资源(集群内存不够，内存一处，任务崩溃)
-            * CPU是一种 “你更想快慢” 的资源
-        * 内存隔离
-            * 基于县城监控的方案
-            * 基于Cgroups的方案
-        * CPU隔离
-            * 默认不对CPu资源进行隔离
-            * 基于Cgroups的方案
-    * Hadoop Yarn资源调度语义
-        * 支持的语义
-            * 请求某个铁定节点/机架上的特定资源量
-            * 讲某些节点加入或移除黑名单，不再自己分配这些节点上的资源
-            * 请求归还某些资源
-        * 部支持的语义
-            * 请求任意节点/机架上的特定资源量
-            * 请求一组或几组符合某种特质的资源
-            * 超细粒度资源
-            * 动态调整Container资源
-* 运行在Yarn上的计算框架
-    * 离线计算框架：MapReduce（处理海量数据）
-    * DAG计算框架：Tez
-    * 流式计算框架：Storm：（处理流式数据）
-    * 内存计算框架：Spark（因为基于内存处理，所以特别快）
-    * 图计算框架：Giraph、GraphLib
-</code></pre><h3 id="运行在Yarn上的计算框架-MapReduce-Spark-AM"><a href="#运行在Yarn上的计算框架-MapReduce-Spark-AM" class="headerlink" title="运行在Yarn上的计算框架(MapReduce, Spark)AM"></a>运行在Yarn上的计算框架(MapReduce, Spark)AM</h3><pre><code>* 框架
-    * 离线计算框架：MapReduce（处理海量数据）
-    * DAG计算框架：Tez
-    * 流式计算框架：Storm：（处理流式数据）
-    * 内存计算框架：Spark（因为基于内存处理，所以特别快）
-    * 图计算框架：Giraph、GraphLib
-* Yarn应用程序类型
-    * 长应用程序
-        * Service、HTTP Server等
-    * 短应用程序
-        * MR job、Spark Job等。
-</code></pre><h3 id="Yarn-的发展前景"><a href="#Yarn-的发展前景" class="headerlink" title="Yarn 的发展前景"></a>Yarn 的发展前景</h3><pre><code>* 服务自动化部署（集群一键安装）
-* 调度框架的完善
-    * 支持更多的资源类型（网络、磁盘等）
-    * 支持更多的调度语义
-* 长作业的在线升级
-    * storm的在吸纳升级
-    * Container资源动态调整
-* 容错机制
-    * ResourceMapager自身容错
-    * NOdeManager宕机，任务不受影响
-    * ApplicationMaster个性化容错
-</code></pre>
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/pay/wechat.png" alt="王乐 WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/pay/alipay.jpg" alt="王乐 Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Hadoop/" rel="tag">#Hadoop</a>
-          
-            <a href="/tags/Yarn/" rel="tag">#Yarn</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/09/19/hadoop常见面试题目/" rel="next" title="hadoop常见面试题目（不定期更新）">
-                <i class="fa fa-chevron-left"></i> hadoop常见面试题目（不定期更新）
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/19/MapReduce架构原理/" rel="prev" title="MapReduce架构及原理">
-                MapReduce架构及原理 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2016/09/19/Yarn架构详解/"
-     data-title="Hadoop_Yarn架构详解"
-     data-content=""
-     data-url="http://gmle.github.io/2016/09/19/Yarn架构详解/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/09/19/Yarn架构详解/"
-           data-title="Hadoop_Yarn架构详解" data-url="http://gmle.github.io/2016/09/19/Yarn架构详解/">
       </div>
     
   </div>
 
+
+          </div>
+          
+
+
+          
 
         </div>
         
@@ -570,17 +310,8 @@ Yarn 高可用的配置
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/she.png"
@@ -623,17 +354,6 @@ Yarn 高可用的配置
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Yarn-架构概述"><span class="nav-number">1.</span> <span class="nav-text">Yarn 架构概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-Yarn基本架构"><span class="nav-number">1.1.</span> <span class="nav-text">Hadoop Yarn基本架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行在Yarn上的计算框架-MapReduce-Spark-AM"><span class="nav-number">1.2.</span> <span class="nav-text">运行在Yarn上的计算框架(MapReduce, Spark)AM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Yarn-的发展前景"><span class="nav-number">1.3.</span> <span class="nav-text">Yarn 的发展前景</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -730,10 +450,6 @@ Yarn 高可用的配置
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
