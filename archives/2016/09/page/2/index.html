@@ -438,18 +438,45 @@ HDFS设计基础与目标
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/09/19/HSFS中文件的一些操作命令/">Hadoop与HDFS的一些常用命令</a></p>
+        <p class="article-headline-p"><a href="/2016/09/19/玩转HDFS-ACL/">Hadoop_玩转 HDFS之 ACL</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            Hadoop与HDFS文件操作的一些常用命令，记个笔记。
-Hadoop启动
+            Hadoop从2.4.0版本开始支持hdfs的ACL，
+通俗的讲就是文件访问控制权限
+下面对其进行一些测试：
+
+
+
+unnamed user (file owner)
+文件的拥有者
+
+
+
+
+unnamed group (file group)
+文件的所属组
+
+
+named user
+除了文件的拥有者和拥有组之外，的其它用户
+
+
+named group
+除了文件的拥有者和拥有组之外，的其它用户
+
+
+mask
+权限掩码，用于过滤named user和named group的权限
+
+
+
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/2016/09/19/HSFS中文件的一些操作命令/" target="_self">阅读全文</a>
+            <a href="/2016/09/19/玩转HDFS-ACL/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
