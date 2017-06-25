@@ -405,11 +405,21 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <pre><code>Shell对MySQL的调用与脚本中如何写
-</code></pre><h2 id="Shell脚本如何搞定-MySQL的增删改查"><a href="#Shell脚本如何搞定-MySQL的增删改查" class="headerlink" title="Shell脚本如何搞定 MySQL的增删改查"></a>Shell脚本如何搞定 MySQL的增删改查</h2><h2 id="MySQL-版本-5-6-的安全策略"><a href="#MySQL-版本-5-6-的安全策略" class="headerlink" title="MySQL 版本 5.6+ 的安全策略"></a>MySQL 版本 5.6+ 的安全策略</h2><ul>
-<li>MySQL5.6版本向上有一个密码安全问题，即在命令行输入密码会出现警告：</li>
+</code></pre><h2 id="Shell脚本如何搞定-MySQL的增删改查"><a href="#Shell脚本如何搞定-MySQL的增删改查" class="headerlink" title="Shell脚本如何搞定 MySQL的增删改查"></a>Shell脚本如何搞定 MySQL的增删改查</h2><a id="more"></a>
+<p>用Shell对mysql操作非常的简单<br>我们利用 mysql 命令去操作数据库里面的所有东西。</p>
+<ul>
+<li>shell脚本<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta"></span></div><div class="line"># 一坨一坨的运行：</div><div class="line">mysql -uroot -p123456 -e "</div><div class="line">select * from tmp_test where tmp_name = 'a';</div><div class="line">select * from tmp_test where tmp_name = 'b';</div><div class="line">select * from tmp_test where tmp_id = 1;</div><div class="line">select tmp_name from tmp_test where tmp_id = 2;</div><div class="line">quit</div><div class="line">"</div><div class="line"><span class="meta"></span></div><div class="line"># 赋值：</div><div class="line">id=$(mysql -uroot -p123456 -e "SELECT tmp_id from tmp_test WHERE tmp_name = 'a';")</div><div class="line"><span class="meta">#</span> 会发现还有字段名字，加参数去掉字段名，只保留我们要查询的：</div><div class="line">id=$(mysql -uroot -p123456 -Bse "SELECT tmp_id from tmp_test WHERE tmp_name = 'a';")</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>过后我们会发现每次查询之后会出现警告，每次都出：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</div></pre></td></tr></table></figure></p>
+<h2 id="MySQL-版本-5-6-的安全策略"><a href="#MySQL-版本-5-6-的安全策略" class="headerlink" title="MySQL 版本 5.6+ 的安全策略"></a>MySQL 版本 5.6+ 的安全策略</h2><p>MySQL5.6版本向上有一个密码安全问题，即在命令行输入密码会出现警告：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> mysql -uroot -proot  </div><div class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</div></pre></td></tr></table></figure>
-<a id="more"></a>
+<p>读取配置文件的参数也不可以，这样我们 需要指定一个mysql的配置文件作为mysql的配置输入进去：</p>
+<ul>
+<li>cnf配置文件-my.cnf<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"></div><div class="line">[mysql]</div><div class="line">password=root</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后再在脚本中调用：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> 继续赋值，这样就不会出现警告信息：</div><div class="line">id=$(mysql --defaults-file=./my.cnf -uroot -Bse "SELECT tmp_id from tmp_test WHERE tmp_name = 'a';")</div></pre></td></tr></table></figure></p>
 <ul>
 <li>流式数据访问，即数据劈来给你读取而非随机读写，Hadoop需要的是数据分析而不是事务处理</li>
 <li>大规模数据集</li>
