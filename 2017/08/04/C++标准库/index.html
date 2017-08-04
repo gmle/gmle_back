@@ -10,6 +10,8 @@
     
     <title>
         
+            C++标准库 | 
+        
         忘lelele
     </title>
 
@@ -32,7 +34,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="忘了">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,C++">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -58,9 +60,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://gmle.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="忘lelele">
+    <meta property="og:title" content="C++标准库 | 忘lelele">
     <meta property="og:description" content="null">
-    
+    <meta property="og:article:tag" content="C++"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -223,6 +225,41 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-标准库可以分为两个部分："><span class="post-toc-number">1.</span> <span class="post-toc-text">C++标准库可以分为两个部分：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#标准函数库："><span class="post-toc-number">2.</span> <span class="post-toc-text">标准函数库：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#输入-输出I-O-；"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">输入 / 输出I/O ；</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面向对象类："><span class="post-toc-number">3.</span> <span class="post-toc-text">面向对象类：</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
 
 <!-- Layouts -->
 
@@ -249,7 +286,7 @@
         
     
             <p class="article-headline-p">
-                
+                C++标准库
             </p>
         </div>
 
@@ -268,7 +305,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>忘了</strong>
-        <span>7月 31, 2017</span>
+        <span>8月 04, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -292,7 +329,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/C/">C++</a>
     </ul>
     
 
@@ -319,7 +356,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://gmle.github.io//sed_and_awk/plugin/notes-server/notes.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=C++标准库&url=http://gmle.github.io//2017/08/04/C++标准库/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -328,7 +365,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=&url=http://gmle.github.io//sed_and_awk/plugin/notes-server/notes.html&via=忘了" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=C++标准库&url=http://gmle.github.io//2017/08/04/C++标准库/index.html&via=忘了" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -337,7 +374,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://gmle.github.io//sed_and_awk/plugin/notes-server/notes.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://gmle.github.io//2017/08/04/C++标准库/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -346,7 +383,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://gmle.github.io//sed_and_awk/plugin/notes-server/notes.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://gmle.github.io//2017/08/04/C++标准库/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -358,7 +395,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=忘lelele&title=&summary=null&pics=http://gmle.github.io/img/favicon.png&url=http://gmle.github.io/sed_and_awk/plugin/notes-server/notes.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=忘lelele&title=C++标准库&summary=null&pics=http://gmle.github.io/img/favicon.png&url=http://gmle.github.io/2017/08/04/C++标准库/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -376,145 +413,30 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-
-		<title>reveal.js - Slide Notes</title>
-
-		<style>
-			body {
-				font-family: Helvetica;
-			}
-
-			#notes {
-				font-size: 24px;
-				width: 640px;
-				margin-top: 5px;
-			}
-
-			#wrap-current-slide {
-				width: 640px;
-				height: 512px;
-				float: left;
-				overflow: hidden;
-			}
-
-			#current-slide {
-				width: 1280px;
-				height: 1024px;
-				border: none;
-				
-				-webkit-transform-origin: 0 0;
-				   -moz-transform-origin: 0 0;
-				    -ms-transform-origin: 0 0;
-				     -o-transform-origin: 0 0;
-				        transform-origin: 0 0;
-				 
-				-webkit-transform: scale(0.5);
-				   -moz-transform: scale(0.5);
-				    -ms-transform: scale(0.5);
-				     -o-transform: scale(0.5);
-				        transform: scale(0.5);
-			}
-
-			#wrap-next-slide {
-				width: 448px;
-				height: 358px;
-				float: left;
-				margin: 0 0 0 10px;
-				overflow: hidden;
-			}
-
-			#next-slide {
-				width: 1280px;
-				height: 1024px;
-				border: none;
-				
-				-webkit-transform-origin: 0 0;
-				   -moz-transform-origin: 0 0;
-				    -ms-transform-origin: 0 0;
-				     -o-transform-origin: 0 0;
-				        transform-origin: 0 0;
-
-				-webkit-transform: scale(0.35);
-				   -moz-transform: scale(0.35);
-				    -ms-transform: scale(0.35);
-				     -o-transform: scale(0.35);
-				        transform: scale(0.35);
-			}
-
-			.slides {
-				position: relative;
-				margin-bottom: 10px;
-				border: 1px solid black;
-				border-radius: 2px;
-				background: rgb(28, 30, 32);
-			}
-
-			.slides span {
-				position: absolute;
-				top: 3px;
-				left: 3px;
-				font-weight: bold;
-				font-size: 14px;
-				color: rgba( 255, 255, 255, 0.9 );
-			}
-		</style>
-	</head>
-
-	<body>
-
-		<div id="wrap-current-slide" class="slides">
-			<iframe src="/?receiver" width="1280" height="1024" id="current-slide"></iframe>
-		</div>
-
-		<div id="wrap-next-slide" class="slides">
-			<iframe src="/?receiver" width="640" height="512" id="next-slide"></iframe>
-			<span>UPCOMING:</span>
-		</div>
-		<div id="notes"></div>
-
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="/plugin/markdown/showdown.js"></script>
-
-		<script>
-		var socketId = '';
-		var socket = io.connect(window.location.origin);
-		var notes = document.getElementById('notes');
-		var currentSlide = document.getElementById('current-slide');
-		var nextSlide = document.getElementById('next-slide');
-
-		socket.on('slidedata', function(data) {
-			// ignore data from sockets that aren't ours
-			if (data.socketId !== socketId) { return; }
-
-			if (data.markdown) {
-				notes.innerHTML = (new Showdown.converter()).makeHtml(data.notes);
-			}
-			else {
-				notes.innerHTML = data.notes;
-			}
-
-			currentSlide.contentWindow.Reveal.slide(data.indexh, data.indexv);
-			nextSlide.contentWindow.Reveal.slide(data.nextindexh, data.nextindexv);
-		});
-		socket.on('fragmentdata', function(data) {
-			// ignore data from sockets that aren't ours
-			if (data.socketId !== socketId) { return; }
-
-			if (data.fragment === 'next') {
-				currentSlide.contentWindow.Reveal.nextFragment();
-			}
-			else if (data.fragment === 'previous') {
-				currentSlide.contentWindow.Reveal.prevFragment();
-			}
-		});
-		</script>
-
-	</body>
-</html>
+        <h2 id="C-标准库可以分为两个部分："><a href="#C-标准库可以分为两个部分：" class="headerlink" title="C++标准库可以分为两个部分："></a>C++标准库可以分为两个部分：</h2><ul>
+<li>标准函数库：继承自C语言；</li>
+<li>面向对象库：是类及其相关函数的集合；</li>
+</ul>
+<a id="more"></a>
+<h2 id="标准函数库："><a href="#标准函数库：" class="headerlink" title="标准函数库："></a>标准函数库：</h2><h4 id="输入-输出I-O-；"><a href="#输入-输出I-O-；" class="headerlink" title="输入 / 输出I/O ；"></a>输入 / 输出I/O ；</h4><ul>
+<li>字符串和字符处理；</li>
+<li>数学；</li>
+<li>时间、日期和本地化；</li>
+<li>动态分配；</li>
+<li>其他；</li>
+<li>宽字符函数；<h2 id="面向对象类："><a href="#面向对象类：" class="headerlink" title="面向对象类："></a>面向对象类：</h2></li>
+<li>标准的C++ I/O类；</li>
+<li>String类；</li>
+<li>数值类；</li>
+<li>STL容器类；</li>
+<li>STL算法；</li>
+<li>STL函数对象；</li>
+<li>STL迭代器；</li>
+<li>STL分配器；</li>
+<li>本地化库；</li>
+<li>异常处理类；</li>
+<li>杂项支持库；</li>
+</ul>
 
     
 
@@ -546,6 +468,14 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/06/23/Bash调用MySql/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
@@ -631,7 +561,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">14</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">14</span></a>
             </ul>
         </li>
         
@@ -649,7 +579,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Centos/">Centos<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/HBase/">HBase<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hadoop/">Hadoop<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/MacOS/">MacOS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Scala/">Scala<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Shell/">Shell<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/正则表达式/">正则表达式<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Centos/">Centos<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/HBase/">HBase<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hadoop/">Hadoop<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/MacOS/">MacOS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Scala/">Scala<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Shell/">Shell<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/正则表达式/">正则表达式<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -739,6 +669,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
