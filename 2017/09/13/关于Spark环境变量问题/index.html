@@ -10,7 +10,7 @@
     
     <title>
         
-            标签: JavaSE | 
+            关于Spark环境变量问题 | 
         
         忘lelele
     </title>
@@ -34,7 +34,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="忘了">
     <meta name="description" content="null">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,Spark,Shell,Linux">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -60,9 +60,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://gmle.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: JavaSE | 忘lelele">
+    <meta property="og:title" content="关于Spark环境变量问题 | 忘lelele">
     <meta property="og:description" content="null">
-    
+    <meta property="og:article:tag" content="Spark"> <meta property="og:article:tag" content="Shell"> <meta property="og:article:tag" content="Linux"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -223,102 +223,244 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
-
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/09/19/正则表达式/">正则表达式</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            正则表达式的基础使用。
-正则表达式 --&gt; 专门勇于操作字符串；
-可以理解为 ‘正确的规则’。
-好处：用了一些符号来代表一些代码，书写起来更为简单。
-弊端：可读性差，而且要把符号学完
-但是底层也是要配合代码实现的。
-
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/09/19/正则表达式/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="忘了's avatar">
-            </div>
-            <div>
-                <strong>忘了</strong>
-                <span>9月 19, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/正则表达式/">正则表达式</a>
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
             </span>
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
+        </a>
     </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题：Spark在spark-env-sh中的环境变量不生效"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题：Spark在spark-env.sh中的环境变量不生效</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看-spark-关于环境变量的配置文件"><span class="post-toc-number">2.</span> <span class="post-toc-text">查看 spark 关于环境变量的配置文件</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://spark.apache.org/images/spark-logo-trademark.png)">
+    
+            <p class="article-headline-p">
+                关于Spark环境变量问题
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>忘了</strong>
+        <span>9月 13, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Linux/">Linux</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Shell/">Shell</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Spark/">Spark</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=关于Spark环境变量问题&url=http://gmle.github.io//2017/09/13/关于Spark环境变量问题/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=关于Spark环境变量问题&url=http://gmle.github.io//2017/09/13/关于Spark环境变量问题/index.html&via=忘了" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://gmle.github.io//2017/09/13/关于Spark环境变量问题/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://gmle.github.io//2017/09/13/关于Spark环境变量问题/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=忘lelele&title=关于Spark环境变量问题&summary=null&pics=http://gmle.github.io/img/favicon.png&url=http://gmle.github.io/2017/09/13/关于Spark环境变量问题/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
 </div>
 
-            
-            
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
+        <h2 id="问题：Spark在spark-env-sh中的环境变量不生效"><a href="#问题：Spark在spark-env-sh中的环境变量不生效" class="headerlink" title="问题：Spark在spark-env.sh中的环境变量不生效"></a>问题：Spark在spark-env.sh中的环境变量不生效</h2><a id="more"></a>
+<p>错误日志</p>
+<ul>
+<li>Terminal<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@ceshi3 sbin]<span class="comment"># ./start-slaves.sh </span></div><div class="line">- /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/conf/spark-env.sh: line 9: <span class="built_in">export</span>: `/usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/lib/spark-assembly-1.6.0-hadoop2.6.0.jar<span class="string">': not a valid identifier</span></div><div class="line">- ceshi3: /usr/local/spark-1.6.0-bin-hadoop2.6/conf/spark-env.sh: line 9: export: `/usr/local/spark-1.6.0-bin-hadoop2.6/lib/spark-assembly-1.6.0-hadoop2.6.0.jar': not a valid identifier</div><div class="line">- ceshi3: starting org.apache.spark.deploy.worker.Worker, logging to /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/logs/spark-root-org.apache.spark.deploy.worker.Worker-1-ceshi3.out</div><div class="line">- ceshi3: failed to launch org.apache.spark.deploy.worker.Worker:</div><div class="line">- ceshi3:   /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/spark-class: line 87: /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/java: 没有那个文件或目录</div><div class="line">- ceshi3:   /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/spark-class: line 87: <span class="built_in">exec</span>: /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/java: cannot execute: 没有那个文件或目录</div><div class="line">- ceshi3: full <span class="built_in">log</span> <span class="keyword">in</span> /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/logs/spark-root-org.apache.spark.deploy.worker.Worker-1-ceshi3.out</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>发现启动worker的时候会出现错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- ceshi3:   /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/spark-class: line 87: /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/java: 没有那个文件或目录</div><div class="line">- ceshi3:   /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/spark-class: line 87: <span class="built_in">exec</span>: /usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/bin/java: cannot execute: 没有那个文件或目录</div></pre></td></tr></table></figure></p>
+<p>这个bin/java明明是$ JAVA_HOME 的，为什么会变为 $SPARK_HOME 呢</p>
+<p>既然启动报错，而且报的是 $JAVA_HOME，那就要看几个东西:一个是正常的系统变量配置，再一个就是在要启动的服务里是否使用了这个配置变量，再确认下自己的配置是否已经有了。</p>
+<h2 id="查看-spark-关于环境变量的配置文件"><a href="#查看-spark-关于环境变量的配置文件" class="headerlink" title="查看 spark 关于环境变量的配置文件"></a>查看 spark 关于环境变量的配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> SPARK_DAEMON_JAVA_OPTS=<span class="string">"-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=dk31:2181,dk32:2181,dk34:2181 -Dspark.deploy.zookeeper.dir=/spark"</span></div><div class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span></div><div class="line"><span class="built_in">export</span> HADOOP_HOME=/usr/<span class="built_in">local</span>/hadoop-2.6.0</div><div class="line"><span class="built_in">export</span> HADOOP_CONF_DIR=<span class="variable">$&#123;HADOOP_HOME&#125;</span>/etc/hadoop</div><div class="line"><span class="built_in">export</span> SCALA_HOME=/usr/<span class="built_in">local</span>/scala-2.10.4</div><div class="line"><span class="built_in">export</span> SPARK_WORKER_MEMORY=4g</div><div class="line"><span class="built_in">export</span> SPARK_EXECUTOR_MEMORY=2g</div><div class="line"><span class="built_in">export</span> SPARK_DRIVER_MEMORY=1g</div><div class="line"><span class="built_in">export</span> SPARK_WORKER_CORES=4</div><div class="line"><span class="built_in">export</span> SPARK_CLASSPATH=/usr/<span class="built_in">local</span>/spark-1.6.0-bin-hadoop2.6/lib/mysql-connector-java.jar</div><div class="line"><span class="built_in">export</span> SPARK_CLASSPATH=<span class="variable">$SPARK_CLASSPATH</span>:<span class="variable">$CLASSPATH</span></div></pre></td></tr></table></figure>
+<p>发现 $JAVA_HOME 变量是取的系统变量·，但是系统变量为什么取不到？</p>
+<p>查了下：在脚本中使用export, 只在脚本中有效，退出这个脚本，设置的变量就没有了。<br>由于spark-class使用了 spark-env.sh 在使用的时候 已经取不到该值，所以无效了。<br>但是想不通为什么会变成 $SPARK_HOME 的变量</p>
 
     
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
-</script>
 
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/09/12/yum一键安装maven/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -506,6 +648,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
