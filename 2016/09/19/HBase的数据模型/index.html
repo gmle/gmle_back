@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html style="display: none;" lang="zh">
     <head>
+    <meta charset="utf-8">
     <!--
         © Material Theme
         https://github.com/viosey/hexo-theme-material
-        Version: 1.3.3 -->
+        Version: 1.5.0 -->
+    <script>
+        window.materialVersion = "1.5.0"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Title -->
     
@@ -16,25 +43,20 @@
     </title>
 
     <!-- Meta & Info -->
-    <meta charset="utf-8">
-
-    <!-- dns prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-    
-    
-    
-    
-    
-    
-        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
-    
-
-    <meta http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="忘了">
-    <meta name="description" content="null">
+    <meta name="description" itemprop="description" content="目录介绍概览行列簇时间戳
+此篇为参考文章">
     <meta name="keywords" content="null,Hadoop,HBase,数据模型">
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -42,7 +64,6 @@
     <link rel="apple-touch-icon" href="/img/favicon.png">
 
     <!--iOS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-title" content="Title">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -57,12 +78,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="忘lelele">
 
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://gmle.github.io">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="HBase的数据模型 | 忘lelele">
-    <meta property="og:description" content="null">
-    <meta property="og:article:tag" content="Hadoop"> <meta property="og:article:tag" content="HBase"> <meta property="og:article:tag" content="数据模型"> 
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -72,17 +93,28 @@
         
     <![endif]-->
 
-    <!-- Import CSS & jQuery -->
+    <!-- Import CSS -->
     
-        <link rel="stylesheet" href="/css/material.min.css">
-        <link rel="stylesheet" href="/css/style.min.css">
-        <!-- Config CSS -->
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
 
 <!-- Other Styles -->
 <style>
   body, html {
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
 
   a {
@@ -179,29 +211,98 @@
     </style>
 
 
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/queue.js"></script>
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icon -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
     
 
-    <!-- UC Browser Compatible -->
-    <script>
-        var agent = navigator.userAgent.toLowerCase();
-        if(agent.indexOf('ucbrowser')>0) {
-            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
-            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://gmle.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="HBase的数据模型 | 忘lelele">
+    <meta property="og:image" content="http://gmle.github.io/img/favicon.png" />
+    <meta property="og:description" content="目录介绍概览行列簇时间戳
+此篇为参考文章">
+    <meta property="og:article:tag" content="Hadoop"> <meta property="og:article:tag" content="HBase"> <meta property="og:article:tag" content="数据模型"> 
+
+    
+        <meta property="article:published_time" content="Mon Sep 19 2016 08:53:20 GMT+0800" />
+        <meta property="article:modified_time" content="Wed May 03 2017 14:38:01 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="HBase的数据模型 | 忘lelele">
+    <meta name="twitter:description" content="目录介绍概览行列簇时间戳
+此篇为参考文章">
+    <meta name="twitter:image" content="http://gmle.github.io/img/favicon.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://gmle.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://gmle.github.io/2016/09/19/HBase的数据模型/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://gmle.github.io/2016/09/19/HBase的数据模型/index.html",
+    "headline": "HBase的数据模型",
+    "datePublished": "Mon Sep 19 2016 08:53:20 GMT+0800",
+    "dateModified": "Wed May 03 2017 14:38:01 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "忘了",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "忘lelele",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
         }
-    </script>
+    },
+    "keywords": ",Hadoop,HBase,数据模型null",
+    "description": "目录介绍概览行列簇时间戳
+此篇为参考文章",
+}
+</script>
+
 
     
 
+    <!-- Analytics -->
     
-
-
-    <!-- Bing Background -->
+    
     
 
     <!-- Custom Head -->
     
+
 </head>
 
 
@@ -242,7 +343,10 @@
     </div>
     -->
 
+
     <!-- Left aligned menu below button -->
+    
+    
     <button id="post-toc-trigger-btn"
         class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
@@ -250,13 +354,8 @@
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
         <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录"><span class="post-toc-number">1.</span> <span class="post-toc-text">目录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概览"><span class="post-toc-number">3.</span> <span class="post-toc-text">概览</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行"><span class="post-toc-number">4.</span> <span class="post-toc-text">行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#列簇"><span class="post-toc-number">5.</span> <span class="post-toc-text">列簇</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#时间戳"><span class="post-toc-number">6.</span> <span class="post-toc-text">时间戳</span></a></li></ol>
-
-        <!--
-        <li class="mdl-menu__item">
-            Some Action
-        </li>
-        -->
     </ul>
+    
 
 
 
@@ -276,7 +375,7 @@
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script>
+            <script type="text/ls-javascript" id="post-thumbnail-script">
     var randomNum = Math.floor(Math.random() * 19 + 1);
 
     $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
@@ -342,21 +441,10 @@
     
 
     
-        
-            <!-- Busuanzi Views -->
-            <a class="post_share-link" href="#">
-                <li class="mdl-menu__item">
-                    <span id="busuanzi_container_page_pv">
-                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
-                    </span>
-                </li>
-            </a>
-        
-    
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=HBase的数据模型&url=http://gmle.github.io//2016/09/19/HBase的数据模型/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=HBase的数据模型&url=http://gmle.github.io/2016/09/19/HBase的数据模型/index.html&pic=http://gmle.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -365,7 +453,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=HBase的数据模型&url=http://gmle.github.io//2016/09/19/HBase的数据模型/index.html&via=忘了" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=HBase的数据模型&url=http://gmle.github.io/2016/09/19/HBase的数据模型/index.html&via=忘了" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -374,7 +462,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://gmle.github.io//2016/09/19/HBase的数据模型/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://gmle.github.io/2016/09/19/HBase的数据模型/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -383,7 +471,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://gmle.github.io//2016/09/19/HBase的数据模型/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://gmle.github.io/2016/09/19/HBase的数据模型/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -394,12 +482,6 @@
     
 
     <!-- Share QQ -->
-    
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=忘lelele&title=HBase的数据模型&summary=null&pics=http://gmle.github.io/img/favicon.png&url=http://gmle.github.io/2016/09/19/HBase的数据模型/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 QQ
-            </li>
-        </a>
     
 
     <!-- Share Telegram -->
@@ -431,6 +513,7 @@
 <h2 id="列簇"><a href="#列簇" class="headerlink" title="列簇"></a>列簇</h2><p>在 Hbase中，列成员重组具有同一性质的数据，并不限制数据类型。簇是表模式的一部分，为每行保存同种数据。与 froms rows to forws 不同的是 column keys 可以是稀少的。例如，row “20080702” 可以拥有自己的“info:”成员，该成员下有如下几个 column keys：<br>info:aaa<br>info:bbb<br>info:ccc<br>同样，row “20080703”仅有：<br>info:12342<br>在使用 column keys 的时候，开发者必须要非常小心。因为长度为0 的 key是允许的，这说明，在前面的例子中，数据可以被插入到 column key “info:” 中。我们强烈推荐，仅仅在没有其他的 keys 指定时使用空的 key。同样，由于一个成员中的数据是同一种类的，参考性能与时间戳 ，很多属性可以指定。</p>
 <h2 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h2><p>根据成员的配置情况，HBase的值可以是以多版本的方式保存。缺省情况下，HBase将每个新值的时间戳设置为当前时间 milliseconds，并且当一个 cell 被请求时，返回最新的版本。开发者可以在插入数据时自定义时间戳，然后再通过指定这个时间戳来重新获取该值。<br>Family Attributes成员属性<br>可以为每一个簇指定下面的属性：</p>
 
+        
     
 
     
@@ -442,13 +525,6 @@
                 <!-- Post Comments -->
                 
                     
-
-
-
-
-
-
-
                 
             </div>
 
@@ -513,7 +589,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        e.le.lee.leee@gmail.com
+        youremail@email.com
         <b class="caret"></b>
     </a>
 </div>
@@ -526,7 +602,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="Email Me">
+                    <a href="#" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -540,7 +616,7 @@
     <!-- Homepage -->
     
         <li id="sidebar-first-li">
-            <a href="/" target="_self">
+            <a href="/">
                 
                     <i class="material-icons sidebar-material-icons">home</i>
                 
@@ -570,57 +646,8 @@
 
     <!-- Categories  -->
     
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/C/">C++<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Centos/">Centos<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/HBase/">HBase<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/Hadoop/">Hadoop<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/MacOS/">MacOS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Scala/">Scala<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Shell/">Shell<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/正则表达式/">正则表达式<span class="sidebar_archives-count">1</span></a>
-            </ul>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
 
     <!-- Pages  -->
-    
-        <li>
-            <a href="/tags" title="ArticleTags">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                ArticleTags
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
-        <li>
-            <a href="/about" title="Resume">
-                
-                    <i class="material-icons sidebar-material-icons">person</i>
-                
-                Resume
-            </a>
-        </li>
-        
-    
-        <li>
-            <a href="/me" title="About">
-                
-                    <i class="material-icons sidebar-material-icons">adb</i>
-                
-                About
-            </a>
-        </li>
-        
     
 
     <!-- Article Number  -->
@@ -645,6 +672,13 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 <!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
 
 
 <!-- Help & Support -->
@@ -673,7 +707,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
                     
                         <!-- Footer Top Button -->
-                        <div class="toTop-wrap">
+                        <div id="back-to-top" class="toTop-wrap">
     <a href="#top" class="toTop">
         <i class="material-icons footer_top-i">expand_less</i>
     </a>
@@ -689,7 +723,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Twitter -->
     
         <a href="https://twitter.com/twitter" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
                 <span class="visuallyhidden">Twitter</span>
             </button><!--
      --></a>
@@ -698,7 +732,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Facebook -->
     
         <a href="https://www.facebook.com/facebook" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
                 <span class="visuallyhidden">Facebook</span>
             </button><!--
      --></a>
@@ -707,7 +741,7 @@ It will not impact the appearance and can give developers a lot of support :)
     <!-- Google + -->
     
         <a href="https://www.google.com/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
                 <span class="visuallyhidden">Google Plus</span>
             </button><!--
      --></a>
@@ -736,17 +770,16 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Telegram -->
     
+    
+    <!-- V2EX -->
+    
 </div>
 
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;
-            <script type="text/javascript">
-                var fd = new Date();
-                document.write(fd.getFullYear());
-            </script>
-            &nbsp;忘lelele
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>忘lelele
+            
         </div>
 
         <!-- Paradox Footer Right Section -->
@@ -769,17 +802,20 @@ It will not impact the appearance and can give developers a lot of support :)
 </footer>
 
 
-                    <!-- Import File -->
+                    <!-- Import JS File -->
 
-    <script src="/js/lazyload.min.js"></script>
-    <script src="/js/js.min.js"></script>
-
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
 
 
-    <script src="/js/nprogress.js"></script>
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
 
 
-<script type="text/javascript">
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
     NProgress.configure({
         showSpinner: true
     });
@@ -802,16 +838,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-    
-        <script src="/js/smoothscroll.js"></script>
-    
-
-
-
-
-
-    <!-- Busuanzi -->
-    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
@@ -822,32 +848,67 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-<!-- Window Load-->
+<!-- UC Browser Compatible -->
 <script>
-    $(window).load(function() {
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
         // Post_Toc parent position fixed
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
+
+    
+    
 </script>
 
 <!-- MathJax Load-->
 
-<script>
-    <!-- Offer LazyLoad -->
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
     queue.offer(function(){
         $('.lazy').lazyload({
             effect : 'show'
         });
     });
 
-    <!-- Start Queue -->
+    // Start Queue
     $(document).ready(function(){
-        setTimeout(function(){
-            setInterval(function(){
-                queue.execNext();
-            },200);
-        },3000);
+        setInterval(function(){
+            queue.execNext();
+        },200);
     });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
 </script>
 
                 </main>
