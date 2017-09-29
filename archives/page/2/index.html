@@ -341,6 +341,12 @@
                     </a>
                 </span>
             
+                <span class="header-nav-item">
+                    <a href="https://jetbrains.org.cn" title="mrchang">
+                        <span>mrchang</span>
+                    </a>
+                </span>
+            
             
         </nav>
 
@@ -419,7 +425,7 @@
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -479,7 +485,7 @@
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -540,7 +546,7 @@ Source源码地址 GitHub/hbase
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -600,7 +606,7 @@ Source源码地址 GitHub/hbase
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -665,7 +671,7 @@ Source源码地址 GitHub/hbase
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -752,7 +758,7 @@ mask
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -812,7 +818,7 @@ mask
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -875,7 +881,7 @@ HBase的列有列族前缀和列组成，
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -935,7 +941,7 @@ HBase的列有列族前缀和列组成，
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -996,7 +1002,7 @@ HDFS文件操作的方法。
         <!-- Post Header Info -->
         <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
-            <img src="/img/avatar.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
@@ -1009,23 +1015,30 @@ HDFS文件操作的方法。
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/HSFS中文件的一些操作命令/">Hadoop与HDFS的一些常用命令</a>
+            <a href="/2016/09/19/对HDFS的一些认识/">Hadoop_HDFS底层架构</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                Hadoop与HDFS文件操作的一些常用命令，记个笔记。
-Hadoop启动
+                这是我对HDFS的认知与了解，并结合网上查阅的资料进行的整合。
+HDFS设计基础与目标
+硬件错误是常态，因此需要冗余。
+错误检测和快速、自动的恢复是HDFS最核心的架构目标
+
+
+小文件不适合存储，适合存储超大文件
+流式数据访问
+
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2016/09/19/HSFS中文件的一些操作命令/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/对HDFS的一些认识/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/常用命令/">常用命令</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -1050,7 +1063,7 @@ Hadoop启动
     
     <!-- Index nav -->
         <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <a class="extend prev" rel="prev" href="/archives/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
+            <a class="extend prev" rel="prev" href="/archives/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
         </nav>
     
 
