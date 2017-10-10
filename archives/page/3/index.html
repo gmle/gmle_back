@@ -37,7 +37,7 @@
     
     <title>
         
-            标签: Shell | 
+            归档 | 
         
         忘lelele
     </title>
@@ -235,7 +235,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://gmle.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: Shell | 忘lelele">
+    <meta property="og:title" content="归档 | 忘lelele">
     <meta property="og:image" content="http://gmle.github.io/img/favicon.png" />
     <meta property="og:description" content="">
     
@@ -243,7 +243,7 @@
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="标签: Shell | 忘lelele">
+    <meta name="twitter:title" content="归档 | 忘lelele">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="http://gmle.github.io/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -251,7 +251,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://gmle.github.io/tags/Shell/index.html" />
+        <link rel="canonical" href="http://gmle.github.io/archives/page/3/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -423,15 +423,14 @@
     <!-- Post_entry Header -->
     
         <!-- Post Header Info -->
-        <div class="post_entry-header_info with-thumbnail">
+        <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
             <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
         </div>
 
-        <!-- Custom thumbnail -->
-        <div class="post_thumbnail-custom">
-            <img src="https://spark.apache.org/images/spark-logo-trademark.png">
+        <!-- Null Thumbnail -->
+        <div class="post_thumbnail-null">
     
         </div>
 
@@ -439,32 +438,30 @@
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2017/10/10/Spark-HA的worker问题/">关于Spark环境变量问题</a>
+            <a href="/2016/09/19/对HDFS的一些认识/">Hadoop_HDFS底层架构</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                问题：Spark Woker 不去连接ALIVE Master机器：
+                这是我对HDFS的认知与了解，并结合网上查阅的资料进行的整合。
+HDFS设计基础与目标
+硬件错误是常态，因此需要冗余。
+错误检测和快速、自动的恢复是HDFS最核心的架构目标
 
-192.168.1.128 Master
-192.168.1.129 Master Worker
-192.168.1.130 Worker
-启动时两个Master的状态不可控，不知道哪个是ALIVE的Master，worker节点在连接Master的时候，会判断当前Master的状态是否为ALIVE，如果为StandBy，则不继续链接，然后去寻找ALIVE，直到找到ALIVE节点的MASTER。
-现在的问题是 Worker在找到StandBy节点后，并没有去寻找新的Master，导致了worker注册不到集群上，自动关闭。
-原因待定。
-根据一些帖子发现，如果配置了Spark on yarn ，则 Spark HA 基本没有任何作用。
 
+小文件不适合存储，适合存储超大文件
+流式数据访问
 
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2017/10/10/Spark-HA的worker问题/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/对HDFS的一些认识/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Linux/">Linux</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Shell/">Shell</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Spark/">Spark</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -472,128 +469,7 @@
         <div class="post_entry-footer-border"></div>
         <div class="post_entry-footer-info">
             <div class="post_entry-footer-date">
-                10月 10, 2017
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info with-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
-            <span class="name-span">忘了</span>
-        </div>
-
-        <!-- Custom thumbnail -->
-        <div class="post_thumbnail-custom">
-            <img src="https://spark.apache.org/images/spark-logo-trademark.png">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/09/13/关于Spark环境变量问题/">关于Spark环境变量问题</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                问题：Spark在spark-env.sh中的环境变量不生效
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/09/13/关于Spark环境变量问题/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Linux/">Linux</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Shell/">Shell</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Spark/">Spark</a></li></ul>
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                9月 13, 2017
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info with-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
-            <span class="name-span">忘了</span>
-        </div>
-
-        <!-- Custom thumbnail -->
-        <div class="post_thumbnail-custom">
-            <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1498387031758&amp;di=504719a54e70ee654f90fdf429adf5e6&amp;imgtype=0&amp;src=http%3A%2F%2Fimgmini.dfshurufa.com%2Fmobile%2F20160321085922_38def67f1582468f7fab178f6044dc12_1.jpeg">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/06/23/Bash调用MySql/">Bash/Shell调用MySQL并忽略警告</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                Shell对MySQL的调用与脚本中如何写
-Shell脚本如何搞定 MySQL的增删改查
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/06/23/Bash调用MySql/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Bash/">Bash</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/MySQL/">MySQL</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Shell/">Shell</a></li></ul>
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                6月 23, 2017
+                9月 19, 2016
             </div>
             <div class="post_entry-footer-comment">
                 
@@ -607,6 +483,11 @@ Shell脚本如何搞定 MySQL的增删改查
         
     
 
+    
+    <!-- Index nav -->
+        <nav class="material-nav mdl-cell mdl-cell--12-col">
+            <a class="extend prev" rel="prev" href="/archives/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+        </nav>
     
 
     

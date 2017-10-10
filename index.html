@@ -459,6 +459,76 @@
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
+            <a href="/2017/10/10/Spark-HA的worker问题/">关于Spark环境变量问题</a>
+        </p>
+
+        <!-- Post Excerpt -->
+        <p class="post_entry-excerpt">
+            
+                问题：Spark Woker 不去连接ALIVE Master机器：
+
+192.168.1.128 Master
+192.168.1.129 Master Worker
+192.168.1.130 Worker
+启动时两个Master的状态不可控，不知道哪个是ALIVE的Master，worker节点在连接Master的时候，会判断当前Master的状态是否为ALIVE，如果为StandBy，则不继续链接，然后去寻找ALIVE，直到找到ALIVE节点的MASTER。
+现在的问题是 Worker在找到StandBy节点后，并没有去寻找新的Master，导致了worker注册不到集群上，自动关闭。
+原因待定。
+根据一些帖子发现，如果配置了Spark on yarn ，则 Spark HA 基本没有任何作用。
+
+
+            
+            &nbsp;&nbsp;&nbsp;
+            <span>
+                <a href="/2017/10/10/Spark-HA的worker问题/" target="_self">阅读全文</a>
+            </span>
+        </p>
+
+        <!-- Post Tags -->
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Linux/">Linux</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Shell/">Shell</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Spark/">Spark</a></li></ul>
+    </div>
+
+    <!-- Post_entry Footer -->
+    <div class="post_entry-footer">
+        <div class="post_entry-footer-border"></div>
+        <div class="post_entry-footer-info">
+            <div class="post_entry-footer-date">
+                10月 10, 2017
+            </div>
+            <div class="post_entry-footer-comment">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+        
+    
+        
+            
+            
+                <!-- Isolation Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post_entry Header -->
+    
+        <!-- Post Header Info -->
+        <div class="post_entry-header_info with-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <span class="name-span">忘了</span>
+        </div>
+
+        <!-- Custom thumbnail -->
+        <div class="post_thumbnail-custom">
+            <img src="https://spark.apache.org/images/spark-logo-trademark.png">
+    
+        </div>
+
+    <!-- Post_entry Content -->
+    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
+        <!-- Post Title -->
+        <p class="post_entry-title">
             <a href="/2017/09/13/关于Spark环境变量问题/">关于Spark环境变量问题</a>
         </p>
 
@@ -820,66 +890,6 @@ Shell脚本如何搞定 MySQL的增删改查
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/HSFS中文件的一些操作命令/">Hadoop与HDFS的一些常用命令</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                Hadoop与HDFS文件操作的一些常用命令，记个笔记。
-Hadoop启动
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2016/09/19/HSFS中文件的一些操作命令/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/常用命令/">常用命令</a></li></ul>
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                9月 19, 2016
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
-            <span class="name-span">忘了</span>
-        </div>
-
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
             <a href="/2016/09/19/MapReduce架构原理/">MapReduce架构及原理</a>
         </p>
 
@@ -1058,7 +1068,7 @@ Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)
     
     <!-- Index nav -->
         <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
+            <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
         </nav>
     
 
