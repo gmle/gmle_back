@@ -37,7 +37,7 @@
     
     <title>
         
-            标签: c++ | 
+            对C中堆内存的理解 | 
         
         忘lelele
     </title>
@@ -48,8 +48,9 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="忘了">
-    <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="null">
+    <meta name="description" itemprop="description" content="初学者对于堆栈的认识，欢迎吐槽
+">
+    <meta name="keywords" content="null,c++,内存管理">
 
     <!-- Import lsloader -->
     <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
@@ -235,29 +236,65 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://gmle.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: c++ | 忘lelele">
+    <meta property="og:title" content="对C中堆内存的理解 | 忘lelele">
     <meta property="og:image" content="http://gmle.github.io/img/favicon.png" />
-    <meta property="og:description" content="">
-    
+    <meta property="og:description" content="初学者对于堆栈的认识，欢迎吐槽
+">
+    <meta property="og:article:tag" content="c++"> <meta property="og:article:tag" content="内存管理"> 
 
+    
+        <meta property="article:published_time" content="Tue Oct 24 2017 13:59:18 GMT+0800" />
+        <meta property="article:modified_time" content="Tue Oct 24 2017 13:59:38 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="标签: c++ | 忘lelele">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="对C中堆内存的理解 | 忘lelele">
+    <meta name="twitter:description" content="初学者对于堆栈的认识，欢迎吐槽
+">
     <meta name="twitter:image" content="http://gmle.github.io/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://gmle.github.io" />
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://gmle.github.io/tags/c/index.html" />
+        <link rel="canonical" href="http://gmle.github.io/2017/10/24/对堆的内存分配的理解/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://gmle.github.io/2017/10/24/对堆的内存分配的理解/index.html",
+    "headline": "对C中堆内存的理解",
+    "datePublished": "Tue Oct 24 2017 13:59:18 GMT+0800",
+    "dateModified": "Tue Oct 24 2017 13:59:38 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "忘了",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/author.png"
+        },
+        "description": "I want to be a developer. ,&nbsp&nbsp&nbsp&nbspAnd I hope time is Never！,&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspReally ！"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "忘lelele",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",c++,内存管理null",
+    "description": "初学者对于堆栈的认识，欢迎吐槽
+",
+}
+</script>
 
 
     
@@ -405,25 +442,29 @@
 
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
 
-    <!-- Normal Post -->
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+
+
+    <!-- Isolation Post Header -->
+    <!-- Post thumbnail -->
     
         <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
+        <div class="post-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
             <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
             <span class="name-span">忘了</span>
@@ -434,52 +475,108 @@
     
         </div>
 
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/10/24/对堆的内存分配的理解/">对C中堆内存的理解</a>
-        </p>
 
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                初学者对于堆栈的认识，欢迎吐槽
 
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/10/24/对堆的内存分配的理解/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/c/">c++</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/内存管理/">内存管理</a></li></ul>
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                10月 24, 2017
-            </div>
-            <div class="post_entry-footer-comment">
                 
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+
+    
+        <div class="post-content_wrapper">
+            <p class="post-title">
+                对C中堆内存的理解
+            </p>
+            <pre><code>初学者对于堆栈的认识，欢迎吐槽
+</code></pre><a id="more"></a>
+<h2 id="C-中内存划分"><a href="#C-中内存划分" class="headerlink" title="C++中内存划分"></a>C++中内存划分</h2><p>c++划分为五个区：</p>
+<ul>
+<li>堆<ul>
+<li>堆，就是那些由new分配的内存块，他们的释放编译器不去管，由我们的应用程序去控制，一般一个new就要对应一个delete.如果程序员没有释放掉，那么在程序结束后，操作系统会自动回收。</li>
+</ul>
+</li>
+<li>栈<ul>
+<li>栈，就是那些由编译器在需要的时候分配，在不需要的时候自动清楚的变量的存储区。里面的变量通常是局部变量、函数参数等。</li>
+</ul>
+</li>
+<li>自由存储区<ul>
+<li>就是那些由malloc等分配的内存块，他和堆是十分相似的，不过它是用free来结束自己的生命的。</li>
+</ul>
+</li>
+<li>全局、静态存储区<ul>
+<li>全局变量和静态变量被分配到同一块内存中，在以前的C语言中，全局变量又分为初始化的和未初始化的，在C++里面没有这个区分了，他们共同占用同一块内存区。</li>
+</ul>
+</li>
+<li>常亮存储区<ul>
+<li>这是一块比较特殊的存储区，他们里面存放的是常量，不允许修改(当然，你要通过非正当手段也可以修改)</li>
+</ul>
+</li>
+</ul>
+<h2 id="C-内存区域中堆和栈的区别："><a href="#C-内存区域中堆和栈的区别：" class="headerlink" title="C++内存区域中堆和栈的区别："></a>C++内存区域中堆和栈的区别：</h2><h3 id="管理方式不同："><a href="#管理方式不同：" class="headerlink" title="管理方式不同："></a>管理方式不同：</h3><ul>
+<li>栈是由编译器自动管理，无需我们手工控制。</li>
+<li>堆的释放由程序员完成，容易产生内存泄漏。</li>
+</ul>
+<h3 id="空间大小不同："><a href="#空间大小不同：" class="headerlink" title="空间大小不同："></a>空间大小不同：</h3><ul>
+<li>堆内存很大。</li>
+<li>栈内存可修改，但默认好像非常小。</li>
+</ul>
+<h3 id="内存碎片："><a href="#内存碎片：" class="headerlink" title="内存碎片："></a>内存碎片：</h3><ul>
+<li>对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。</li>
+<li>对于栈来讲，则不会存在这个问题。</li>
+</ul>
+<h3 id="生长方向不同："><a href="#生长方向不同：" class="headerlink" title="生长方向不同："></a>生长方向不同：</h3><ul>
+<li>对于堆来讲，生长方向是向上的，也就是向着内存地址增加的方向；</li>
+<li>对于栈来讲，它的生长方式是向下的，是向着内存地址减小的方向增长。<ul>
+<li>加深理解的话：<ul>
+<li>在函数体中定义的变量通常是在栈上，定义一个变量，内存就少一点。就像一杯水喝一口</li>
+<li>堆用malloc， calloc， realloc等分配内存的函数分配得到的就是在堆上<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">0</span>; <span class="comment">//全局初始化区  </span></div><div class="line"><span class="keyword">char</span> *p1; <span class="comment">//全局未初始化区  </span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> b; <span class="comment">//栈  </span></div><div class="line">    <span class="keyword">char</span> s[] = <span class="string">"abc"</span>;          <span class="comment">//栈  </span></div><div class="line">    <span class="keyword">char</span> *p2;                  <span class="comment">//栈  </span></div><div class="line">    <span class="keyword">char</span> *p3 = <span class="string">"123456"</span>;       <span class="comment">//123456&#123;post.content&#125;在常量区，p3在栈上  </span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> c = <span class="number">0</span>;          <span class="comment">//全局(静态)初始化区  </span></div><div class="line">    p1 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>);   <span class="comment">//分配得来得10字节的区域在堆区  </span></div><div class="line">    p2 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">20</span>);   <span class="comment">//分配得来得20字节的区域在堆区  </span></div><div class="line">    <span class="built_in">strcpy</span>(p1, <span class="string">"123456"</span>);      <span class="comment">//123456&#123;post.content&#125;放在常量区，编译器可能会将它与p3所指向的"123456"优化成一块  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+        </div>
+    
+</div>
+
+
+                
+                    <!-- Paradox Post Info -->
+                    
+                
+
+                <!-- Post Comments -->
+                
+                    
                 
             </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/10/10/Spark-HA的worker问题/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
         </div>
     </div>
-</div>
 
-            
-        
-    
-
-    
-
-    
-</div>
 
 
                     

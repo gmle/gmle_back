@@ -570,28 +570,30 @@ Reduce（化简）：队一个列表的元素进行合并
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/Yarn架构详解/">Hadoop_Yarn架构详解</a>
+            <a href="/2016/09/19/对HDFS的一些认识/">Hadoop_HDFS底层架构</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                Yarn架构概述
-Yarn Shell操作
-Yarn 高可用的配置
-Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)
-    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
-    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
+                这是我对HDFS的认知与了解，并结合网上查阅的资料进行的整合。
+HDFS设计基础与目标
+硬件错误是常态，因此需要冗余。
+错误检测和快速、自动的恢复是HDFS最核心的架构目标
+
+
+小文件不适合存储，适合存储超大文件
+流式数据访问
 
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2016/09/19/Yarn架构详解/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/对HDFS的一些认识/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Yarn/">Yarn</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -652,67 +654,6 @@ Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)
 
         <!-- Post Tags -->
         <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/API/">API</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HBase/">HBase</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Java/">Java</a></li></ul>
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                9月 19, 2016
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
-            <span class="name-span">忘了</span>
-        </div>
-
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2016/09/19/HBase入门_操作数据/">HBase入门 — 操作数据表</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                HBase中数据表的增删改查
-其实底层还是最普通的MR(MapReduce)操作。
-Source源码地址 GitHub/hbase
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2016/09/19/HBase入门_操作数据/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/CRUD/">CRUD</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HBase/">HBase</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -968,23 +909,28 @@ mask
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/HBase的数据模型/">HBase的数据模型</a>
+            <a href="/2016/09/19/Yarn架构详解/">Hadoop_Yarn架构详解</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                目录介绍概览行列簇时间戳
-此篇为参考文章
+                Yarn架构概述
+Yarn Shell操作
+Yarn 高可用的配置
+Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)
+    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
+    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
+
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2016/09/19/HBase的数据模型/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/Yarn架构详解/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HBase/">HBase</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/数据模型/">数据模型</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Yarn/">Yarn</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -1028,26 +974,84 @@ mask
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/HBase的列簇/">HBase的列簇</a>
+            <a href="/2016/09/19/HSFS中文件的一些操作命令/">Hadoop与HDFS的一些常用命令</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                对于HBase中的列簇，新手都会有这样的问题
-HBase的列有列族前缀和列组成，
-那么一个表中列族要怎么设定？
-是只设定一个？还是越多越好？还是根据什么设定几个？
-
+                Hadoop与HDFS文件操作的一些常用命令，记个笔记。
+Hadoop启动
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2016/09/19/HBase的列簇/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/HSFS中文件的一些操作命令/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HBase/">HBase</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/列族/">列族</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/常用命令/">常用命令</a></li></ul>
+    </div>
+
+    <!-- Post_entry Footer -->
+    <div class="post_entry-footer">
+        <div class="post_entry-footer-border"></div>
+        <div class="post_entry-footer-info">
+            <div class="post_entry-footer-date">
+                9月 19, 2016
+            </div>
+            <div class="post_entry-footer-comment">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+        
+    
+        
+            
+            
+                <!-- Isolation Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post_entry Header -->
+    
+        <!-- Post Header Info -->
+        <div class="post_entry-header_info without-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <span class="name-span">忘了</span>
+        </div>
+
+        <!-- Null Thumbnail -->
+        <div class="post_thumbnail-null">
+    
+        </div>
+
+    <!-- Post_entry Content -->
+    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
+        <!-- Post Title -->
+        <p class="post_entry-title">
+            <a href="/2016/09/19/HDFS的文件操作/">Hadoop_对HDFS中文件的操作</a>
+        </p>
+
+        <!-- Post Excerpt -->
+        <p class="post_entry-excerpt">
+            
+                Hadoop没有当前目录的概念，当然也就没有 “cd” 命令
+HDFS文件操作的方法。
+命令行方式上一篇文章已经写到命令行方式操作HDFS，不再多说。进入传送门～
+            
+            &nbsp;&nbsp;&nbsp;
+            <span>
+                <a href="/2016/09/19/HDFS的文件操作/" target="_self">阅读全文</a>
+            </span>
+        </p>
+
+        <!-- Post Tags -->
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS操作/">HDFS操作</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
