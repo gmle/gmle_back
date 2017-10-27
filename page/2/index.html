@@ -436,30 +436,28 @@
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/对HDFS的一些认识/">Hadoop_HDFS底层架构</a>
+            <a href="/2016/09/19/Yarn架构详解/">Hadoop_Yarn架构详解</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                这是我对HDFS的认知与了解，并结合网上查阅的资料进行的整合。
-HDFS设计基础与目标
-硬件错误是常态，因此需要冗余。
-错误检测和快速、自动的恢复是HDFS最核心的架构目标
-
-
-小文件不适合存储，适合存储超大文件
-流式数据访问
+                Yarn架构概述
+Yarn Shell操作
+Yarn 高可用的配置
+Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)
+    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
+    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
 
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2016/09/19/对HDFS的一些认识/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/Yarn架构详解/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Yarn/">Yarn</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -775,28 +773,90 @@ mask
     <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
         <!-- Post Title -->
         <p class="post_entry-title">
-            <a href="/2016/09/19/Yarn架构详解/">Hadoop_Yarn架构详解</a>
+            <a href="/2016/09/19/Scala中的几个类型/">Scala中的 Option、Some、None、Null、Nil、Nothing</a>
         </p>
 
         <!-- Post Excerpt -->
         <p class="post_entry-excerpt">
             
-                Yarn架构概述
-Yarn Shell操作
-Yarn 高可用的配置
-Yarn 架构概述* 直接源于MRv1的缺陷(原MapReduce框架的不足)
-    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
-    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
+                Scala的一些类型。
 
             
             &nbsp;&nbsp;&nbsp;
             <span>
-                <a href="/2016/09/19/Yarn架构详解/" target="_self">阅读全文</a>
+                <a href="/2016/09/19/Scala中的几个类型/" target="_self">阅读全文</a>
             </span>
         </p>
 
         <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Yarn/">Yarn</a></li></ul>
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/None/">None</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Option/">Option</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Scala/">Scala</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Some/">Some</a></li></ul>
+    </div>
+
+    <!-- Post_entry Footer -->
+    <div class="post_entry-footer">
+        <div class="post_entry-footer-border"></div>
+        <div class="post_entry-footer-info">
+            <div class="post_entry-footer-date">
+                9月 19, 2016
+            </div>
+            <div class="post_entry-footer-comment">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+        
+    
+        
+            
+            
+                <!-- Isolation Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post_entry Header -->
+    
+        <!-- Post Header Info -->
+        <div class="post_entry-header_info without-thumbnail">
+            <!-- Author Avatar & Name -->
+            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
+            <span class="name-span">忘了</span>
+        </div>
+
+        <!-- Null Thumbnail -->
+        <div class="post_thumbnail-null">
+    
+        </div>
+
+    <!-- Post_entry Content -->
+    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
+        <!-- Post Title -->
+        <p class="post_entry-title">
+            <a href="/2016/09/19/对HDFS的一些认识/">Hadoop_HDFS底层架构</a>
+        </p>
+
+        <!-- Post Excerpt -->
+        <p class="post_entry-excerpt">
+            
+                这是我对HDFS的认知与了解，并结合网上查阅的资料进行的整合。
+HDFS设计基础与目标
+硬件错误是常态，因此需要冗余。
+错误检测和快速、自动的恢复是HDFS最核心的架构目标
+
+
+小文件不适合存储，适合存储超大文件
+流式数据访问
+
+            
+            &nbsp;&nbsp;&nbsp;
+            <span>
+                <a href="/2016/09/19/对HDFS的一些认识/" target="_self">阅读全文</a>
+            </span>
+        </p>
+
+        <!-- Post Tags -->
+        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HDFS/">HDFS</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
@@ -978,69 +1038,6 @@ HDFS文件操作的方法。
 
         <!-- Post Tags -->
         <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HBase/">HBase</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                9月 19, 2016
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/author.png" class="avatar-img" width="44px" height="44px" alt="忘了's avatar">
-            <span class="name-span">忘了</span>
-        </div>
-
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2016/09/19/HBase的列簇/">HBase的列簇</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                对于HBase中的列簇，新手都会有这样的问题
-HBase的列有列族前缀和列组成，
-那么一个表中列族要怎么设定？
-是只设定一个？还是越多越好？还是根据什么设定几个？
-
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2016/09/19/HBase的列簇/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        <ul class="post_entry-tags-list"><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/HBase/">HBase</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="post_entry-tags-list-item"><a class="post_entry-tags-list-link" href="/tags/列族/">列族</a></li></ul>
     </div>
 
     <!-- Post_entry Footer -->
