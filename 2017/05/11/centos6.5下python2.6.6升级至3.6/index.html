@@ -98,6 +98,11 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
 
     
 
@@ -414,18 +419,6 @@
     -->
 
     <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-    
-        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=http://gmle.github.io/2017/05/11/centos6.5下python2.6.6升级至3.6/">
-    
-</ul>
-
     
 
     <!-- Tags (bookmark) -->
@@ -922,6 +915,12 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
 
 
 <!-- Window Load -->
@@ -932,6 +931,13 @@ It will not impact the appearance and can give developers a lot of support :)
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
     
     
 </script>
