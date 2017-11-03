@@ -16,7 +16,7 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>正则表达式 | Hexo</title>
+  <title>正则表达式 | Gmle</title>
   <meta name="description" content="正则表达式的基础使用。 正则表达式 --&amp;gt; 专门勇于操作字符串； 可以理解为 ‘正确的规则’。 好处：用了一些符号来代表一些代码，书写起来更为简单。 弊端：可读性差，而且要把符号学完 但是底层也是要配合代码实现的。">
 <meta name="keywords" content="Java,正则表达式,JavaSE">
 <meta property="og:type" content="article">
@@ -53,12 +53,12 @@
       
       
       <div class="profile-block text-center">
-        <a id="avatar" href="https://github.com/cofess" target="_blank">
+        <a id="avatar" href="https://github.com/gmle" target="_blank">
           <img class="thumb-xl img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
-        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Shenzhen, China</small>
+        <h2 id="name" class="hidden-xs hidden-sm">Gmle</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Linux &amp; Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> BeiJing, China</small>
       </div>
       
       <div class="search" id="search-form-wrap">
@@ -154,19 +154,8 @@
         
         
         
-        <li class="menu-item menu-item-books">
-          <a href="/books">
-            
-            <i class="fa fa-fw fa-leanpub"></i>
-            
-            <span class="menu-title">书单</span>
-          </a>
-        </li>
-        
-        
-        
         <li class="menu-item menu-item-links">
-          <a href="/links">
+          <a href="/friends">
             
             <i class="fa fa-fw fa-gg"></i>
             
@@ -190,13 +179,13 @@
 	
     <ul class="social-links">
     	
-        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/gmle" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
         
-        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        <li><a href="http://weibo.com/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
         
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://twitter.com/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
         
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        <li><a href="https://www.behance.net/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
         
         <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
         
@@ -218,7 +207,7 @@
             <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
             
             <div class="content">
-                <p>欢迎交流与分享经验!</p>
+                <p>今日无最新信息!</p>
             </div>
         </div>
     </div>
@@ -418,9 +407,9 @@
 <h2 id="符号学习"><a href="#符号学习" class="headerlink" title="符号学习"></a>符号学习</h2><p>1、了解一下常见的正则符号：<br>    1.1 [] ：【判断字符位上的内容】<br>    1.2 与定义字符：都带着反斜线<br>        .： 任意字符<br>        \\d : 数字 [0-9]<br>        \\D : 非数字 [^0-9]<br>        \\w : 单词字符[a-zA-Z_0-9]<br>    1.3 边界字符<br>        ^ : 行开头<br>        $ : 行结尾<br>        \b : 单词边界<br>    1.4 数量词：必须结合内容<br>        X? : x内容出现零次或一次<br>        X* : x内容出现零次或多次<br>        X+ : x内容出现一次或多次<br>        X(n) : x内容出现n此<br>        X(n,) : x内容出现至少n此<br>        X(n,m) : x内容出现n到m此</p>
 <h2 id="常见功能操作"><a href="#常见功能操作" class="headerlink" title="常见功能操作"></a>常见功能操作</h2><p>字符串String类</p>
 <h3 id="匹配-结果为-true-false"><a href="#匹配-结果为-true-false" class="headerlink" title="匹配  结果为 true | false"></a>匹配  结果为 true | false</h3><p>就是String类中的machers方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created in Intellij IDEA .</div><div class="line"> * Author: 王乐.</div><div class="line"> * Date  : 16-5-17.</div><div class="line"> *</div><div class="line"> * 匹配手机号</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">phoneBoolen</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//手机号</span></div><div class="line">        String phone = <span class="string">"17093548877"</span>;</div><div class="line"></div><div class="line">        <span class="comment">//定义规则</span></div><div class="line">        String phone_Regex = <span class="string">"^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d&#123;8&#125;$"</span>;</div><div class="line"></div><div class="line">        System.out.println(phone+<span class="string">"::"</span>+phone.matches(phone_Regex));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="切割-结果为-String-字符串数组"><a href="#切割-结果为-String-字符串数组" class="headerlink" title="切割  结果为 String[] 字符串数组"></a>切割  结果为 String[] 字符串数组</h3><p>利用String中的方法 Splite<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created in Intellij IDEA .</div><div class="line"> * Author: 王乐.</div><div class="line"> * Date  : 16-5-17.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">splitStr</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">//      String str = "zhagnsan    lisi  wangwu";</span></div><div class="line"><span class="comment">//      String regex = " +";</span></div><div class="line"></div><div class="line"><span class="comment">//      String str = "zhangsan,lisi,wangwu";</span></div><div class="line"><span class="comment">//      String regex = ","</span></div><div class="line"></div><div class="line"><span class="comment">//      String str = "zhangsan.lisi.wangwu";</span></div><div class="line"><span class="comment">//      String regex = "\\.";</span></div><div class="line"></div><div class="line">        <span class="comment">//正则规则的复用：想复用 先封装 正则封装用小括号完成</span></div><div class="line">        <span class="comment">//封装完成之后有编号，从1开始。规则中被小括号封装的称之为组，直接通过编号就可以调用对应的组</span></div><div class="line">        <span class="comment">//调用方式直接写已有的组的编号前面加上\\ 如 ()\\1，在使用已有的第一组内容。原则：必须要先有组</span></div><div class="line">        String str = <span class="string">"zhangsan@@@@lisi###wangwu"</span>;</div><div class="line">        String regex = <span class="string">"(.)\\1+"</span>;</div><div class="line"></div><div class="line"></div><div class="line">        String[] strs = str.split(regex);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (String s:</div><div class="line">             strs) &#123;</div><div class="line">            System.out.println(<span class="string">"--"</span>+s+<span class="string">"--"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="替换-结果是一个新的字符串"><a href="#替换-结果是一个新的字符串" class="headerlink" title="替换 结果是一个新的字符串"></a>替换 结果是一个新的字符串</h3><p>利用String中的方法 replaceAll<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created in Intellij IDEA .</div><div class="line"> * Author: 王乐.</div><div class="line"> * Date  : 16-5-17.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">replace</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"><span class="comment">/*</span></div><div class="line">        String str = "ajkls@@@@@fbxcv@@@@@@opi";</div><div class="line"></div><div class="line">        //在参数列表中，其他参数钥匙用之前参数中规则的组，需要使用$组编号</div><div class="line">        str = str.replaceAll("(.)\\1+", "$1");</div><div class="line">*/</div><div class="line"><span class="comment">/*</span></div><div class="line"></div><div class="line">        String str = "13623372344"; //136****2344</div><div class="line">        str = str.replaceAll("(\\d&#123;3&#125;)\\d&#123;4&#125;(\\d&#123;4&#125;)", "$1****$2");</div><div class="line"></div><div class="line">*/</div><div class="line"></div><div class="line">        String str = <span class="string">"lzxiujcbvil1111111111111111111adgfadkgji23984567289345079"</span>;</div><div class="line">        <span class="comment">//替换N个以上的数字</span></div><div class="line">        str = str.replaceAll(<span class="string">"\\d&#123;4,&#125;"</span>, <span class="string">"***"</span>);</div><div class="line"></div><div class="line"></div><div class="line">        System.out.println(str);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created in Intellij IDEA .</span></div><div class="line"><span class="comment"> * Author: 王乐.</span></div><div class="line"><span class="comment"> * Date  : 16-5-17.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 匹配手机号</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">phoneBoolen</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//手机号</span></div><div class="line">        String phone = <span class="string">"17093548877"</span>;</div><div class="line"></div><div class="line">        <span class="comment">//定义规则</span></div><div class="line">        String phone_Regex = <span class="string">"^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d&#123;8&#125;$"</span>;</div><div class="line"></div><div class="line">        System.out.println(phone+<span class="string">"::"</span>+phone.matches(phone_Regex));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="切割-结果为-String-字符串数组"><a href="#切割-结果为-String-字符串数组" class="headerlink" title="切割  结果为 String[] 字符串数组"></a>切割  结果为 String[] 字符串数组</h3><p>利用String中的方法 Splite<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created in Intellij IDEA .</span></div><div class="line"><span class="comment"> * Author: 王乐.</span></div><div class="line"><span class="comment"> * Date  : 16-5-17.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">splitStr</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">//      String str = "zhagnsan    lisi  wangwu";</span></div><div class="line"><span class="comment">//      String regex = " +";</span></div><div class="line"></div><div class="line"><span class="comment">//      String str = "zhangsan,lisi,wangwu";</span></div><div class="line"><span class="comment">//      String regex = ","</span></div><div class="line"></div><div class="line"><span class="comment">//      String str = "zhangsan.lisi.wangwu";</span></div><div class="line"><span class="comment">//      String regex = "\\.";</span></div><div class="line"></div><div class="line">        <span class="comment">//正则规则的复用：想复用 先封装 正则封装用小括号完成</span></div><div class="line">        <span class="comment">//封装完成之后有编号，从1开始。规则中被小括号封装的称之为组，直接通过编号就可以调用对应的组</span></div><div class="line">        <span class="comment">//调用方式直接写已有的组的编号前面加上\\ 如 ()\\1，在使用已有的第一组内容。原则：必须要先有组</span></div><div class="line">        String str = <span class="string">"zhangsan@@@@lisi###wangwu"</span>;</div><div class="line">        String regex = <span class="string">"(.)\\1+"</span>;</div><div class="line"></div><div class="line"></div><div class="line">        String[] strs = str.split(regex);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (String s:</div><div class="line">             strs) &#123;</div><div class="line">            System.out.println(<span class="string">"--"</span>+s+<span class="string">"--"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="替换-结果是一个新的字符串"><a href="#替换-结果是一个新的字符串" class="headerlink" title="替换 结果是一个新的字符串"></a>替换 结果是一个新的字符串</h3><p>利用String中的方法 replaceAll<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created in Intellij IDEA .</span></div><div class="line"><span class="comment"> * Author: 王乐.</span></div><div class="line"><span class="comment"> * Date  : 16-5-17.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">replace</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">        String str = "ajkls@@@@@fbxcv@@@@@@opi";</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">        //在参数列表中，其他参数钥匙用之前参数中规则的组，需要使用$组编号</span></div><div class="line"><span class="comment">        str = str.replaceAll("(.)\\1+", "$1");</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">        String str = "13623372344"; //136****2344</span></div><div class="line"><span class="comment">        str = str.replaceAll("(\\d&#123;3&#125;)\\d&#123;4&#125;(\\d&#123;4&#125;)", "$1****$2");</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">        String str = <span class="string">"lzxiujcbvil1111111111111111111adgfadkgji23984567289345079"</span>;</div><div class="line">        <span class="comment">//替换N个以上的数字</span></div><div class="line">        str = str.replaceAll(<span class="string">"\\d&#123;4,&#125;"</span>, <span class="string">"***"</span>);</div><div class="line"></div><div class="line"></div><div class="line">        System.out.println(str);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="获取-结果为-String-字符串数组"><a href="#获取-结果为-String-字符串数组" class="headerlink" title="获取 结果为 String[] 字符串数组"></a>获取 结果为 String[] 字符串数组</h3><p>其它三个功能内部最终是用的都是Pattern正则表达式对象。<br>现在需要其他功能时，字符串String类中没有对象的方法。<br>Pattern对象的使用原理</p>
 <ol>
 <li>将正则表达式字符串编译成正则对象 pattern</li>
@@ -429,7 +418,7 @@
 <li>通过匹配器对象的功能获取结果</li>
 </ol>
 <p>范例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编译为正则对象</span></div><div class="line">Pattern p = Pattern.compile(<span class="string">"a*b"</span>);</div><div class="line"><span class="comment">//返回一个匹配器对象</span></div><div class="line">Matcher m = p.matcher(<span class="string">"aaaaaab"</span>);</div><div class="line"><span class="comment">//判断</span></div><div class="line"><span class="keyword">boolean</span> b = m.matches();</div></pre></td></tr></table></figure></p>
-<p>代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.regex.Matcher;</div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created in Intellij IDEA .</div><div class="line"> * Author: 王乐.</div><div class="line"> * Date  : 16-5-17.</div><div class="line"> *</div><div class="line"> * 取出</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">takeOutWords</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        String str = <span class="string">"da jia zhu yi le, ming tian fang jia le!"</span>;</div><div class="line"></div><div class="line">        <span class="comment">//取出由三个字母组成的单词</span></div><div class="line">        String regex = <span class="string">"\\b[a-zA-Z]&#123;3&#125;\\b"</span>;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//将正则表达式转换为对象</span></div><div class="line">        Pattern p = Pattern.compile(regex);</div><div class="line"></div><div class="line">        <span class="comment">//和要操作的字符串关联，获取对应的匹配器对象</span></div><div class="line">        Matcher m = p.matcher(str);</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">while</span> (m.find()) &#123;</div><div class="line">            <span class="comment">//第一种取值方式</span></div><div class="line">            System.out.println(m.group());</div><div class="line">            <span class="comment">//第二种取值方式 System.out.println(str.substring(m.start(),m.end()));</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.lesion.Regular;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.regex.Matcher;</div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created in Intellij IDEA .</span></div><div class="line"><span class="comment"> * Author: 王乐.</span></div><div class="line"><span class="comment"> * Date  : 16-5-17.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 取出</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">takeOutWords</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        String str = <span class="string">"da jia zhu yi le, ming tian fang jia le!"</span>;</div><div class="line"></div><div class="line">        <span class="comment">//取出由三个字母组成的单词</span></div><div class="line">        String regex = <span class="string">"\\b[a-zA-Z]&#123;3&#125;\\b"</span>;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//将正则表达式转换为对象</span></div><div class="line">        Pattern p = Pattern.compile(regex);</div><div class="line"></div><div class="line">        <span class="comment">//和要操作的字符串关联，获取对应的匹配器对象</span></div><div class="line">        Matcher m = p.matcher(str);</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">while</span> (m.find()) &#123;</div><div class="line">            <span class="comment">//第一种取值方式</span></div><div class="line">            System.out.println(m.group());</div><div class="line">            <span class="comment">//第二种取值方式 System.out.println(str.substring(m.start(),m.end()));</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -453,13 +442,13 @@
   <div class="panel-body">
     <figure class="media">
       <div class="media-left">
-        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+        <a href="https://github.com/gmle" target="_blank" class="img-burn thumb-sm visible-lg">
           <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
-        <div>个人简介。</div>
+        <h3 class="media-heading"><a href="https://github.com/gmle" target="_blank"><span class="text-dark">Gmle</span><small class="ml-1x">Linux &amp; Developer</small></a></h3>
+        <div>行者无疆。</div>
       </div>
     </figure>
   </div>
@@ -488,19 +477,16 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2016/09/19/hadoop常见面试题目/" title="hadoop常见面试题目（不定期更新）"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
+      <a href="/2017/05/02/MacOS安装Hadoop&Spark/" title="MacOS下配置Hadoop和Spark"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
     </li>
     
     
     <li class="next">
-      <a href="/2016/09/19/玩转HDFS-ACL/" title="Hadoop_玩转 HDFS之 ACL">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+      <a href="/2016/09/19/MapReduce架构原理/" title="MapReduce架构及原理">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
   
-  
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning hidden-xs" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
   
   
   <div class="bar-right">
@@ -510,43 +496,6 @@
   </div>
 </nav>
   
-<!-- Modal -->
-<div class="modal modal-center modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <div class="modal-body">
-        <div class="donate-box">
-          <div class="donate-tit">
-            <p>感谢您的支持，我会继续努力的!</p>
-          </div>
-          <div class="donate-payimg">
-            <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
-          </div>
-          <p class="text-muted mv">扫码打赏，你说多少就多少</p>
-          <div class="donate-payselect">
-            <div class="pay_item checked" data-id="alipay" data-src="/images/donate/alipayimg.png">
-              <div class="radio">
-                <input type="radio" name="payment" id="input-alipay" value="alipay" checked>
-                <label class="pay_logo clickable" for="input-alipay"><img src="/images/donate/alipay.jpg" alt="支付宝" /></label>
-              </div>
-            </div>
-            <div class="pay_item" data-id="weipay" data-src="/images/donate/weipayimg.png">
-              <div class="radio">
-                <input type="radio" name="payment" id="input-weipay" value="weipay">
-                <label class="pay_logo clickable" for="input-weipay"><img src="/images/donate/weipay.jpg" alt="微信支付" /></label>
-              </div>
-            </div>
-          </div>
-          <div class="text-grey">
-            <p>扫一扫，即可进行扫码打赏哦</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
 </main>
@@ -556,13 +505,13 @@
 	
     <ul class="social-links">
     	
-        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/gmle" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
         
-        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        <li><a href="http://weibo.com/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
         
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://twitter.com/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
         
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        <li><a href="https://www.behance.net/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
         
         <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
         

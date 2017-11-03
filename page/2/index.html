@@ -16,7 +16,7 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Hexo</title>
+  <title>Gmle</title>
   <meta property="og:type" content="website">
 <meta property="og:title" content="忘lele">
 <meta property="og:url" content="http://gmle.github.io/page/2/index.html">
@@ -48,12 +48,12 @@
       
       
       <div class="profile-block text-center">
-        <a id="avatar" href="https://github.com/cofess" target="_blank">
+        <a id="avatar" href="https://github.com/gmle" target="_blank">
           <img class="thumb-xl img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
-        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Shenzhen, China</small>
+        <h2 id="name" class="hidden-xs hidden-sm">Gmle</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Linux &amp; Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> BeiJing, China</small>
       </div>
       
       <div class="search" id="search-form-wrap">
@@ -149,19 +149,8 @@
         
         
         
-        <li class="menu-item menu-item-books">
-          <a href="/books">
-            
-            <i class="fa fa-fw fa-leanpub"></i>
-            
-            <span class="menu-title">书单</span>
-          </a>
-        </li>
-        
-        
-        
         <li class="menu-item menu-item-links">
-          <a href="/links">
+          <a href="/friends">
             
             <i class="fa fa-fw fa-gg"></i>
             
@@ -185,13 +174,13 @@
 	
     <ul class="social-links">
     	
-        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/gmle" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
         
-        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        <li><a href="http://weibo.com/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
         
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://twitter.com/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
         
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        <li><a href="https://www.behance.net/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
         
         <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
         
@@ -213,7 +202,7 @@
             <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
             
             <div class="content">
-                <p>欢迎交流与分享经验!</p>
+                <p>今日无最新信息!</p>
             </div>
         </div>
     </div>
@@ -359,26 +348,33 @@
     
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/Yarn架构详解/">Hadoop_Yarn架构详解</a>
+      <a class="article-title" href="/2016/09/19/MapReduce架构原理/">MapReduce架构及原理</a>
     </h1>
   
 
   </div>
   
   <div class="article-entry text-muted" itemprop="description">
-    <pre><code>Yarn架构概述
-Yarn Shell操作
-Yarn 高可用的配置
-</code></pre><h2 id="Yarn-架构概述"><a href="#Yarn-架构概述" class="headerlink" title="Yarn 架构概述"></a>Yarn 架构概述</h2><pre><code>* 直接源于MRv1的缺陷(原MapReduce框架的不足)
-    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
-    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
-</code></pre>
+    <pre><code>Hadoop中MapReduce的架构以及原理。
+</code></pre><h2 id="MapReduce介绍"><a href="#MapReduce介绍" class="headerlink" title="MapReduce介绍"></a>MapReduce介绍</h2><ul>
+<li>MapReduce 编程模型<ul>
+<li>Google提出的框架 主要用于搜索领域</li>
+<li>一种分布式计算模型框架解决海量数据的计算问题</li>
+<li>MapReduce将整个并行计算过程抽象到两个函数<ul>
+<li>map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行</li>
+<li>Reduce（化简）：队一个列表的元素进行合并</li>
+</ul>
+</li>
+<li>一个简单的MapReduce程序只需要指定map()、reduce()、input和output，剩下的事由框架来执行。</li>
+</ul>
+</li>
+</ul>
   </div>
   
   <p class="article-meta">
     <span class="article-date">
     <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/Yarn架构详解/" class="article-date">
+	<a href="/2016/09/19/MapReduce架构原理/" class="article-date">
 	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
 	</a>
 </span>
@@ -391,11 +387,11 @@ Yarn 高可用的配置
     
   <span class="article-tag">
     <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/Yarn/">Yarn</a>
+	<a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/MapReduce/">MapReduce</a>, <a class="article-tag-link" href="/tags/原理/">原理</a>, <a class="article-tag-link" href="/tags/架构/">架构</a>
   </span>
 
 
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/Yarn架构详解/#comments" class="article-comment-link">评论</a></span>
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/MapReduce架构原理/#comments" class="article-comment-link">评论</a></span>
     
   </p>
 </article>
@@ -448,6 +444,183 @@ Yarn 高可用的配置
     
   
     <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/19/HBase入门_操作数据/">HBase入门 — 操作数据表</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <pre><code>HBase中数据表的增删改查
+其实底层还是最普通的MR(MapReduce)操作。
+</code></pre><h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p><a href="https://github.com/gmle/hbase" target="_blank" rel="external">源码地址 GitHub/hbase</a></p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2016/09/19/HBase入门_操作数据/" class="article-date">
+	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/HBase/">HBase</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/CRUD/">CRUD</a>, <a class="article-tag-link" href="/tags/HBase/">HBase</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>
+  </span>
+
+
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HBase入门_操作数据/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/19/Yarn架构详解/">Hadoop_Yarn架构详解</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <pre><code>Yarn架构概述
+Yarn Shell操作
+Yarn 高可用的配置
+</code></pre><h2 id="Yarn-架构概述"><a href="#Yarn-架构概述" class="headerlink" title="Yarn 架构概述"></a>Yarn 架构概述</h2><pre><code>* 直接源于MRv1的缺陷(原MapReduce框架的不足)
+    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
+    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
+</code></pre>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2016/09/19/Yarn架构详解/" class="article-date">
+	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/Yarn/">Yarn</a>
+  </span>
+
+
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/Yarn架构详解/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/19/HBase的列簇/">HBase的列簇</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <pre><code>对于HBase中的列簇，新手都会有这样的问题
+HBase的列有列族前缀和列组成，
+那么一个表中列族要怎么设定？
+是只设定一个？还是越多越好？还是根据什么设定几个？
+</code></pre>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2016/09/19/HBase的列簇/" class="article-date">
+	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/HBase/">HBase</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/HBase/">HBase</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/列族/">列族</a>
+  </span>
+
+
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HBase的列簇/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/19/HBase的数据模型/">HBase的数据模型</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#介绍">介绍</a><br><a href="#概览">概览</a><br><a href="#行">行</a><br><a href="#列簇">列簇</a><br><a href="#时间戳">时间戳</a></p>
+<p><a href="http://gmle.github.io/2016/05/05/HBase%E7%9A%84%E5%88%97%E6%97%8F/">此篇为参考文章</a></p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2016/09/19/HBase的数据模型/" class="article-date">
+	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/HBase/">HBase</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/HBase/">HBase</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/数据模型/">数据模型</a>
+  </span>
+
+
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HBase的数据模型/#comments" class="article-comment-link">评论</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
       <a class="article-title" href="/2016/09/19/hadoop常见面试题目/">hadoop常见面试题目（不定期更新）</a>
     </h1>
   
@@ -490,43 +663,33 @@ Yarn 高可用的配置
     
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/正则表达式/">正则表达式</a>
+      <a class="article-title" href="/2016/09/19/HBase的配置(伪分布式)/">HBase的配置(伪分布式)</a>
     </h1>
   
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <pre><code>正则表达式的基础使用。
-正则表达式 --&gt; 专门勇于操作字符串；
-可以理解为 ‘正确的规则’。
-好处：用了一些符号来代表一些代码，书写起来更为简单。
-弊端：可读性差，而且要把符号学完
-但是底层也是要配合代码实现的。
-</code></pre>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/正则表达式/" class="article-date">
+	<a href="/2016/09/19/HBase的配置(伪分布式)/" class="article-date">
 	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
 	</a>
 </span>
     
   <span class="article-category">
     <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
+    <a class="article-category-link" href="/categories/HBase/">HBase</a>
   </span>
 
     
   <span class="article-tag">
     <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/Java/">Java</a>, <a class="article-tag-link" href="/tags/JavaSE/">JavaSE</a>, <a class="article-tag-link" href="/tags/正则表达式/">正则表达式</a>
+	<a class="article-tag-link" href="/tags/HBase/">HBase</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>
   </span>
 
 
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/正则表达式/#comments" class="article-comment-link">评论</a></span>
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HBase的配置(伪分布式)/#comments" class="article-comment-link">评论</a></span>
     
   </p>
 </article>
@@ -537,48 +700,21 @@ Yarn 高可用的配置
     
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/玩转HDFS-ACL/">Hadoop_玩转 HDFS之 ACL</a>
+      <a class="article-title" href="/2016/09/19/HSFS中文件的一些操作命令/">Hadoop与HDFS的一些常用命令</a>
     </h1>
   
 
   </div>
   
   <div class="article-entry text-muted" itemprop="description">
-    <pre><code>Hadoop从2.4.0版本开始支持hdfs的ACL，
-通俗的讲就是文件访问控制权限
-下面对其进行一些测试：
-</code></pre><table>
-<thead>
-<tr>
-<th>unnamed user (file owner)</th>
-<th>文件的拥有者</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>unnamed group (file group)</td>
-<td>文件的所属组</td>
-</tr>
-<tr>
-<td>named user</td>
-<td>除了文件的拥有者和拥有组之外，的其它用户</td>
-</tr>
-<tr>
-<td>named group</td>
-<td>除了文件的拥有者和拥有组之外，的其它用户</td>
-</tr>
-<tr>
-<td>mask</td>
-<td>权限掩码，用于过滤named user和named group的权限</td>
-</tr>
-</tbody>
-</table>
+    <pre><code>Hadoop与HDFS文件操作的一些常用命令，记个笔记。
+</code></pre><h3 id="Hadoop启动"><a href="#Hadoop启动" class="headerlink" title="Hadoop启动"></a>Hadoop启动</h3>
   </div>
   
   <p class="article-meta">
     <span class="article-date">
     <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/玩转HDFS-ACL/" class="article-date">
+	<a href="/2016/09/19/HSFS中文件的一些操作命令/" class="article-date">
 	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
 	</a>
 </span>
@@ -591,53 +727,11 @@ Yarn 高可用的配置
     
   <span class="article-tag">
     <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/ACL/">ACL</a>, <a class="article-tag-link" href="/tags/HDFS/">HDFS</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>
+	<a class="article-tag-link" href="/tags/HDFS/">HDFS</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/常用命令/">常用命令</a>
   </span>
 
 
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/玩转HDFS-ACL/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/Scala中的几个类型/">Scala中的 Option、Some、None、Null、Nil、Nothing</a>
-    </h1>
-  
-
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <pre><code>Scala的一些类型。
-</code></pre>
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/Scala中的几个类型/" class="article-date">
-	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Scala/">Scala</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/None/">None</a>, <a class="article-tag-link" href="/tags/Option/">Option</a>, <a class="article-tag-link" href="/tags/Scala/">Scala</a>, <a class="article-tag-link" href="/tags/Some/">Some</a>
-  </span>
-
-
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/Scala中的几个类型/#comments" class="article-comment-link">评论</a></span>
+    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HSFS中文件的一些操作命令/#comments" class="article-comment-link">评论</a></span>
     
   </p>
 </article>
@@ -692,128 +786,6 @@ Yarn 高可用的配置
 </article>
 
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/HSFS中文件的一些操作命令/">Hadoop与HDFS的一些常用命令</a>
-    </h1>
-  
-
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <pre><code>Hadoop与HDFS文件操作的一些常用命令，记个笔记。
-</code></pre><h3 id="Hadoop启动"><a href="#Hadoop启动" class="headerlink" title="Hadoop启动"></a>Hadoop启动</h3>
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/HSFS中文件的一些操作命令/" class="article-date">
-	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/HDFS/">HDFS</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>, <a class="article-tag-link" href="/tags/常用命令/">常用命令</a>
-  </span>
-
-
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HSFS中文件的一些操作命令/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/HDFS的文件操作/">Hadoop_对HDFS中文件的操作</a>
-    </h1>
-  
-
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <pre><code>Hadoop没有当前目录的概念，当然也就没有 “cd” 命令
-HDFS文件操作的方法。
-</code></pre><h2 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h2><p>上一篇文章已经写到命令行方式操作HDFS，不再多说。<br><a href="http://gmle.github.io/2016/04/21/HSFS%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">进入传送门～</a></p>
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/HDFS的文件操作/" class="article-date">
-	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/HDFS/">HDFS</a>, <a class="article-tag-link" href="/tags/HDFS操作/">HDFS操作</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>
-  </span>
-
-
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HDFS的文件操作/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/19/HBase的配置(伪分布式)/">HBase的配置(伪分布式)</a>
-    </h1>
-  
-
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="fa fa-calendar-check-o"></i>
-	<a href="/2016/09/19/HBase的配置(伪分布式)/" class="article-date">
-	  <time datetime="2016-09-19T00:53:20.000Z" itemprop="datePublished">9月 19</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/HBase/">HBase</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/HBase/">HBase</a>, <a class="article-tag-link" href="/tags/Hadoop/">Hadoop</a>
-  </span>
-
-
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/09/19/HBase的配置(伪分布式)/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
   </div>
 
   
@@ -850,13 +822,13 @@ HDFS文件操作的方法。
 	
     <ul class="social-links">
     	
-        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/gmle" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
         
-        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        <li><a href="http://weibo.com/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
         
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://twitter.com/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
         
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        <li><a href="https://www.behance.net/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
         
         <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
         
