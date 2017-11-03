@@ -50,7 +50,7 @@
     <meta name="author" content="忘了">
     <meta name="description" itemprop="description" content="做点什么吧
 ">
-    <meta name="keywords" content="null,c++,C++ Primer">
+    <meta name="keywords" content="null,C++,C++ Primer">
 
     <!-- Import lsloader -->
     <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
@@ -98,11 +98,6 @@
         <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
-        
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
         
 
     
@@ -241,11 +236,11 @@
     <meta property="og:image" content="http://gmle.github.io/img/favicon.png" />
     <meta property="og:description" content="做点什么吧
 ">
-    <meta property="og:article:tag" content="c++"> <meta property="og:article:tag" content="C++ Primer"> 
+    <meta property="og:article:tag" content="C++"> <meta property="og:article:tag" content="C++ Primer"> 
 
     
         <meta property="article:published_time" content="Wed Oct 25 2017 14:21:39 GMT+0800" />
-        <meta property="article:modified_time" content="Fri Nov 03 2017 10:15:38 GMT+0800" />
+        <meta property="article:modified_time" content="Fri Nov 03 2017 15:08:34 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -273,7 +268,7 @@
     "mainEntityOfPage": "http://gmle.github.io/2017/10/25/cpp_primer/index.html",
     "headline": "C++ Primer 读书笔记",
     "datePublished": "Wed Oct 25 2017 14:21:39 GMT+0800",
-    "dateModified": "Fri Nov 03 2017 10:15:38 GMT+0800",
+    "dateModified": "Fri Nov 03 2017 15:08:34 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "忘了",
@@ -291,7 +286,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",c++,C++ Primernull",
+    "keywords": ",C++,C++ Primernull",
     "description": "做点什么吧
 ",
 }
@@ -308,7 +303,7 @@
     <!-- Custom Head -->
     
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
 
     
@@ -358,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第一章-开始"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一章 - 开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-编写一个简单的C-程序"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 编写一个简单的C++程序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译、运行程序"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">编译、运行程序</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-输入输出"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 输入输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标准输入输出对象"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">标准输入输出对象</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-4-控制流"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.4 控制流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-1-while语句"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">1.4.1 while语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-3-读取数量不定的输入数据"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">1.4.3 读取数量不定的输入数据</span></a></li></ol></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第一章-开始"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一章 - 开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-编写一个简单的C-程序"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 编写一个简单的C++程序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译、运行程序"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">编译、运行程序</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-输入输出"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 输入输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标准输入输出对象"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">标准输入输出对象</span></a></li></ol></li></ol></li></ol>
     </ul>
     
 
@@ -445,7 +440,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/C-Primer/">C++ Primer</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/c/">c++</a>
+        <a class="post_tag-link" href="/tags/C/">C++</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/C-Primer/">C++ Primer</a>
     </ul>
     
 
@@ -517,7 +512,7 @@
 <h1 id="第一章-开始"><a href="#第一章-开始" class="headerlink" title="第一章 - 开始"></a>第一章 - 开始</h1><ul>
 <li>最近感觉自己很浮躁，看看书吧。</li>
 <li>我之前学过Java，对于C++这种面向对象的语言也有一定的了解</li>
-<li>之前也模模糊糊的看过一点c++的东西，也不全面，我现在尝试以一个没有学过c语言的人去学习c++，并且拜读圣经，希望能得到不错的成果。</li>
+<li>之前也模模糊糊的看过一点C++的东西，也不全面，我现在尝试以一个没有学过c语言的人去学习C++，并且拜读圣经，希望能得到不错的成果。</li>
 <li>本书采用的C++版本为 C++11</li>
 </ul>
 <h2 id="1-1-编写一个简单的C-程序"><a href="#1-1-编写一个简单的C-程序" class="headerlink" title="1.1 编写一个简单的C++程序"></a>1.1 编写一个简单的C++程序</h2><ul>
@@ -525,7 +520,7 @@
 <li>在执行成程序的时候，系统会调用 <strong>main</strong> 来运行程序。</li>
 </ul>
 <p>Example：</p>
-<pre><code class="c++">int main{
+<pre class=" language-c++"><code class="language-c++">int main{
   return 0;
 }
 </code></pre>
@@ -576,8 +571,8 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 <li>clog则用来输出程序运行时的一般性信息。</li>
 </ul>
 <p>一个使用 IO 库的程序</p>
-<p>Example：<br>​```c++</p>
-<p>#include (iostream) # 告诉编译器我们要使用的库为 iostream<br>int main(){<br>    std::cout &lt;&lt; “ Enter two numbers: “&lt;&lt;std::endl;</p>
+<p>​```c++</p>
+<p>#include (iostream) //告诉编译器我们要使用的库为 iostream<br>int main(){<br>    std::cout &lt;&lt; “ Enter two numbers: “&lt;&lt;std::endl;</p>
 <pre><code>int v1 = 0, v2 = 0;
 std::cin &gt;&gt; v1 &gt;&gt; v2;
 
@@ -585,133 +580,7 @@ std::cout &lt;&lt; &quot;The sum of &quot; &lt;&lt; v1 &lt;&lt; &quot; and &quot
 
 return 0;
 </code></pre><p>}</p>
-<pre><code>- #include (iostream) # 告诉编译器我们要使用的库为 iostream
-- std指代库iostream中的命名空间。
-- endl 则被称之为 操纵符 的特殊值，写入endl的效果是结束当前行。并将与设备关联的缓冲区(buffer)刷到设备中。
-- 缓冲刷新操作可以保证截至到目前的所有输出都写入到输出流中。
-- 如果在调试的时候，我们不应该去执行endl将它写入到缓冲区中，应该一直使这个输出流报纸刷新。
 
-
-## 1.3 注释
-注释可以帮助人类读者理解带有注释的程序。在编译的时候，编译器会自动忽略注释。
-
-Example：
-```c++
-#include (iostream)
-/**
-  * 这是多行注释
-  * 请注意 注释 界定符不能嵌套
-  * 
-      */
-      int main(){
-    std::cout &lt;&lt; &quot; Enter two numbers: &quot;&lt;&lt;std::endl;
-
-    // 这是单行注释。 
-    int v1 = 0, v2 = 0;
-    std::cin &gt;&gt; v1 &gt;&gt; v2;
-
-    std::cout &lt;&lt; &quot;The sum of &quot; &lt;&lt; v1 &lt;&lt; &quot; and &quot; &lt;&lt; v2 &lt;&lt; &quot; is &quot; &lt;&lt;v1+v2 &lt;&lt; &quot; .&quot; &lt;&lt;std::endl;
-
-    return 0;
-}
-</code></pre><p>运算符：</p>
-<ul>
-<li>&lt;&lt;    输出运算符</li>
-<li><blockquote>
-<blockquote>
-<p>   输入运算符</p>
-</blockquote>
-</blockquote>
-</li>
-<li>&lt;=    小于等于</li>
-<li><blockquote>
-<p>=    大于等于</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="1-4-控制流"><a href="#1-4-控制流" class="headerlink" title="1.4 控制流"></a>1.4 控制流</h2><p>字面意思：控制程序的运行路径。</p>
-<h3 id="1-4-1-while语句"><a href="#1-4-1-while语句" class="headerlink" title="1.4.1 while语句"></a>1.4.1 while语句</h3><p>while语句会反复执行一段带吗，直到给定的条件为假为止。<br>Example：<br>​```c++</p>
-<p>#include <iostream></iostream></p>
-<p>int main(){</p>
-<pre><code>int sum = 0, val = 1;
-
-while (val &lt;= 1000) {
-// 只要val的值小于10，循环就会持续执行，
-    sum += val;
-    // 将sum+val赋值给sum
-    ++val;
-    //val+1
-}
-std::cout &lt;&lt; sum &lt;&lt;std::endl;
-return 0;
-</code></pre><p>}</p>
-<pre><code>复合赋值运算符：
- - +=    将右侧的运算对象加到左侧运算对象上。
-
-前缀递增运算符
- - ++    前缀++可以作为左值来使用，将运算的对象+1
-
-### 1.4.2 for语句
-上个while例子中的循环条件检测变量，再循环体中增加变量的模式使用非常频繁，所以C++专门定义了第二种循环语句：**for**语句。
-
-使用for语句重写从1加到10的程序：
-Example：
-```c++
-#include &lt;iostream&gt;
-
-int main () {
-​    
-    int num1 = 0, num2 = 0;
-    std::cout &lt;&lt; &quot;输入 num1： &quot;&lt;&lt;std::endl;
-    std::cin &gt;&gt; num1;
-    std::cout &lt;&lt; &quot;输入 num2： &quot;&lt;&lt;std::endl;
-
-    for (std::cin &gt;&gt; num2; num2&gt;=num1; ++num1) {
-        std::cout &lt;&lt; num1 &lt;&lt;std::endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="1-4-3-读取数量不定的输入数据"><a href="#1-4-3-读取数量不定的输入数据" class="headerlink" title="1.4.3 读取数量不定的输入数据"></a>1.4.3 读取数量不定的输入数据</h3><p>如果我们预先不知道要对多少个数求和，这就需要不断读取数据直至没有新的数据输入为止。<br>​```c++</p>
-<p>#include <iostream></iostream></p>
-<p>int main() {<br>    int sum = 0, value = 0;</p>
-<pre><code>while (std::cin &gt;&gt; value){
-    sum += value; 
-}
-std::cout &lt;&lt; &quot;sum is &quot; &lt;&lt; sum &lt;&lt; std::endl;
-</code></pre><p>}</p>
-<pre><code>
-因为 value定义为 int类型，所以如果你输入了别的类型的字符，就会导致判断失败，从而不会再次进行循环，然后返回你输入的值的和。
-
-
-### 1.4.4 if语句
-与大多数语言一样，c++也提供了 **if**语句来支持条件执行。
-
-Example：
-```c++
-
-#include &lt;iostream&gt;
-
-int main (){
-    int isnums = 0, nums = 0;
-
-    if (std::cin &gt;&gt; isnums) {
-        int count = 1;
-
-        while (std::cin &gt;&gt; nums) {
-            if (isnums == nums) {
-                ++count;
-            }else {
-                std::cout &lt;&lt; &quot;The &quot;&lt;&lt; isnums &lt;&lt; &quot; occurs &quot;&lt;&lt; count &lt;&lt; &quot; times.&quot; &lt;&lt; std::endl;
-                isnums = nums;
-                count = 1;
-            }
-        }
-        std::cout &lt;&lt; &quot;The &quot;&lt;&lt; isnums &lt;&lt; &quot; occurs &quot;&lt;&lt; count &lt;&lt; &quot; times.&quot; &lt;&lt; std::endl;
-    }
-    return 0;
-}
-</code></pre>
         
     
 
@@ -1088,12 +957,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Import prettify js  -->
 
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
-
 
 
 <!-- Window Load -->
@@ -1104,13 +967,6 @@ It will not impact the appearance and can give developers a lot of support :)
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
     });
 
-    
-        
-            $(function() {
-                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
-                prettyPrint();
-                })
-        
     
     
 </script>
