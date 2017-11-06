@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://gmle.github.io/2017/10/25/cpp_primer/index.html">
 <meta property="og:site_name" content="忘lele">
 <meta property="og:description" content="做点什么吧">
-<meta property="og:updated_time" content="2017-11-03T08:38:41.000Z">
+<meta property="og:updated_time" content="2017-11-06T08:28:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer 读书笔记">
 <meta name="twitter:description" content="做点什么吧">
@@ -99,15 +99,15 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Gmle'
     },
     algolia: {
       applicationID: '',
@@ -156,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -202,16 +202,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -238,6 +228,16 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -279,7 +279,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -422,8 +422,82 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 </li>
 <li>clog则用来输出程序运行时的一般性信息。</li>
 </ul>
-<p>一个使用 IO 库的程序</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> (iostream)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">" Enter two numbers: "</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> v1 = <span class="number">0</span>, v2 = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; v1 &gt;&gt; v2;</div><div class="line"></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; v1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; v2 &lt;&lt; <span class="string">" is "</span> &lt;&lt;v1+v2 &lt;&lt; <span class="string">" ."</span> &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个使用 IO 库的程序<br>​<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> (iostream) <span class="comment">//告诉编译器我们要使用的库为 iostream</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">" Enter two numbers: "</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> v1 = <span class="number">0</span>, v2 = <span class="number">0</span>;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; v1 &gt;&gt; v2;</div><div class="line"></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; v1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; v2 &lt;&lt; <span class="string">" is "</span> &lt;&lt;v1+v2 &lt;&lt; <span class="string">" ."</span> &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>#include (iostream) # 告诉编译器我们要使用的库为 iostream</li>
+<li>std指代库iostream中的命名空间。</li>
+<li>endl 则被称之为 操纵符 的特殊值，写入endl的效果是结束当前行。并将与设备关联的缓冲区(buffer)刷到设备中。</li>
+<li>缓冲刷新操作可以保证截至到目前的所有输出都写入到输出流中。</li>
+<li>如果在调试的时候，我们不应该去执行endl将它写入到缓冲区中，应该一直使这个输出流报纸刷新。</li>
+</ul>
+<h2 id="1-3-注释"><a href="#1-3-注释" class="headerlink" title="1.3 注释"></a>1.3 注释</h2><p>注释可以帮助人类读者理解带有注释的程序。在编译的时候，编译器会自动忽略注释。</p>
+<p>Example：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> (iostream)</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * 这是多行注释</span></div><div class="line"><span class="comment">  * 请注意 注释 界定符不能嵌套</span></div><div class="line"><span class="comment">  * </span></div><div class="line"><span class="comment">      */</span></div><div class="line">      <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">" Enter two numbers: "</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 这是单行注释。 </span></div><div class="line">    <span class="keyword">int</span> v1 = <span class="number">0</span>, v2 = <span class="number">0</span>;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; v1 &gt;&gt; v2;</div><div class="line">    </div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The sum of "</span> &lt;&lt; v1 &lt;&lt; <span class="string">" and "</span> &lt;&lt; v2 &lt;&lt; <span class="string">" is "</span> &lt;&lt;v1+v2 &lt;&lt; <span class="string">" ."</span> &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运算符：</p>
+<ul>
+<li>&lt;&lt;    输出运算符</li>
+<li><blockquote>
+<blockquote>
+<p>   输入运算符</p>
+</blockquote>
+</blockquote>
+</li>
+<li>&lt;=    小于等于</li>
+<li><blockquote>
+<p>=    大于等于</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="1-4-控制流"><a href="#1-4-控制流" class="headerlink" title="1.4 控制流"></a>1.4 控制流</h2><p>字面意思：控制程序的运行路径。</p>
+<h3 id="1-4-1-while语句"><a href="#1-4-1-while语句" class="headerlink" title="1.4.1 while语句"></a>1.4.1 while语句</h3><p>while语句会反复执行一段带吗，直到给定的条件为假为止。<br>Example：<br>​<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>, val = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (val &lt;= <span class="number">1000</span>) &#123;</div><div class="line">    <span class="comment">// 只要val的值小于10，循环就会持续执行，</span></div><div class="line">        sum += val;</div><div class="line">        <span class="comment">// 将sum+val赋值给sum</span></div><div class="line">        ++val;</div><div class="line">        <span class="comment">//val+1</span></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; sum &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>复合赋值运算符：</p>
+<ul>
+<li>+=    将右侧的运算对象加到左侧运算对象上。</li>
+</ul>
+<p>前缀递增运算符</p>
+<ul>
+<li>++    前缀++可以作为左值来使用，将运算的对象+1</li>
+</ul>
+<h3 id="1-4-2-for语句"><a href="#1-4-2-for语句" class="headerlink" title="1.4.2 for语句"></a>1.4.2 for语句</h3><p>上个while例子中的循环条件检测变量，再循环体中增加变量的模式使用非常频繁，所以C++专门定义了第二种循环语句：<strong>for</strong>语句。</p>
+<p>使用for语句重写从1加到10的程序：<br>Example：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">​    </div><div class="line">    <span class="keyword">int</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"输入 num1： "</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; num1;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"输入 num2： "</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; num2; num2&gt;=num1; ++num1) &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; num1 &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="1-4-3-读取数量不定的输入数据"><a href="#1-4-3-读取数量不定的输入数据" class="headerlink" title="1.4.3 读取数量不定的输入数据"></a>1.4.3 读取数量不定的输入数据</h3><p>如果我们预先不知道要对多少个数求和，这就需要不断读取数据直至没有新的数据输入为止。</p>
+<p>​<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>, value = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; value)&#123;</div><div class="line">        sum += value; </div><div class="line">    &#125;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"sum is "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>因为 value定义为 int类型，所以如果你输入了别的类型的字符，就会导致判断失败，从而不会再次进行循环，然后返回你输入的值的和。</p>
+<h3 id="1-4-4-if语句"><a href="#1-4-4-if语句" class="headerlink" title="1.4.4 if语句"></a>1.4.4 if语句</h3><p>与大多数语言一样，c++也提供了 <strong>if</strong>语句来支持条件执行。</p>
+<p>Example：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> isnums = <span class="number">0</span>, nums = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; isnums) &#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; nums) &#123;</div><div class="line">            <span class="keyword">if</span> (isnums == nums) &#123;</div><div class="line">                ++count;</div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The "</span>&lt;&lt; isnums &lt;&lt; <span class="string">" occurs "</span>&lt;&lt; count &lt;&lt; <span class="string">" times."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">                isnums = nums;</div><div class="line">                count = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"The "</span>&lt;&lt; isnums &lt;&lt; <span class="string">" occurs "</span>&lt;&lt; count &lt;&lt; <span class="string">" times."</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="1-5-类简介"><a href="#1-5-类简介" class="headerlink" title="1.5 类简介"></a>1.5 类简介</h2><p>在C++中，我们铜鼓哦定义一个类来定义自己的数据结构。一个类定义了一个类型以及与其关联的一组操作。<br>类机制就是C++最重要的特性之一。<br>实际上，C++最初的一个设计焦点上就是能定义使用上像内置类型一样自然的类类型。<br>为了使用类，我们需要了解三件事情。</p>
+<ul>
+<li>类名是什么</li>
+<li>它是在哪儿定义的</li>
+<li>它支持什么操作</li>
+</ul>
+<p>对于我们即将写的书店程序来说，假定我们的类名为<strong>Sales_item</strong>，头文件 <strong>Sales_item.h</strong>中已经定义了这个类。</p>
+<h3 id="1-5-1-Sales-item类"><a href="#1-5-1-Sales-item类" class="headerlink" title="1.5.1 Sales_item类"></a>1.5.1 Sales_item类</h3><p><strong>Sales_item</strong> 类的作用是表示一本书的总销售额、售出册数和平均售价。我们现在不关心这些数据如何存储、如何计算。为了使用一个雷，我们不必关心它是如何实现的，只需要知道类对象可以执行什么操作<br>每个类实际上都定义了一个新的类型，其类型名就是类名。<br>因此，我们的<strong>Sales_item</strong>类定义了一个名为<strong>Sales_item</strong>的类型，与内置类型一样，我们可以定义类类型的变量。<br>Example:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Sales_item item;</div></pre></td></tr></table></figure></p>
+<p>此语句是想表达item是一个<strong>Sales_item</strong>类型的对象，我们通常将 “item是一个<strong>Sales_item</strong>类型的对象” 简单说成 “一个<strong>Sales_item</strong>对象”或者更简单的说成“一个<strong>Sales_item</strong>”。</p>
+<p>除了定义<strong>Sales_item</strong>类型的变量之外呢，我们还可以：</p>
+<ul>
+<li>调用一个名为isbn的函数从一个<strong>Sales_item</strong>对象中提取 ISBN 书号</li>
+<li>用输入运算符（&gt;&gt;）和输出运算符（&lt;&lt;）读写<strong>Sales_item</strong>类型的对象。</li>
+<li>用加法运算符（+）将两个<strong>Sales_item</strong>对象相加，两个对象必须表示同一本书。加法结果是一个新的<strong>Sales_item</strong>对象，其ISBN与两个运算对象相同，而其总销售额和售出册数则是两个运算对象的对应值之和。</li>
+<li>使用复合赋值运算符讲一个<strong>Sales_item</strong>对象加到另一个对象上。</li>
+</ul>
+<hr>
+<blockquote>
+<p>重要概念：类定义了行为<br>    当你度这些程序时，类<strong>Sales_item</strong>的作者定义了类对象可以执行的所有动作。即，<strong>Sales_item</strong>类定义了创建一个<strong>Sales_item</strong>对象时会发生什么事情。以及对<strong>Sales_item</strong>对象进行赋值、加法或输入输出运算时会发生什么事情。<br>    一般而言，类的作者决定了类类型对象上可以使用的所有操作。</p>
+<hr>
+</blockquote>
+<p>读写<strong>Sales_item</strong><br>    既然即应知道可以对<strong>Sales_item</strong>对象执行哪些操作，，我们现在就可以便携使用类的程序了。<br>    例如，下面的程序从标准输入读入数据，存入一个<strong>Sales_item</strong>对象中，然后将<strong>Sales_item</strong>的内容写回到标准输出。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Sales_item.hpp"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    Sales_item book;</div><div class="line">    </div><div class="line">    <span class="comment">// 读入ISBN号、售出的册数以及销售价格。</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; book;</div><div class="line">    </div><div class="line">    <span class="comment">// 写入ISBN号、售出的册数、总销售额和平均价格。</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; book &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>新的include形式：</p>
+<ul>
+<li>来自标准库的头文件 用 ( &lt;&gt; )包围头文件名。</li>
+<li>来自不属于标准库的头文件，用 ( “” )包围。</li>
+</ul>
+<p><strong>Sales_item</strong> 对象的加法<br>下面是一个对象相加的例子。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"addItems.hpp"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Sales_item.hpp"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    Sales_item item1, item2;</div><div class="line">    </div><div class="line">    <span class="comment">// 读取一对交易记录</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; item1 &gt;&gt; item2;</div><div class="line">    </div><div class="line">    <span class="comment">//打印和</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; item1 + item2 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="1-5-2-初识成员函数"><a href="#1-5-2-初识成员函数" class="headerlink" title="1.5.2 初识成员函数"></a>1.5.2 初识成员函数</h3><p>将两个<strong>Sales_item</strong>对象相加的程序首先应该价差两个对象是否具有相同的ISBN。<br>方法如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CheckSame.hpp"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Sales_item.hpp"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    Sales_item item1, item2;</div><div class="line">    </div><div class="line">    <span class="comment">// 读取一对交易记录</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; item1 &gt;&gt; item2;</div><div class="line">    </div><div class="line">    <span class="comment">//首先检查item1和item2是否表示相同的书</span></div><div class="line">    <span class="keyword">if</span> (item1.isbn() == item2.isbn()) &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; item1 + item2 &lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"Data must refer to same ISBN"</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个if语句的检测条件<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">item1.isbn() == item2.isbn()</div></pre></td></tr></table></figure></p>
+<p>调用名为isbn的<strong>成员函数</strong>。成员函数式定义为类的一部分函数，有时也被称为<strong>方法(method)</strong>。<br>我们通常使用 <strong>点运算符(.)</strong>来调用方法。通常，此方法必须是当前类类型的。<br>当我们访问一个成员函数时，通常我们是想调用该函数，我们使用调用运算符( () )来调用一个函数，调用运算符是一顿圆括号，里面放置<strong>参数列表</strong>(可能为空)。<br>因为我们现在的成员函数 <strong>isbn</strong>并不接受参数，因此：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">item1.isbn()</div></pre></td></tr></table></figure></p>
+<p>调用名为 item1 的对象的成员函数 isbn，此函数返回 item1 中保存的 ISBN书号。</p>
+
       
     </div>
     
@@ -527,6 +601,10 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
               <p class="site-author-name" itemprop="name">忘了</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -579,12 +657,46 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 
           <div class="links-of-author motion-element">
             
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
           </div>
 
           
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -602,7 +714,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-开始"><span class="nav-number">1.</span> <span class="nav-text">第一章 - 开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-编写一个简单的C-程序"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 编写一个简单的C++程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译、运行程序"><span class="nav-number">1.1.1.</span> <span class="nav-text">编译、运行程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-输入输出"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准输入输出对象"><span class="nav-number">1.2.1.</span> <span class="nav-text">标准输入输出对象</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-开始"><span class="nav-number">1.</span> <span class="nav-text">第一章 - 开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-编写一个简单的C-程序"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 编写一个简单的C++程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译、运行程序"><span class="nav-number">1.1.1.</span> <span class="nav-text">编译、运行程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-输入输出"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准输入输出对象"><span class="nav-number">1.2.1.</span> <span class="nav-text">标准输入输出对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-注释"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-控制流"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-while语句"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 while语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-for语句"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 for语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-读取数量不定的输入数据"><span class="nav-number">1.4.3.</span> <span class="nav-text">1.4.3 读取数量不定的输入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-if语句"><span class="nav-number">1.4.4.</span> <span class="nav-text">1.4.4 if语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-类简介"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 类简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-Sales-item类"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.5.1 Sales_item类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-2-初识成员函数"><span class="nav-number">1.5.2.</span> <span class="nav-text">1.5.2 初识成员函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -622,7 +734,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -679,6 +791,8 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
   
 
 
+  
+
 
 
 
@@ -706,6 +820,9 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
