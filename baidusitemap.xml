@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://gmle.github.io/2017/10/25/cpp_primer/</loc>
-    <lastmod>2017-11-06T08:28:51.000Z</lastmod>
+    <lastmod>2017-11-06T08:44:30.000Z</lastmod>
     <data>
         <display>
         <title>C++ Primer 读书笔记</title>
@@ -19,6 +19,54 @@
            
              
               <breadCrumb title="C++" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2017/09/13/%E5%85%B3%E4%BA%8ESpark%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-11-06T08:44:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于Spark环境变量问题</title>
+        <pubTime>2017-09-13T02:07:56.000Z</pubTime>
+        
+        <tag>Shell</tag>
+         
+        <tag>Spark</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spark" url="http://gmle.github.io/categories/Spark/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2017/10/10/Spark-HA%E7%9A%84worker%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-11-06T08:39:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Spark-HA的worker问题</title>
+        <pubTime>2017-10-10T03:36:26.000Z</pubTime>
+        
+        <tag>Shell</tag>
+         
+        <tag>Spark</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spark" url="http://gmle.github.io/categories/Spark/"/>
           
         </display>
     </data>
@@ -47,55 +95,6 @@
     </url>
 
     
-  <url>
-    <loc>http://gmle.github.io/2017/10/10/Spark-HA%E7%9A%84worker%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2017-10-10T03:53:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>关于Spark环境变量问题</title>
-        <pubTime>2017-10-10T03:36:26.000Z</pubTime>
-        
-        <tag>Shell</tag>
-         
-        <tag>Spark</tag>
-         
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Spark" url="http://gmle.github.io/categories/Spark/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
-    <loc>http://gmle.github.io/2017/09/13/%E5%85%B3%E4%BA%8ESpark%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2017-09-17T06:38:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>关于Spark环境变量问题</title>
-        <pubTime>2017-09-13T02:07:56.000Z</pubTime>
-        
-        <tag>Shell</tag>
-         
-        <tag>Spark</tag>
-         
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shell" url="http://gmle.github.io/categories/Shell/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://gmle.github.io/2017/09/12/yum%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85maven/</loc>

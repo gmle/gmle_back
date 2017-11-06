@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2016/09/19/HDFS的文件操作/">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2016/09/19/HSFS中文件的一些操作命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
@@ -292,7 +292,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/19/HDFS的文件操作/" itemprop="url">Hadoop_对HDFS中文件的操作</a></h2>
+                <a class="post-title-link" href="/2016/09/19/HSFS中文件的一些操作命令/" itemprop="url">Hadoop与HDFS的一些常用命令</a></h2>
         
 
         <div class="post-meta">
@@ -365,12 +365,11 @@
 
       
         
-          <pre><code>Hadoop没有当前目录的概念，当然也就没有 “cd” 命令
-HDFS文件操作的方法。
-</code></pre><h2 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h2><p>上一篇文章已经写到命令行方式操作HDFS，不再多说。<br><a href="http://gmle.github.io/2016/04/21/HSFS%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">进入传送门～</a></p>
+          <pre><code>Hadoop与HDFS文件操作的一些常用命令，记个笔记。
+</code></pre><h3 id="Hadoop启动"><a href="#Hadoop启动" class="headerlink" title="Hadoop启动"></a>Hadoop启动</h3>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/09/19/HDFS的文件操作/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/HSFS中文件的一些操作命令/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -421,7 +420,7 @@ HDFS文件操作的方法。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2016/09/19/玩转HDFS-ACL/">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2016/09/19/正则表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
@@ -440,7 +439,7 @@ HDFS文件操作的方法。
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/19/玩转HDFS-ACL/" itemprop="url">Hadoop_玩转 HDFS之 ACL</a></h2>
+                <a class="post-title-link" href="/2016/09/19/正则表达式/" itemprop="url">正则表达式</a></h2>
         
 
         <div class="post-meta">
@@ -475,8 +474,8 @@ HDFS文件操作的方法。
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
+                  <a href="/categories/正则表达式/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
                   </a>
                 </span>
 
@@ -513,38 +512,16 @@ HDFS文件操作的方法。
 
       
         
-          <pre><code>Hadoop从2.4.0版本开始支持hdfs的ACL，
-通俗的讲就是文件访问控制权限
-下面对其进行一些测试：
-</code></pre><table>
-<thead>
-<tr>
-<th>unnamed user (file owner)</th>
-<th>文件的拥有者</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>unnamed group (file group)</td>
-<td>文件的所属组</td>
-</tr>
-<tr>
-<td>named user</td>
-<td>除了文件的拥有者和拥有组之外，的其它用户</td>
-</tr>
-<tr>
-<td>named group</td>
-<td>除了文件的拥有者和拥有组之外，的其它用户</td>
-</tr>
-<tr>
-<td>mask</td>
-<td>权限掩码，用于过滤named user和named group的权限</td>
-</tr>
-</tbody>
-</table>
+          <pre><code>正则表达式的基础使用。
+正则表达式 --&gt; 专门勇于操作字符串；
+可以理解为 ‘正确的规则’。
+好处：用了一些符号来代表一些代码，书写起来更为简单。
+弊端：可读性差，而且要把符号学完
+但是底层也是要配合代码实现的。
+</code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/09/19/玩转HDFS-ACL/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/正则表达式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -794,7 +771,7 @@ HDFS文件操作的方法。
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -805,7 +782,7 @@ HDFS文件操作的方法。
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -885,7 +862,7 @@ HDFS文件操作的方法。
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

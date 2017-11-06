@@ -586,7 +586,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/10/Spark-HA的worker问题/" itemprop="url">关于Spark环境变量问题</a></h2>
+                <a class="post-title-link" href="/2017/10/10/Spark-HA的worker问题/" itemprop="url">Spark-HA的worker问题</a></h2>
         
 
         <div class="post-meta">
@@ -659,17 +659,7 @@
 
       
         
-          <h2 id="问题：Spark-Woker-不去连接ALIVE-Master"><a href="#问题：Spark-Woker-不去连接ALIVE-Master" class="headerlink" title="问题：Spark Woker 不去连接ALIVE Master"></a>问题：Spark Woker 不去连接ALIVE Master</h2><p>机器：</p>
-<ul>
-<li>192.168.1.128 Master</li>
-<li>192.168.1.129 Master Worker</li>
-<li><p>192.168.1.130 Worker</p>
-<p>启动时两个Master的状态不可控，不知道哪个是ALIVE的Master，worker节点在连接Master的时候，会判断当前Master的状态是否为ALIVE，如果为StandBy，则不继续链接，然后去寻找ALIVE，直到找到ALIVE节点的MASTER。</p>
-<p>现在的问题是 Worker在找到StandBy节点后，并没有去寻找新的Master，导致了worker注册不到集群上，自动关闭。</p>
-<p>原因待定。</p>
-<p>根据一些帖子发现，如果配置了Spark on yarn ，则 Spark HA 基本没有任何作用。</p>
-</li>
-</ul>
+          <p>关于 HA 中 Spark worker节点连接Master的问题</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/10/Spark-HA的worker问题/#more" rel="contents">
@@ -777,8 +767,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
                   </a>
                 </span>
 
@@ -815,7 +805,7 @@
 
       
         
-          <h2 id="问题：Spark在spark-env-sh中的环境变量不生效"><a href="#问题：Spark在spark-env-sh中的环境变量不生效" class="headerlink" title="问题：Spark在spark-env.sh中的环境变量不生效"></a>问题：Spark在spark-env.sh中的环境变量不生效</h2>
+          <p>记录一次因为spark内置环境问题引发的惨案</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/13/关于Spark环境变量问题/#more" rel="contents">
@@ -1605,7 +1595,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2016/09/19/正则表达式/">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2016/09/19/玩转HDFS-ACL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
@@ -1624,7 +1614,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/19/正则表达式/" itemprop="url">正则表达式</a></h2>
+                <a class="post-title-link" href="/2016/09/19/玩转HDFS-ACL/" itemprop="url">Hadoop_玩转 HDFS之 ACL</a></h2>
         
 
         <div class="post-meta">
@@ -1659,8 +1649,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/正则表达式/" itemprop="url" rel="index">
-                    <span itemprop="name">正则表达式</span>
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
                   </a>
                 </span>
 
@@ -1697,16 +1687,38 @@
 
       
         
-          <pre><code>正则表达式的基础使用。
-正则表达式 --&gt; 专门勇于操作字符串；
-可以理解为 ‘正确的规则’。
-好处：用了一些符号来代表一些代码，书写起来更为简单。
-弊端：可读性差，而且要把符号学完
-但是底层也是要配合代码实现的。
-</code></pre>
+          <pre><code>Hadoop从2.4.0版本开始支持hdfs的ACL，
+通俗的讲就是文件访问控制权限
+下面对其进行一些测试：
+</code></pre><table>
+<thead>
+<tr>
+<th>unnamed user (file owner)</th>
+<th>文件的拥有者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unnamed group (file group)</td>
+<td>文件的所属组</td>
+</tr>
+<tr>
+<td>named user</td>
+<td>除了文件的拥有者和拥有组之外，的其它用户</td>
+</tr>
+<tr>
+<td>named group</td>
+<td>除了文件的拥有者和拥有组之外，的其它用户</td>
+</tr>
+<tr>
+<td>mask</td>
+<td>权限掩码，用于过滤named user和named group的权限</td>
+</tr>
+</tbody>
+</table>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/09/19/正则表达式/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/玩转HDFS-ACL/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1809,7 +1821,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1820,7 +1832,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -1900,7 +1912,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
