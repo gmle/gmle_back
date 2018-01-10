@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://gmle.github.io/2017/10/25/cpp_primer/index.html">
 <meta property="og:site_name" content="忘lele">
 <meta property="og:description" content="做点什么吧">
-<meta property="og:updated_time" content="2017-12-28T09:39:17.000Z">
+<meta property="og:updated_time" content="2018-01-10T09:46:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer 读书笔记">
 <meta name="twitter:description" content="做点什么吧">
@@ -670,6 +670,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 <h4 id="其他指针操作"><a href="#其他指针操作" class="headerlink" title="其他指针操作"></a>其他指针操作</h4><p>只要指针拥有一个合法值，就能将它用在条件表达式中。和采用算数值作为条件遵循的规则类似，如果指针的值是0；则条件取false。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ival = <span class="number">1024</span>;    <span class="comment">// </span></div><div class="line"><span class="keyword">int</span> *pi = <span class="number">0</span>;        <span class="comment">// pi是一个空指针。</span></div><div class="line"><span class="keyword">int</span> *pi2 = &amp;ival;   <span class="comment">// pi2存这ival的地址、</span></div><div class="line"><span class="keyword">if</span>(pi)&#123;             <span class="comment">// pi的值是0，因此条件为false</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(pi2)&#123;            <span class="comment">// pi2的值是1024，因此条件为true</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>结论：任何非0指针对应的条件都是true。<br>对于两个类型的合法指针，可以用相等操作符(==)或不相等操作符(!=)来比较他们，比较的结果是布尔类型。如果两个指针村法规的地址值相同，则他们相等，反之则不等。<br>这里两个指针存放的地址值相同(两个指针相等),有三种可能，它们都为空，都指向同一个对象，或者都指向了同一个对象的下一地址。<br>需要注意的是，一个指针指向某对象，同时另一个指针指向另外对象的下一地址，此时也有可能出现这两个指针值相同的情况，即指针相等。<br>因为上述操作要用到指针的值，所以不论是作为条件出现还是参与比较运算，都必须使用合法指针，使用非法指针作为条件或进行比较都会引发不可预计的后果。</p>
 <h4 id="void-指针"><a href="#void-指针" class="headerlink" title="void* 指针"></a>void* 指针</h4><p><strong>void*</strong> 是一种特殊的指针类型，可用于存放任意对象的地址。一个void*的指针存放着一个地址，这一点和其他指针类似。不同的是，我们对该地址中到底是个什么类型的对象并不了解：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> obj = <span class="number">3.14</span>, *pd = &amp;obj;</div></pre></td></tr></table></figure></p>
+<p>利用viod*指针能做的事情比较有限：拿它和别的指针比较、作为函数的输入或输出，或者赋给另一个void*指针。不能直接操作void*所指的对象，因为我们并不知道这个对象的类型，也就无法确定能在这个对象上进行什么操作。</p>
 
       
     </div>
@@ -911,7 +912,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
