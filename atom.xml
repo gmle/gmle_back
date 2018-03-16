@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gmle.github.io/"/>
-  <updated>2017-12-18T09:39:05.000Z</updated>
+  <updated>2018-03-16T09:55:21.320Z</updated>
   <id>http://gmle.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>阅读：人生的84000种可能</title>
+    <link href="http://gmle.github.io/2018/03/16/%E4%BA%BA%E7%94%9F%E7%9A%8484000%E7%A7%8D%E5%8F%AF%E8%83%BD/"/>
+    <id>http://gmle.github.io/2018/03/16/人生的84000种可能/</id>
+    <published>2018-03-16T09:51:31.129Z</published>
+    <updated>2018-03-16T09:55:21.320Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="读万卷书" scheme="http://gmle.github.io/categories/%E8%AF%BB%E4%B8%87%E5%8D%B7%E4%B9%A6/"/>
+    
+    
+      <category term="Books" scheme="http://gmle.github.io/tags/Books/"/>
+    
+  </entry>
   
   <entry>
     <title>C++基本类中的构造函数，析构函数，拷贝构造器和运算符重载</title>
@@ -293,18 +311,21 @@
   </entry>
   
   <entry>
-    <title>HBase的数据模型</title>
-    <link href="http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://gmle.github.io/2016/09/19/HBase的数据模型/</id>
+    <title>HBase的列簇</title>
+    <link href="http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E5%88%97%E7%B0%87/"/>
+    <id>http://gmle.github.io/2016/09/19/HBase的列簇/</id>
     <published>2016-09-19T00:53:20.000Z</published>
-    <updated>2017-05-03T06:38:01.000Z</updated>
+    <updated>2017-05-03T06:38:13.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#介绍">介绍</a><br><a href="#概览">概览</a><br><a href="#行">行</a><br><a href="#列簇">列簇</a><br><a href="#时间戳">时间戳</a></p><p><a href="http://gmle.github.io/2016/05/05/HBase%E7%9A%84%E5%88%97%E6%97%8F/">此篇为参考文章</a></p><a id="more"></a><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><pre><code>HBase 的数据模型是继 Bigtable 数据模型的之后的克隆版，特别适用于密集的数据系统。也就是HBase是通过Google的BigTable演变而来</code></pre><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>看简单点，HBase可以概括成一个Map</p><pre><code>&gt;Map&lt;byte[], Map&lt;byte[], Map&lt;byte[], Map&lt;Long, byte[]&gt;&gt;&gt;第一个Map是映射从 row keys 到 column families。第二个Map是映射从 column families 到他们的 column keys。第三个Map是映射从 column keys 到他们的 timestamps 。最后，最后的Map映射 timestamps 到一个单一的值。</code></pre><p>keys 一般为 字符串 strings， timestamps 是一个长整型 longs。<br>而值则为一个不解释的字节数组。<br>列的 keys 总在其 families 后面，表现如：family:key。因为一个 family 映射到另一个其他的map，这在理论上允许一个 family 包含无限个 column keys。<br>因此，为了获取一个值，用户需要使用三个 keys 来 get ：<br>    row key+column key+timestamp -&gt; value<br>    行键+列键+时间戳 -&gt; 值</p><h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2><p>HBase 以数组格式来处理 row key，但 row key 本身是有字符串的形式表现。row key Map 一个特性就是以一个词典顺序来保存。例如，从1到100的数字，就是按照 1,10,100,11,12,13,14,15,16,17,18,19,2,20,21,…,9,91,92,93,94,95,96,97,98,99 这样的方式来保存。</p><p>要想以自然顺序来保存整型数，row keys 必须在左边以0填充。利用这一点，row key Map 的功能可以通过提供一个 scaner 来增强， scaner 带有一个 start row key 和 一个 stop row key。例如，如果 row keys 是日期格式 YYYYMMDD，获取 2008年7月整个月的内容，就是打开一个 scaner （20080700到20080800）。它并不关心指定的 row keys 存在与否，唯一要关心的，就是这个调用不会返回 stop row key，因此，stop row key 必须给 scaner 指定好。</p><h2 id="列簇"><a href="#列簇" class="headerlink" title="列簇"></a>列簇</h2><p>在 Hbase中，列成员重组具有同一性质的数据，并不限制数据类型。簇是表模式的一部分，为每行保存同种数据。与 froms rows to forws 不同的是 column keys 可以是稀少的。例如，row “20080702” 可以拥有自己的“info:”成员，该成员下有如下几个 column keys：<br>info:aaa<br>info:bbb<br>info:ccc<br>同样，row “20080703”仅有：<br>info:12342<br>在使用 column keys 的时候，开发者必须要非常小心。因为长度为0 的 key是允许的，这说明，在前面的例子中，数据可以被插入到 column key “info:” 中。我们强烈推荐，仅仅在没有其他的 keys 指定时使用空的 key。同样，由于一个成员中的数据是同一种类的，参考性能与时间戳 ，很多属性可以指定。</p><h2 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h2><p>根据成员的配置情况，HBase的值可以是以多版本的方式保存。缺省情况下，HBase将每个新值的时间戳设置为当前时间 milliseconds，并且当一个 cell 被请求时，返回最新的版本。开发者可以在插入数据时自定义时间戳，然后再通过指定这个时间戳来重新获取该值。<br>Family Attributes成员属性<br>可以为每一个簇指定下面的属性：</p>]]></content>
+    <content type="html"><![CDATA[<pre><code>对于HBase中的列簇，新手都会有这样的问题HBase的列有列族前缀和列组成，那么一个表中列族要怎么设定？是只设定一个？还是越多越好？还是根据什么设定几个？</code></pre><a id="more"></a><h2 id="何时用HBase"><a href="#何时用HBase" class="headerlink" title="何时用HBase"></a>何时用HBase</h2><pre><code>1.系统需要适应不同种类的数据格式和数据源，不能预先严格定义模式，需要处理大规模数据；2.不强调数据之间的关系，所要存储的数据是半结构化或非结构化的；3.数据非常稀疏；4.想要更好的进行扩展；</code></pre><p>比如谷歌就将BigTable用来存储网页的索引数据，索引数据就很好的满足了上面的几点要求。</p><h2 id="HBase的结构"><a href="#HBase的结构" class="headerlink" title="HBase的结构"></a>HBase的结构</h2><pre><code>表、行、列和单元格    先做一个简单的总结：最基本的单位是列（column），一列或者多列组成一行（row），并且由唯一的行键（row key）来确定存储。    一个表中有很多行，每一列可能有多个版本，在每一个单元格（Cell）中存储了不同的值。    HBase的行与行之间是有序的，按照row key的字典序进行排序，行键是唯一的，在一个表里只出现一次，否则就是在更新同一行，行键可以是任意的字节数组。    一行由若干列组成，其中的某些列又可以构成一个列族（column family），一个列族的所有列存储在同一个底层的存储文件里，这个文件称之为HFile。    列族需要在创建表的时候就定义好，数量也不宜过多。    列族名必须由可打印字符组成，创建表的时候不需要定义好列。    对列的引用格式通常为family：qualifier，qualifier也可以是任意的字节数组。    同一个列族里qualifier的名称应该唯一，否则就是在更新同一列，列的数量没有限制，可以有数百万个。    列值也没有类型和长度限定。    HBase会对row key的长度做检查，默认应该小于65536。</code></pre><p>一个可视化的HBase表如下：<br><img src="http://7xt0cb.com2.z0.glb.clouddn.com/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%BE%E8%A1%A8.jpg" alt="可视化HBase表"></p><p>Timestamp代表时间戳，默认由系统指定，用户也可以显示设置。使用不同的时间戳来区分不同的版本。一个单元格的不同版本的值按照时间戳降序排列在一起，在读取的时候优先取最新的值。用户可以指定每个值能保存的最大版本数.</p><p>HBase的存取模式如下（表，行键，列族，列，时间戳）-&gt; 值。即一个表中的某一行键的某一列族的某一列的某一个版本的值唯一。</p><p>行数据的存取操作是原子的，可以读取任意数目的列。目前还不支持跨行事务和跨表事务。</p><p>同一列族下的数据压缩在一起，访问控制磁盘和内存都在列族层面进行。</p><p>2.自动分区<br>    HBase中扩展和负载均衡的基本单元称作region，region本质上是以行键排序的连续存储空间。如果region过大，系统就会把它们动态拆分，相反的，就把多个region合并，以减少存储文件数量。<br>    一个表最开始只有一个region，用户开始向表中插入数据时，系统会检查region大小，确保不会超过配置的最大值，如果超过，会从region中行键的中间值一分为二，将该region分为大小大致相等的两个region。</p><p>3.存储格式<br>    HFile：HBase中KeyValue数据的存储格式。HFile是Hadoop的二进制格式文件。<br>    HLog：HBase中WAL（Write-Ahead-Log，预写式日志）文件的存储格式，物理上是Hadoop的Sequence File。</p><p>HFile的格式如下图：<br><img src="http://img.blog.csdn.net/20140731145136723" alt="HFile的存储格式"></p><p>HFile文件的长度可变，唯一固定的是File Info和Trailer。Trailer存储指向其他块的指针，它在持久化数据到文件结束时写入的，写入后，该文件就会变成不可变的数据存储文件。数据块（data blocks）中存储key-values，可以看做是一个MapFile。当block关闭操作时，第一个key会被写入index中，index文件在hfile关闭操作时写入。</p><p>KeyValue的具体格式如下图：<br><img src="http://img.blog.csdn.net/20140731145347373" alt="key-value"></p><p>上图中，keytype有四种类型，分别是Put、Delete、 DeleteColumn和DeleteFamily。RowLength为2个字节，Row长度不固定，ColumnFamilyLength为2个字节，ColumnFamily长度不固定，ColumnQualifier长度不固定，TimeStamp为4个字节，KeyType为1个字节。之所以不记录ColumnQualifier的长度是因为可以通过其他字段计算得到。</p><h2 id="HBase常用操作："><a href="#HBase常用操作：" class="headerlink" title="HBase常用操作："></a>HBase常用操作：</h2><p>List；<br>Create；<br>Put；<br>Scan；<br>Get；<br>Delete；<br>Disable；<br>Drop；</p><h2 id="列簇的设计"><a href="#列簇的设计" class="headerlink" title="列簇的设计"></a>列簇的设计</h2><pre><code>1、列簇的设计需要根据你的业务。那些可能被反复修改的数据表尽量使用单列簇。每个列簇在HDFS都有一个独立的HFILE，当某个ROWKEY的某个列簇数据被冲刷时，这个ROWKEY连带的其他列簇数据也会被一起冲刷，I/O负担很大。APACHE官方也提倡多列簇的设计方案，单列簇性能是最高的。而持久型数据，也就是一次写入，从不修改的数据，可以使用多列簇，原理相同，但目前任然提倡单列簇设计模式2、多列簇的效率问题参照13、所谓列簇分组，就相当于关系习惯数据库中，两个表被纵向合并，形成一张双列簇的表</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#介绍&quot;&gt;介绍&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#概览&quot;&gt;概览&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#行&quot;&gt;行&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#列簇&quot;&gt;列簇&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#时间戳&quot;&gt;时间戳&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://gmle.github.io/2016/05/05/HBase%E7%9A%84%E5%88%97%E6%97%8F/&quot;&gt;此篇为参考文章&lt;/a&gt;&lt;/p&gt;
+      &lt;pre&gt;&lt;code&gt;对于HBase中的列簇，新手都会有这样的问题
+HBase的列有列族前缀和列组成，
+那么一个表中列族要怎么设定？
+是只设定一个？还是越多越好？还是根据什么设定几个？
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
@@ -315,7 +336,7 @@
     
       <category term="HBase" scheme="http://gmle.github.io/tags/HBase/"/>
     
-      <category term="数据模型" scheme="http://gmle.github.io/tags/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+      <category term="列族" scheme="http://gmle.github.io/tags/%E5%88%97%E6%97%8F/"/>
     
   </entry>
   
@@ -344,47 +365,6 @@ HDFS文件操作的方法。
       <category term="HDFS" scheme="http://gmle.github.io/tags/HDFS/"/>
     
       <category term="HDFS操作" scheme="http://gmle.github.io/tags/HDFS%E6%93%8D%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MapReduce架构及原理</title>
-    <link href="http://gmle.github.io/2016/09/19/MapReduce%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/"/>
-    <id>http://gmle.github.io/2016/09/19/MapReduce架构原理/</id>
-    <published>2016-09-19T00:53:20.000Z</published>
-    <updated>2017-05-03T06:37:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<pre><code>Hadoop中MapReduce的架构以及原理。</code></pre><h2 id="MapReduce介绍"><a href="#MapReduce介绍" class="headerlink" title="MapReduce介绍"></a>MapReduce介绍</h2><ul><li>MapReduce 编程模型<ul><li>Google提出的框架 主要用于搜索领域</li><li>一种分布式计算模型框架解决海量数据的计算问题</li><li>MapReduce将整个并行计算过程抽象到两个函数<ul><li>map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行</li><li>Reduce（化简）：队一个列表的元素进行合并</li></ul></li><li>一个简单的MapReduce程序只需要指定map()、reduce()、input和output，剩下的事由框架来执行。</li></ul></li></ul><a id="more"></a><h2 id="MapReduce特点"><a href="#MapReduce特点" class="headerlink" title="MapReduce特点"></a>MapReduce特点</h2><pre><code>- 高容错- 高扩展- 编程简单- 适合大数据离线批量处理</code></pre><h2 id="Map任务处理"><a href="#Map任务处理" class="headerlink" title="Map任务处理"></a>Map任务处理</h2><pre><code>* 读取输入文件内容，解析成key，value对。对输入文件的没一行，解析成key，value对。每一个键值对调用一次map函数* 写自己的逻辑，处理输入的key，value，转换成新的key，value输出* 对输出的key、value进行分区* 对不同分区的数据，按照key进行排序】分组。相同的key的value放到一个集合中。</code></pre><h2 id="reduce-任务处理"><a href="#reduce-任务处理" class="headerlink" title="reduce 任务处理"></a>reduce 任务处理</h2><pre><code>* 对多个map任务的输出，按照不用的分区，通过网络copy到不同的reduce节点* 对多个map任务的输出进行合并、排序。写reduce函数自己的逻辑，对哦输入的key、value处理，转换成新的key、value输出。* 把reduce的输出保存到文件中</code></pre><p>MapReduce键值对格式：<br><img src="http://7xt0cb.com2.z0.glb.clouddn.com/mapreduce键值对格式.png" alt="键值对格式 "><br>因为会有不同的结果，所以Reduce的 v2 会是数组的形式存储多个值。</p><h2 id="MR过程中各个角色的作用："><a href="#MR过程中各个角色的作用：" class="headerlink" title="MR过程中各个角色的作用："></a>MR过程中各个角色的作用：</h2><pre><code>* jobClient：提交作业* jobTracker：初始化作业，分配作业，TaskTracker与其进行通信，协调监控整个作业* TaskTracker：定期与JobTracker通信，执行Map任务和Reduce任务* HDFS：保存作业的数据、配置、jar包、结果等。</code></pre><h2 id="作业提交流程"><a href="#作业提交流程" class="headerlink" title="作业提交流程"></a>作业提交流程</h2><pre><code>* 提交作业准备    * 编写自己的MR程序    * 配置作业，保罗输入输出路径等等* 提交作业    *配置完成后，通过JobClient提交作业* 具体功能    * 与JobTracker通信得到一个jar的存储路径和JobId    * 输入输出路径检查、讲job jar拷贝到的HDFS    * 写job.xml、真正提交作业。</code></pre><h2 id="作业初始化"><a href="#作业初始化" class="headerlink" title="作业初始化"></a>作业初始化</h2><pre><code>* 客户端提交作业后，jobTracker会讲作业加入到队列，然后进行调度，默认的是FIFO方式* 具体功能    * 作业初始化主要是指 JobInProgress中完成的    * 读取分片信息    * 创建task包括Map和Reduce创建task包括Map和Reduce任务</code></pre><p>##　任务分配</p><pre><code>* TaskTracker 与JobTracker之间的通信和任务分配是通过心跳机制实现的* TaskTracker会主动定期向JobTracker发送报告 询问是否有任务要做， 如果有，就会申请到任务</code></pre><h2 id="任务执行"><a href="#任务执行" class="headerlink" title="任务执行"></a>任务执行</h2><pre><code>* 如果TaskTracker拿到任务，会将所有信息拷贝到本地，包括代码、配置、分片信息等* TarkTacker中的localizeJob()方法会被调用进行本地化，拷贝job.jar,jobconf.job.xml到本地* TaskTracker调用launchTaskForJob()方法加载启动任务</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;pre&gt;&lt;code&gt;Hadoop中MapReduce的架构以及原理。
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;MapReduce介绍&quot;&gt;&lt;a href=&quot;#MapReduce介绍&quot; class=&quot;headerlink&quot; title=&quot;MapReduce介绍&quot;&gt;&lt;/a&gt;MapReduce介绍&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;MapReduce 编程模型&lt;ul&gt;
-&lt;li&gt;Google提出的框架 主要用于搜索领域&lt;/li&gt;
-&lt;li&gt;一种分布式计算模型框架解决海量数据的计算问题&lt;/li&gt;
-&lt;li&gt;MapReduce将整个并行计算过程抽象到两个函数&lt;ul&gt;
-&lt;li&gt;map（映射）：对一些独立元素组成的列表的每一个元素进行指定的操作，可以高度并行&lt;/li&gt;
-&lt;li&gt;Reduce（化简）：队一个列表的元素进行合并&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;一个简单的MapReduce程序只需要指定map()、reduce()、input和output，剩下的事由框架来执行。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Hadoop" scheme="http://gmle.github.io/categories/Hadoop/"/>
-    
-    
-      <category term="Hadoop" scheme="http://gmle.github.io/tags/Hadoop/"/>
-    
-      <category term="MapReduce" scheme="http://gmle.github.io/tags/MapReduce/"/>
-    
-      <category term="架构" scheme="http://gmle.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-      <category term="原理" scheme="http://gmle.github.io/tags/%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   
@@ -469,6 +449,33 @@ HDFS文件操作的方法。
   </entry>
   
   <entry>
+    <title>HBase的数据模型</title>
+    <link href="http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://gmle.github.io/2016/09/19/HBase的数据模型/</id>
+    <published>2016-09-19T00:53:20.000Z</published>
+    <updated>2017-05-03T06:38:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#介绍">介绍</a><br><a href="#概览">概览</a><br><a href="#行">行</a><br><a href="#列簇">列簇</a><br><a href="#时间戳">时间戳</a></p><p><a href="http://gmle.github.io/2016/05/05/HBase%E7%9A%84%E5%88%97%E6%97%8F/">此篇为参考文章</a></p><a id="more"></a><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><pre><code>HBase 的数据模型是继 Bigtable 数据模型的之后的克隆版，特别适用于密集的数据系统。也就是HBase是通过Google的BigTable演变而来</code></pre><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>看简单点，HBase可以概括成一个Map</p><pre><code>&gt;Map&lt;byte[], Map&lt;byte[], Map&lt;byte[], Map&lt;Long, byte[]&gt;&gt;&gt;第一个Map是映射从 row keys 到 column families。第二个Map是映射从 column families 到他们的 column keys。第三个Map是映射从 column keys 到他们的 timestamps 。最后，最后的Map映射 timestamps 到一个单一的值。</code></pre><p>keys 一般为 字符串 strings， timestamps 是一个长整型 longs。<br>而值则为一个不解释的字节数组。<br>列的 keys 总在其 families 后面，表现如：family:key。因为一个 family 映射到另一个其他的map，这在理论上允许一个 family 包含无限个 column keys。<br>因此，为了获取一个值，用户需要使用三个 keys 来 get ：<br>    row key+column key+timestamp -&gt; value<br>    行键+列键+时间戳 -&gt; 值</p><h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2><p>HBase 以数组格式来处理 row key，但 row key 本身是有字符串的形式表现。row key Map 一个特性就是以一个词典顺序来保存。例如，从1到100的数字，就是按照 1,10,100,11,12,13,14,15,16,17,18,19,2,20,21,…,9,91,92,93,94,95,96,97,98,99 这样的方式来保存。</p><p>要想以自然顺序来保存整型数，row keys 必须在左边以0填充。利用这一点，row key Map 的功能可以通过提供一个 scaner 来增强， scaner 带有一个 start row key 和 一个 stop row key。例如，如果 row keys 是日期格式 YYYYMMDD，获取 2008年7月整个月的内容，就是打开一个 scaner （20080700到20080800）。它并不关心指定的 row keys 存在与否，唯一要关心的，就是这个调用不会返回 stop row key，因此，stop row key 必须给 scaner 指定好。</p><h2 id="列簇"><a href="#列簇" class="headerlink" title="列簇"></a>列簇</h2><p>在 Hbase中，列成员重组具有同一性质的数据，并不限制数据类型。簇是表模式的一部分，为每行保存同种数据。与 froms rows to forws 不同的是 column keys 可以是稀少的。例如，row “20080702” 可以拥有自己的“info:”成员，该成员下有如下几个 column keys：<br>info:aaa<br>info:bbb<br>info:ccc<br>同样，row “20080703”仅有：<br>info:12342<br>在使用 column keys 的时候，开发者必须要非常小心。因为长度为0 的 key是允许的，这说明，在前面的例子中，数据可以被插入到 column key “info:” 中。我们强烈推荐，仅仅在没有其他的 keys 指定时使用空的 key。同样，由于一个成员中的数据是同一种类的，参考性能与时间戳 ，很多属性可以指定。</p><h2 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h2><p>根据成员的配置情况，HBase的值可以是以多版本的方式保存。缺省情况下，HBase将每个新值的时间戳设置为当前时间 milliseconds，并且当一个 cell 被请求时，返回最新的版本。开发者可以在插入数据时自定义时间戳，然后再通过指定这个时间戳来重新获取该值。<br>Family Attributes成员属性<br>可以为每一个簇指定下面的属性：</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;#介绍&quot;&gt;介绍&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#概览&quot;&gt;概览&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#行&quot;&gt;行&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#列簇&quot;&gt;列簇&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;#时间戳&quot;&gt;时间戳&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://gmle.github.io/2016/05/05/HBase%E7%9A%84%E5%88%97%E6%97%8F/&quot;&gt;此篇为参考文章&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="HBase" scheme="http://gmle.github.io/categories/HBase/"/>
+    
+    
+      <category term="Hadoop" scheme="http://gmle.github.io/tags/Hadoop/"/>
+    
+      <category term="HBase" scheme="http://gmle.github.io/tags/HBase/"/>
+    
+      <category term="数据模型" scheme="http://gmle.github.io/tags/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Scala中的 Option、Some、None、Null、Nil、Nothing</title>
     <link href="http://gmle.github.io/2016/09/19/Scala%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E7%B1%BB%E5%9E%8B/"/>
     <id>http://gmle.github.io/2016/09/19/Scala中的几个类型/</id>
@@ -494,36 +501,6 @@ HDFS文件操作的方法。
       <category term="Some" scheme="http://gmle.github.io/tags/Some/"/>
     
       <category term="None" scheme="http://gmle.github.io/tags/None/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HBase的列簇</title>
-    <link href="http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E5%88%97%E7%B0%87/"/>
-    <id>http://gmle.github.io/2016/09/19/HBase的列簇/</id>
-    <published>2016-09-19T00:53:20.000Z</published>
-    <updated>2017-05-03T06:38:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<pre><code>对于HBase中的列簇，新手都会有这样的问题HBase的列有列族前缀和列组成，那么一个表中列族要怎么设定？是只设定一个？还是越多越好？还是根据什么设定几个？</code></pre><a id="more"></a><h2 id="何时用HBase"><a href="#何时用HBase" class="headerlink" title="何时用HBase"></a>何时用HBase</h2><pre><code>1.系统需要适应不同种类的数据格式和数据源，不能预先严格定义模式，需要处理大规模数据；2.不强调数据之间的关系，所要存储的数据是半结构化或非结构化的；3.数据非常稀疏；4.想要更好的进行扩展；</code></pre><p>比如谷歌就将BigTable用来存储网页的索引数据，索引数据就很好的满足了上面的几点要求。</p><h2 id="HBase的结构"><a href="#HBase的结构" class="headerlink" title="HBase的结构"></a>HBase的结构</h2><pre><code>表、行、列和单元格    先做一个简单的总结：最基本的单位是列（column），一列或者多列组成一行（row），并且由唯一的行键（row key）来确定存储。    一个表中有很多行，每一列可能有多个版本，在每一个单元格（Cell）中存储了不同的值。    HBase的行与行之间是有序的，按照row key的字典序进行排序，行键是唯一的，在一个表里只出现一次，否则就是在更新同一行，行键可以是任意的字节数组。    一行由若干列组成，其中的某些列又可以构成一个列族（column family），一个列族的所有列存储在同一个底层的存储文件里，这个文件称之为HFile。    列族需要在创建表的时候就定义好，数量也不宜过多。    列族名必须由可打印字符组成，创建表的时候不需要定义好列。    对列的引用格式通常为family：qualifier，qualifier也可以是任意的字节数组。    同一个列族里qualifier的名称应该唯一，否则就是在更新同一列，列的数量没有限制，可以有数百万个。    列值也没有类型和长度限定。    HBase会对row key的长度做检查，默认应该小于65536。</code></pre><p>一个可视化的HBase表如下：<br><img src="http://7xt0cb.com2.z0.glb.clouddn.com/HBase%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%BE%E8%A1%A8.jpg" alt="可视化HBase表"></p><p>Timestamp代表时间戳，默认由系统指定，用户也可以显示设置。使用不同的时间戳来区分不同的版本。一个单元格的不同版本的值按照时间戳降序排列在一起，在读取的时候优先取最新的值。用户可以指定每个值能保存的最大版本数.</p><p>HBase的存取模式如下（表，行键，列族，列，时间戳）-&gt; 值。即一个表中的某一行键的某一列族的某一列的某一个版本的值唯一。</p><p>行数据的存取操作是原子的，可以读取任意数目的列。目前还不支持跨行事务和跨表事务。</p><p>同一列族下的数据压缩在一起，访问控制磁盘和内存都在列族层面进行。</p><p>2.自动分区<br>    HBase中扩展和负载均衡的基本单元称作region，region本质上是以行键排序的连续存储空间。如果region过大，系统就会把它们动态拆分，相反的，就把多个region合并，以减少存储文件数量。<br>    一个表最开始只有一个region，用户开始向表中插入数据时，系统会检查region大小，确保不会超过配置的最大值，如果超过，会从region中行键的中间值一分为二，将该region分为大小大致相等的两个region。</p><p>3.存储格式<br>    HFile：HBase中KeyValue数据的存储格式。HFile是Hadoop的二进制格式文件。<br>    HLog：HBase中WAL（Write-Ahead-Log，预写式日志）文件的存储格式，物理上是Hadoop的Sequence File。</p><p>HFile的格式如下图：<br><img src="http://img.blog.csdn.net/20140731145136723" alt="HFile的存储格式"></p><p>HFile文件的长度可变，唯一固定的是File Info和Trailer。Trailer存储指向其他块的指针，它在持久化数据到文件结束时写入的，写入后，该文件就会变成不可变的数据存储文件。数据块（data blocks）中存储key-values，可以看做是一个MapFile。当block关闭操作时，第一个key会被写入index中，index文件在hfile关闭操作时写入。</p><p>KeyValue的具体格式如下图：<br><img src="http://img.blog.csdn.net/20140731145347373" alt="key-value"></p><p>上图中，keytype有四种类型，分别是Put、Delete、 DeleteColumn和DeleteFamily。RowLength为2个字节，Row长度不固定，ColumnFamilyLength为2个字节，ColumnFamily长度不固定，ColumnQualifier长度不固定，TimeStamp为4个字节，KeyType为1个字节。之所以不记录ColumnQualifier的长度是因为可以通过其他字段计算得到。</p><h2 id="HBase常用操作："><a href="#HBase常用操作：" class="headerlink" title="HBase常用操作："></a>HBase常用操作：</h2><p>List；<br>Create；<br>Put；<br>Scan；<br>Get；<br>Delete；<br>Disable；<br>Drop；</p><h2 id="列簇的设计"><a href="#列簇的设计" class="headerlink" title="列簇的设计"></a>列簇的设计</h2><pre><code>1、列簇的设计需要根据你的业务。那些可能被反复修改的数据表尽量使用单列簇。每个列簇在HDFS都有一个独立的HFILE，当某个ROWKEY的某个列簇数据被冲刷时，这个ROWKEY连带的其他列簇数据也会被一起冲刷，I/O负担很大。APACHE官方也提倡多列簇的设计方案，单列簇性能是最高的。而持久型数据，也就是一次写入，从不修改的数据，可以使用多列簇，原理相同，但目前任然提倡单列簇设计模式2、多列簇的效率问题参照13、所谓列簇分组，就相当于关系习惯数据库中，两个表被纵向合并，形成一张双列簇的表</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;pre&gt;&lt;code&gt;对于HBase中的列簇，新手都会有这样的问题
-HBase的列有列族前缀和列组成，
-那么一个表中列族要怎么设定？
-是只设定一个？还是越多越好？还是根据什么设定几个？
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="HBase" scheme="http://gmle.github.io/categories/HBase/"/>
-    
-    
-      <category term="Hadoop" scheme="http://gmle.github.io/tags/Hadoop/"/>
-    
-      <category term="HBase" scheme="http://gmle.github.io/tags/HBase/"/>
-    
-      <category term="列族" scheme="http://gmle.github.io/tags/%E5%88%97%E6%97%8F/"/>
     
   </entry>
   
