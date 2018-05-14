@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://gmle.github.io/2018/05/14/Shell%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4/</loc>
+    <lastmod>2018-05-14T15:41:12.833Z</lastmod>
+    <data>
+        <display>
+        <title>Shell的加减乘除操作</title>
+        <pubTime>2018-05-14T15:41:12.832Z</pubTime>
+        
+        <tag>Shell</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spark" url="http://gmle.github.io/categories/Spark/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gmle.github.io/2018/05/14/C%E8%AF%AD%E8%A8%80%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
     <lastmod>2018-05-14T13:02:40.577Z</lastmod>
     <data>
@@ -64,12 +86,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2018/03/16/%E8%BD%AF%E6%8A%80%E8%83%BD%EF%BC%9A%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%A4%96%E7%9A%84%E7%94%9F%E5%AD%98%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2018-04-06T09:08:52.269Z</lastmod>
+    <loc>http://gmle.github.io/2018/04/07/%E8%BD%AF%E6%8A%80%E8%83%BD%EF%BC%9A%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%A4%96%E7%9A%84%E7%94%9F%E5%AD%98%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2018-04-07T14:49:30.000Z</lastmod>
     <data>
         <display>
         <title>软技能：代码之外的生存指南</title>
-        <pubTime>2018-03-16T09:51:31.129Z</pubTime>
+        <pubTime>2018-04-07T14:49:30.000Z</pubTime>
         
         <tag>Books</tag>
          
@@ -84,12 +106,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2017/11/27/%E4%B8%8D%E5%90%8C%E7%BC%96%E8%AF%91%E5%99%A8%E5%AF%B9C++%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BD%B1%E5%93%8D/</loc>
-    <lastmod>2018-03-16T10:21:43.457Z</lastmod>
+    <loc>http://gmle.github.io/2018/03/16/%E4%B8%8D%E5%90%8C%E7%BC%96%E8%AF%91%E5%99%A8%E5%AF%B9C++%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BD%B1%E5%93%8D/</loc>
+    <lastmod>2018-03-16T10:21:43.000Z</lastmod>
     <data>
         <display>
         <title>不同编译器下的差异</title>
-        <pubTime>2017-11-27T06:59:16.289Z</pubTime>
+        <pubTime>2018-03-16T10:21:43.000Z</pubTime>
         
         <tag>C++</tag>
          
@@ -108,12 +130,12 @@
     
     
   <url>
-    <loc>http://gmle.github.io/2017/10/25/cpp_primer/</loc>
+    <loc>http://gmle.github.io/2018/03/09/cpp_primer/</loc>
     <lastmod>2018-03-09T01:05:51.000Z</lastmod>
     <data>
         <display>
         <title>C++ Primer 读书笔记</title>
-        <pubTime>2017-10-25T06:21:39.585Z</pubTime>
+        <pubTime>2018-03-09T01:05:51.000Z</pubTime>
         
         <tag>C++</tag>
          
@@ -135,7 +157,7 @@
     <data>
         <display>
         <title>C++基本类中的构造函数，析构函数，拷贝构造器和运算符重载</title>
-        <pubTime>2017-12-18T02:56:52.978Z</pubTime>
+        <pubTime>2017-12-18T09:39:05.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -176,12 +198,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2017/10/10/Spark-HA%E7%9A%84worker%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://gmle.github.io/2017/11/06/Spark-HA%E7%9A%84worker%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2017-11-06T08:39:00.000Z</lastmod>
     <data>
         <display>
         <title>Spark-HA的worker问题</title>
-        <pubTime>2017-10-10T03:36:26.000Z</pubTime>
+        <pubTime>2017-11-06T08:39:00.000Z</pubTime>
         
         <tag>Shell</tag>
          
@@ -227,7 +249,7 @@
     <data>
         <display>
         <title>Maven一键安装 centos平台</title>
-        <pubTime>2017-09-12T02:44:47.000Z</pubTime>
+        <pubTime>2017-09-12T02:48:22.000Z</pubTime>
         
         <tag>Centos</tag>
          
@@ -249,7 +271,7 @@
     <data>
         <display>
         <title>C++标准库</title>
-        <pubTime>2017-08-04T09:17:18.000Z</pubTime>
+        <pubTime>2017-08-04T09:55:45.000Z</pubTime>
         
         <tag>C++</tag>
          
@@ -264,12 +286,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2017/06/23/Bash%E8%B0%83%E7%94%A8MySql/</loc>
+    <loc>http://gmle.github.io/2017/06/25/Bash%E8%B0%83%E7%94%A8MySql/</loc>
     <lastmod>2017-06-25T09:26:19.000Z</lastmod>
     <data>
         <display>
         <title>Bash/Shell调用MySQL并忽略警告</title>
-        <pubTime>2017-06-23T06:09:03.000Z</pubTime>
+        <pubTime>2017-06-25T09:26:19.000Z</pubTime>
         
         <tag>Shell</tag>
          
@@ -293,7 +315,7 @@
     <data>
         <display>
         <title>在Centos6.5下升级python至3.6.0</title>
-        <pubTime>2017-05-11T02:16:11.000Z</pubTime>
+        <pubTime>2017-05-11T07:57:48.000Z</pubTime>
         
         <tag>Centos</tag>
          
@@ -310,12 +332,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/%E5%AF%B9HDFS%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A4%E8%AF%86/</loc>
+    <loc>http://gmle.github.io/2017/05/03/%E5%AF%B9HDFS%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%A4%E8%AF%86/</loc>
     <lastmod>2017-05-03T06:38:42.000Z</lastmod>
     <data>
         <display>
         <title>Hadoop_HDFS底层架构</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:42.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -332,12 +354,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/%E7%8E%A9%E8%BD%ACHDFS-ACL/</loc>
+    <loc>http://gmle.github.io/2017/05/03/%E7%8E%A9%E8%BD%ACHDFS-ACL/</loc>
     <lastmod>2017-05-03T06:38:39.000Z</lastmod>
     <data>
         <display>
         <title>Hadoop_玩转 HDFS之 ACL</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:39.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -356,12 +378,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
+    <loc>http://gmle.github.io/2017/05/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2017-05-03T06:38:36.000Z</lastmod>
     <data>
         <display>
         <title>正则表达式</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:36.000Z</pubTime>
         
         <tag>Java</tag>
          
@@ -380,12 +402,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/hadoop%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE/</loc>
+    <loc>http://gmle.github.io/2017/05/03/hadoop%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE/</loc>
     <lastmod>2017-05-03T06:38:19.000Z</lastmod>
     <data>
         <display>
         <title>hadoop常见面试题目（不定期更新）</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:19.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -402,12 +424,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E5%88%97%E7%B0%87/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HBase%E7%9A%84%E5%88%97%E7%B0%87/</loc>
     <lastmod>2017-05-03T06:38:13.000Z</lastmod>
     <data>
         <display>
         <title>HBase的列簇</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:13.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -426,12 +448,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E9%85%8D%E7%BD%AE(%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F)/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HBase%E7%9A%84%E9%85%8D%E7%BD%AE(%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F)/</loc>
     <lastmod>2017-05-03T06:38:09.000Z</lastmod>
     <data>
         <display>
         <title>HBase的配置(伪分布式)</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:09.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -448,12 +470,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HBase%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HBase%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2017-05-03T06:38:01.000Z</lastmod>
     <data>
         <display>
         <title>HBase的数据模型</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:38:01.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -472,12 +494,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HBase%E7%9A%84JavaAPI%E8%AF%A6%E8%A7%A3/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HBase%E7%9A%84JavaAPI%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2017-05-03T06:37:57.000Z</lastmod>
     <data>
         <display>
         <title>HBase的Java API</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:57.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -498,12 +520,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HBase%E5%85%A5%E9%97%A8_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HBase%E5%85%A5%E9%97%A8_%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2017-05-03T06:37:52.000Z</lastmod>
     <data>
         <display>
         <title>HBase入门 — 操作数据表</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:52.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -522,12 +544,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HDFS%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HDFS%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</loc>
     <lastmod>2017-05-03T06:37:48.000Z</lastmod>
     <data>
         <display>
         <title>Hadoop_对HDFS中文件的操作</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:48.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -546,12 +568,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/HSFS%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</loc>
+    <loc>http://gmle.github.io/2017/05/03/HSFS%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2017-05-03T06:37:41.000Z</lastmod>
     <data>
         <display>
         <title>Hadoop与HDFS的一些常用命令</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:41.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -570,12 +592,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2017/05/02/MacOS%E5%AE%89%E8%A3%85Hadoop&Spark/</loc>
+    <loc>http://gmle.github.io/2017/05/03/MacOS%E5%AE%89%E8%A3%85Hadoop&Spark/</loc>
     <lastmod>2017-05-03T06:37:38.000Z</lastmod>
     <data>
         <display>
         <title>MacOS下配置Hadoop和Spark</title>
-        <pubTime>2017-05-02T07:49:44.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:38.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -594,12 +616,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/MapReduce%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/</loc>
+    <loc>http://gmle.github.io/2017/05/03/MapReduce%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2017-05-03T06:37:15.000Z</lastmod>
     <data>
         <display>
         <title>MapReduce架构及原理</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:15.000Z</pubTime>
         
         <tag>Hadoop</tag>
          
@@ -620,12 +642,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/Scala%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E7%B1%BB%E5%9E%8B/</loc>
+    <loc>http://gmle.github.io/2017/05/03/Scala%E4%B8%AD%E7%9A%84%E5%87%A0%E4%B8%AA%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2017-05-03T06:37:09.000Z</lastmod>
     <data>
         <display>
         <title>Scala中的 Option、Some、None、Null、Nil、Nothing</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:09.000Z</pubTime>
         
         <tag>Scala</tag>
          
@@ -646,12 +668,12 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2016/09/19/Yarn%E6%9E%B6%E6%9E%84%E8%AF%A6%E8%A7%A3/</loc>
+    <loc>http://gmle.github.io/2017/05/03/Yarn%E6%9E%B6%E6%9E%84%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2017-05-03T06:37:01.000Z</lastmod>
     <data>
         <display>
         <title>Hadoop_Yarn架构详解</title>
-        <pubTime>2016-09-19T00:53:20.000Z</pubTime>
+        <pubTime>2017-05-03T06:37:01.000Z</pubTime>
         
         <tag>Hadoop</tag>
          

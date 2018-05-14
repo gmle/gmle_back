@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hadoop,HDFS,ACL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="忘lele" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Hadoop从2.4.0版本开始支持hdfs的ACL， 通俗的讲就是文件访问控制权限 下面对其进行一些测试：    unnamed user (file owner) 文件的拥有者     unnamed group (file group) 文件的所属组   named user 除了文件的拥有者和拥有组之外，的其它用户   named group 除了文件的拥有者和拥有组之外，的其它用户">
+<meta name="keywords" content="Hadoop,HDFS,ACL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop_玩转 HDFS之 ACL">
+<meta property="og:url" content="http://gmle.github.io/2017/05/03/玩转HDFS-ACL/index.html">
+<meta property="og:site_name" content="忘lele">
+<meta property="og:description" content="Hadoop从2.4.0版本开始支持hdfs的ACL， 通俗的讲就是文件访问控制权限 下面对其进行一些测试：    unnamed user (file owner) 文件的拥有者     unnamed group (file group) 文件的所属组   named user 除了文件的拥有者和拥有组之外，的其它用户   named group 除了文件的拥有者和拥有组之外，的其它用户">
+<meta property="og:updated_time" content="2017-05-03T06:38:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop_玩转 HDFS之 ACL">
+<meta name="twitter:description" content="Hadoop从2.4.0版本开始支持hdfs的ACL， 通俗的讲就是文件访问控制权限 下面对其进行一些测试：    unnamed user (file owner) 文件的拥有者     unnamed group (file group) 文件的所属组   named user 除了文件的拥有者和拥有组之外，的其它用户   named group 除了文件的拥有者和拥有组之外，的其它用户">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Gmle'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gmle.github.io/2017/05/03/玩转HDFS-ACL/"/>
+
+
+
+
+
+  <title>Hadoop_玩转 HDFS之 ACL | 忘lele</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?517d912ea9ff72d8e73cc367f80d4620";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">忘lele</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reader">
+          <a href="/categories/读与感/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
+            
+            读与感
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2017/05/03/玩转HDFS-ACL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Hadoop_玩转 HDFS之 ACL</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T14:38:39+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>Hadoop从2.4.0版本开始支持hdfs的ACL，
+通俗的讲就是文件访问控制权限
+下面对其进行一些测试：
+</code></pre><table>
+<thead>
+<tr>
+<th>unnamed user (file owner)</th>
+<th>文件的拥有者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unnamed group (file group)</td>
+<td>文件的所属组</td>
+</tr>
+<tr>
+<td>named user</td>
+<td>除了文件的拥有者和拥有组之外，的其它用户</td>
+</tr>
+<tr>
+<td>named group</td>
+<td>除了文件的拥有者和拥有组之外，的其它用户</td>
+</tr>
+<tr>
+<td>mask</td>
+<td>权限掩码，用于过滤named user和named group的权限</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h2 id="一、启用ACL"><a href="#一、启用ACL" class="headerlink" title="一、启用ACL"></a>一、启用ACL</h2><p>启用ACL功能</p>
+<p>修改hdfs-site.xml 增加如下属性 开启ACL<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.acls.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>修改core-site.xml 设置用户组默认权限.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.permissions.umask-mode<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>002<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>一个访问控制列表（ACL）是一组ACL词目(entries)的集合，每个ACL词目会指定一个用户/组，并赋予读/写/执行上等权限。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">user::rw-</div><div class="line">   user:bruce:rwx                  #effective:r--</div><div class="line">   group::r-x                      #effective:r--</div><div class="line">   group:sales:rwx                 #effective:r--</div><div class="line">   mask::r--</div><div class="line">  other::r--</div></pre></td></tr></table></figure></p>
+<p>这里面，没有命名的用户/组即该文件的基本所属用户/组。每一个ACL都有一个掩码(mask)，如果用户不提供掩码，那么该掩码会自动根据所有ACL条目的并集来获得(属主除外）。在该文件上运行chmod会改变掩码的权限。由于掩码用于过滤，这有效地限制了权限的扩展ACL条目，而不是仅仅改变组条目，并可能丢失的其他扩展ACL条目。</p>
+<p>定义默认 （default）ACL条目，新的子文件和目录会自动继承默认的ACL条目设置，而只有目录会有默认的ACL条目。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">user::rwx</div><div class="line">  group::r-x</div><div class="line">  other::r-x</div><div class="line">  <span class="keyword">default</span>:user::rwx</div><div class="line">  default:user:bruce:rwx			 #effective:r-x</div><div class="line">  <span class="keyword">default</span>:group::r-x</div><div class="line">  default:group:sales:rwx			#effective:r-x</div><div class="line">  <span class="keyword">default</span>:mask::r-x</div><div class="line">  <span class="keyword">default</span>:other::r-x</div></pre></td></tr></table></figure>
+<h3 id="ACL相关的文件API："><a href="#ACL相关的文件API：" class="headerlink" title="ACL相关的文件API："></a>ACL相关的文件API：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">modifyAclEntries</span><span class="params">(Path path, List aclSpec)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAclEntries</span><span class="params">(Path path, List aclSpec)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeDefaultAcl</span><span class="params">(Path path)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeAcl</span><span class="params">(Path path)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAcl</span><span class="params">(Path path, List aclSpec)</span> <span class="keyword">throws</span> IOException</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> AclStatus <span class="title">getAclStatus</span><span class="params">(Path path)</span> <span class="keyword">throws</span> IOException</span>;</div></pre></td></tr></table></figure>
+<h3 id="命令行命令："><a href="#命令行命令：" class="headerlink" title="命令行命令："></a>命令行命令：</h3><p>显示文件和目录的访问控制列表。如果一个目录有默认的ACL，getfacl也可以显示默认的ACL设置。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hdfs dfs -getfacl [-R] path</div></pre></td></tr></table></figure></p>
+<p>设置文件和目录的ACL<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hdfs dfs -setfacl [-R] [-b|-k -m|-x acl_spec path]|[--set acl_spec path]</div></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">-R: Use this option to recursively list ACLs for all files and directories.</div><div class="line">-b: Revoke all permissions except the base ACLs for user, groups and others.</div><div class="line">-k: Remove the default ACL.</div><div class="line">-m: Add new permissions to the ACL with this option. Does not affect existing permissions.</div><div class="line">-x: Remove only the ACL specified.</div></pre></td></tr></table></figure>
+<p>当ls的权限位输出以+结束时，那么该文件或目录正在启用一个ACL。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hdfs dfs -ls args</div></pre></td></tr></table></figure></p>
+<h2 id="实际使用："><a href="#实际使用：" class="headerlink" title="实际使用："></a>实际使用：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"># 默认只有基本的权限控制</div><div class="line">hdfs dfs -getfacl /data</div><div class="line"># file: /data</div><div class="line"># owner: hive</div><div class="line"># group: hadoop</div><div class="line">user::rwx</div><div class="line">group::r-x</div><div class="line">other::r-x</div><div class="line">#递归显示/data下所有文件的ACL</div><div class="line">hdfs dfs -getfacl -R /data</div><div class="line"># file: /data</div><div class="line"># owner: hive</div><div class="line"># group: hadoop</div><div class="line">user::rwx</div><div class="line">group::r-x</div><div class="line">other::r-x</div><div class="line"></div><div class="line"># file: /data/test.zero</div><div class="line"># owner: hive</div><div class="line"># group: hadoop</div><div class="line">user::rw-</div><div class="line">group::r--</div><div class="line">other::r--</div><div class="line"></div><div class="line"># file: /data/test.zero.2</div><div class="line"># owner: hive</div><div class="line"># group: hadoop</div><div class="line">user::rw-</div><div class="line">group::r--</div><div class="line">other::r--</div><div class="line">#添加一个用户ACL条目</div><div class="line">hdfs dfs -setfacl -m user:hbase:rw- /data/test.zero</div><div class="line">#添加一个组ACL条目和一个用户ACL条目（如果设置一个未命名条目，可以用user::r-x，group::r-w或者other::r-x等来设置）</div><div class="line">hdfs dfs -setfacl -m group:crm:--x,user:app1:rwx /data/test.zero.2</div><div class="line">#移除一个ACL条目</div><div class="line">hdfs dfs -setfacl -x user:app1 /data/test.zero.2</div><div class="line">#“+”已开启了ACL功能</div><div class="line">hdfs dfs -ls -R /data</div><div class="line">-rw-rwxr--+  <span class="number">3</span> hive hadoop <span class="number">1073741824</span> <span class="number">2014</span>-<span class="number">12</span>-<span class="number">21</span> <span class="number">15</span>:<span class="number">32</span> /data/test.zero</div><div class="line">-rw-r-xr--+  <span class="number">3</span> hive hadoop <span class="number">1073741824</span> <span class="number">2014</span>-<span class="number">12</span>-<span class="number">21</span> <span class="number">15</span>:<span class="number">50</span> /data/test.zero.2</div><div class="line"># 查看当前ACL，此时mask已经被生成</div><div class="line">hdfs dfs -getfacl -R /data/test.zero.2</div><div class="line"># file: /data/test.zero.2</div><div class="line"># owner: hive</div><div class="line"># group: hadoop</div><div class="line">user::rw-</div><div class="line">group::r--</div><div class="line">group:crm:--x</div><div class="line">mask::r-x</div><div class="line">other::r--</div><div class="line">hdfs dfs -getfacl /data/test.zero.2</div><div class="line"># 为data目录添加default权限</div><div class="line">hdfs dfs -setfacl -m <span class="keyword">default</span>:user:debugo:rwx /data</div><div class="line">hdfs dfs -mkdir /data/d1</div><div class="line">hdfs dfs -getfacl /data/d1</div><div class="line">user::rwx</div><div class="line">user:debugo:rwx	#effective:r-x</div><div class="line">group::r-x</div><div class="line">mask::r-x</div><div class="line">other::r-x</div><div class="line"><span class="keyword">default</span>:user::rwx</div><div class="line"><span class="keyword">default</span>:user:debugo:rwx</div><div class="line"><span class="keyword">default</span>:group::r-x</div><div class="line"><span class="keyword">default</span>:mask::rwx</div><div class="line"><span class="keyword">default</span>:other::r-x</div><div class="line">#可以看出，default虽然继承给了d1，但是被mask=r-x所过滤，所以这里还需要设置mask。此时debugo用户的权限可以被正常访问。</div><div class="line">hdfs dfs -setfacl -m mask::rwx /data/d1</div><div class="line">hdfs dfs -getfacl /data/d1</div><div class="line"># file: /data/d1</div><div class="line"># owner: hdfs</div><div class="line"># group: hadoop</div><div class="line">user::rwx</div><div class="line">user:debugo:rwx</div><div class="line">group::r-x</div><div class="line">mask::rwx</div><div class="line">other::r-x</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+          
+            <a href="/tags/HDFS/" rel="tag"># HDFS</a>
+          
+            <a href="/tags/ACL/" rel="tag"># ACL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/03/正则表达式/" rel="next" title="正则表达式">
+                <i class="fa fa-chevron-left"></i> 正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/03/对HDFS的一些认识/" rel="prev" title="Hadoop_HDFS底层架构">
+                Hadoop_HDFS底层架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
+              <p class="site-author-name" itemprop="name">忘了</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、启用ACL"><span class="nav-number">1.</span> <span class="nav-text">一、启用ACL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ACL相关的文件API："><span class="nav-number">1.1.</span> <span class="nav-text">ACL相关的文件API：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行命令："><span class="nav-number">1.2.</span> <span class="nav-text">命令行命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际使用："><span class="nav-number">2.</span> <span class="nav-text">实际使用：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">忘了</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
