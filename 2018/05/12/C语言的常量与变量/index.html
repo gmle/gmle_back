@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="忘lele" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="常量 const：限定一个变量为只读变量，不建议使用，因为其可以用其他方式修改。 #define：定义一个宏常量。用法：#define PI=3.1415 匿名常量：常量字符、字符串。 例：“aaa” ‘a’">
+<meta name="keywords" content="C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言的数据类型与存储">
+<meta property="og:url" content="http://gmle.github.io/2018/05/12/C语言的常量与变量/index.html">
+<meta property="og:site_name" content="忘lele">
+<meta property="og:description" content="常量 const：限定一个变量为只读变量，不建议使用，因为其可以用其他方式修改。 #define：定义一个宏常量。用法：#define PI=3.1415 匿名常量：常量字符、字符串。 例：“aaa” ‘a’">
+<meta property="og:updated_time" content="2018-05-12T12:08:33.218Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言的数据类型与存储">
+<meta name="twitter:description" content="常量 const：限定一个变量为只读变量，不建议使用，因为其可以用其他方式修改。 #define：定义一个宏常量。用法：#define PI=3.1415 匿名常量：常量字符、字符串。 例：“aaa” ‘a’">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Gmle'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gmle.github.io/2018/05/12/C语言的常量与变量/"/>
+
+
+
+
+
+  <title>C语言的数据类型与存储 | 忘lele</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?517d912ea9ff72d8e73cc367f80d4620";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">忘lele</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reader">
+          <a href="/categories/读与感/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
+            
+            读与感
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/12/C语言的常量与变量/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">C语言的数据类型与存储</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T10:22:26+08:00">
+                2018-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ul>
+<li>const：限定一个变量为只读变量，不建议使用，因为其可以用其他方式修改。</li>
+<li>#define：定义一个宏常量。用法：#define PI=3.1415</li>
+<li>匿名常量：常量字符、字符串。 例：“aaa” ‘a’ </li>
+</ul>
+<a id="more"></a>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>变量的三要素： 定义变量必须要变量类型、变量名、变量值。</li>
+<li>变量定义 -&gt; 给变量在内存中开辟存储空间</li>
+<li>变量声明 -&gt; 不会给变量开辟存储空间。但会向系统注册该变量。</li>
+<li>编译器   -&gt; 在编译至变量赋值处，发现该变量尚未被定义，会自动寻找变量声明冰将该声明提升为定义。</li>
+</ul>
+<p>标识符：常量和变量的统称。</p>
+<ul>
+<li>不能使用C语言中所有的内定关键字、函数等。</li>
+<li>只能有数字、字母、下划线组成。</li>
+<li>不能以数字开头。</li>
+<li>大小写严格区分。</li>
+</ul>
+<h2 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h2><ul>
+<li>int        %d    占位：4字节</li>
+<li>short        %hd    占位：2字节</li>
+<li>long        %ld    占位：4/8字节(不同平台中大小不一 windows/unix/linux/macOS)</li>
+<li>long long    %lld    占位：4字节</li>
+</ul>
+<h2 id="无符号整型"><a href="#无符号整型" class="headerlink" title="无符号整型"></a>无符号整型</h2><ul>
+<li>unsigned int        %d    占位：4字节</li>
+<li>unsigned short    %hd    占位：2字节</li>
+<li>unsigned long        %ld    占位：4/8字节(不同平台中大小不一 windows/unix/linux/macOS)</li>
+<li>unsigned long long    %lld    占位：4字节</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/12.</span></div><div class="line"><span class="comment">  * FileName: 0x05_printf.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main05</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 此关键词 signed 可忽略</span></div><div class="line">    <span class="keyword">signed</span> <span class="keyword">int</span> a = <span class="number">-10</span>;</div><div class="line">    <span class="keyword">signed</span> <span class="keyword">short</span> b = <span class="number">-20</span>;</div><div class="line">    <span class="keyword">signed</span> <span class="keyword">long</span> c = <span class="number">30</span>;</div><div class="line">    <span class="keyword">signed</span> <span class="keyword">long</span> <span class="keyword">long</span> d = <span class="number">40</span>;</div><div class="line"></div><div class="line"><span class="comment">//    unsigned int e = -10;</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> e = <span class="number">10</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> f = <span class="number">20</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> g = <span class="number">30</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> h = <span class="number">40</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">double</span> x = <span class="number">10.12</span>;</div><div class="line">    <span class="keyword">float</span> y = <span class="number">10.222f</span>;</div><div class="line">    <span class="keyword">float</span> z = <span class="number">10.2223</span>;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> ch = <span class="string">'b'</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"********** 有符号类型 **********\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d    \n"</span>, a);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%hd   \n"</span>, b);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%ld   \n"</span>, c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld  \n"</span>, d);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"********** 无符号类型 **********\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%u   \n"</span>, e);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%hd  \n"</span>, f);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%ld  \n"</span>, g);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld \n"</span>, h);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"**********  实型变量  **********\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lf  \n"</span>, x);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%f   \n"</span>, y);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%f   \n"</span>, z);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%c   \n"</span>, ch);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof()"></a>sizeof()</h2><ul>
+<li>sizeof(变量名)        sizeof(a);</li>
+<li>sizeof(类型名)        sizeof(char);</li>
+<li>sizeof 变量名        语法支持，但不推荐使用</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/12.</span></div><div class="line"><span class="comment">  * FileName: 0x02_sizeof.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main02</span> <span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">    <span class="keyword">short</span> b = <span class="number">20</span>;</div><div class="line">    <span class="keyword">long</span> c = <span class="number">30</span>;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> d = <span class="number">40</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"int a = %d \n"</span>, a);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"short b = %d \n"</span>, b);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"long c = %li \n"</span>, c);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"long long d = %lli \n"</span>, d);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"****************************************\n"</span>);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(int) = %zu  \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(short) = %zu   \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">short</span>));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(long) = %zu  \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">long</span>));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sizeof(long long) = %zu  \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">long</span> <span class="keyword">long</span>));</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"****************************************\n"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> e;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d \n"</span>, e);</div><div class="line"></div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> len = e;</div><div class="line"></div><div class="line">    e = <span class="number">30</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d \n"</span>, len);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="char类型"><a href="#char类型" class="headerlink" title="char类型"></a>char类型</h2><p>Char类型是字符型，占位一个字节。长度为 -128 ~ 127</p>
+<ul>
+<li>‘0’ : ASCII 表值为48</li>
+<li>‘a’ :    ASCII 表值为97</li>
+<li>‘A’ : ASCII 表值为65</li>
+<li>‘\0’: ASCII 表值为0</li>
+<li>‘\n’: ASCII 表值为10</li>
+<li>‘\t’: 制表符，按八位输出，不足八位空格补齐。</li>
+</ul>
+<h2 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h2><ul>
+<li>float     ：单精度浮点型    %f    4字节</li>
+<li>double ：双精度浮点型    %lf    8字节</li>
+</ul>
+<h2 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h2><p>extern是关键字，为 <strong><em>声明变量</em></strong>,被extern关键字修饰的变量声明表达式，不能提升成为定义。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/12.</span></div><div class="line"><span class="comment">  * FileName: 0x06_printf2.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a = <span class="number">100</span>;</div><div class="line"></div><div class="line">    <span class="comment">//格式化输出a。</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a = %d  \n"</span>, a);</div><div class="line">    <span class="comment">//输出变量a在内存中的地址。</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;a = %p \n"</span>, &amp;a);</div><div class="line"></div><div class="line">    <span class="comment">//输出一个百分号</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"百分号  %%"</span>);</div><div class="line"></div><div class="line">    <span class="comment">//输出a的十六进制 (大写和小写)</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"十六进制小写a = %X  \n"</span>, a);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"十六进制大写a = %X  \n"</span>, a);</div><div class="line"></div><div class="line">    <span class="comment">//输出a的十进制</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"十进制a = %d  \n"</span>, a);</div><div class="line"></div><div class="line">    <span class="comment">//输出a的八进制</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"八进制a = %o  \n"</span>, a);</div><div class="line"></div><div class="line">    <span class="comment">//输出a的前占位符 四位宽</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a = %4d  \n"</span>, a);</div><div class="line">    <span class="comment">//输出a的后占位符 四位宽</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a = %-4d \n"</span>, a);</div><div class="line"></div><div class="line">    <span class="comment">//输出a的0占位符 四位宽</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a = %0d  \n"</span>, a);</div><div class="line"></div><div class="line">    <span class="comment">//定义 short 类型的变量 赋值并输出。</span></div><div class="line">    <span class="keyword">short</span> b = <span class="number">102</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"b = %hd \n"</span>, b);</div><div class="line"></div><div class="line">    <span class="comment">//定义 long 类型的变量 赋值并输出。</span></div><div class="line">    <span class="keyword">long</span> c = <span class="number">1023</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"b = %ld \n"</span>, c);</div><div class="line"></div><div class="line">    <span class="comment">//定义 long long  类型的变量 赋值并输出。</span></div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> d = <span class="number">1234</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"d = %lld \n"</span>, d);</div><div class="line"></div><div class="line">    <span class="comment">//定义 double 类型的变量 赋值并输出三位小数。</span></div><div class="line">    <span class="keyword">double</span> e = <span class="number">12.234567</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"e = %3lf \n"</span>, e);</div><div class="line"></div><div class="line">    <span class="comment">//定义 float 类型的变量 赋值并输出两位小数。</span></div><div class="line">    <span class="keyword">float</span> f = <span class="number">12.45566</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"f = %2f \n"</span>, f);</div><div class="line"></div><div class="line">    <span class="comment">//定义 char 类型的变量 赋值并输出。</span></div><div class="line">    <span class="keyword">char</span> ch = <span class="string">'c'</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"char = %c \n"</span>, ch);</div><div class="line"></div><div class="line">    <span class="comment">//定义 任意类型的无符号变量 赋值并输出。</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> g = <span class="number">123</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"unsigned g = %u  \n"</span>, g);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/16/软技能：代码之外的生存指南/" rel="next" title="软技能：代码之外的生存指南">
+                <i class="fa fa-chevron-left"></i> 软技能：代码之外的生存指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/14/C语言的字符串&输入输出/" rel="prev" title="C语言字符串与处理">
+                C语言字符串与处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
+              <p class="site-author-name" itemprop="name">忘了</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整型"><span class="nav-number">3.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无符号整型"><span class="nav-number">4.</span> <span class="nav-text">无符号整型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sizeof"><span class="nav-number">5.</span> <span class="nav-text">sizeof()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#char类型"><span class="nav-number">6.</span> <span class="nav-text">char类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点型"><span class="nav-number">7.</span> <span class="nav-text">浮点型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extern"><span class="nav-number">8.</span> <span class="nav-text">extern</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">忘了</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
