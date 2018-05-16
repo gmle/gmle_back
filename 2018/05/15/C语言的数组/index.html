@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="忘lele" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数组定义 定义：数组就是在内存中连续的相同类型的变量空间。  数组创建在栈上。 数组的下标从0开始。   数组类型 数组名[数组大小];">
+<meta name="keywords" content="C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言的数组">
+<meta property="og:url" content="http://gmle.github.io/2018/05/15/C语言的数组/index.html">
+<meta property="og:site_name" content="忘lele">
+<meta property="og:description" content="数组定义 定义：数组就是在内存中连续的相同类型的变量空间。  数组创建在栈上。 数组的下标从0开始。   数组类型 数组名[数组大小];">
+<meta property="og:updated_time" content="2018-05-15T12:26:40.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言的数组">
+<meta name="twitter:description" content="数组定义 定义：数组就是在内存中连续的相同类型的变量空间。  数组创建在栈上。 数组的下标从0开始。   数组类型 数组名[数组大小];">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Gmle'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gmle.github.io/2018/05/15/C语言的数组/"/>
+
+
+
+
+
+  <title>C语言的数组 | 忘lele</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?517d912ea9ff72d8e73cc367f80d4620";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">忘lele</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reader">
+          <a href="/categories/读与感/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
+            
+            读与感
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/15/C语言的数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">C语言的数组</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-15T20:26:40+08:00">
+                2018-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h2><hr>
+<p>定义：数组就是在内存中连续的相同类型的变量空间。</p>
+<ul>
+<li>数组创建在栈上。</li>
+<li>数组的下标从0开始。</li>
+</ul>
+<hr>
+<p>数组类型 数组名[数组大小];</p>
+<a id="more"></a>
+<hr>
+<p>求数组的元素个数</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> num = <span class="keyword">sizeof</span>(arr)/<span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<h3 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/15.</span></div><div class="line"><span class="comment">  * FileName: 0x01_array.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</div><div class="line">    <span class="keyword">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</div><div class="line">    <span class="keyword">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</div><div class="line">    <span class="keyword">int</span> arr[<span class="number">5</span>;</div><div class="line">    <span class="keyword">int</span> arr[<span class="number">5</span> = &#123;<span class="number">0</span>&#125;; <span class="comment">// 将数组的所有元素全部初始化为0.</span></div><div class="line">    <span class="keyword">int</span> arr[<span class="number">10</span>]; <span class="comment">// 随机显示各个值</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>C语言的数组首地址和第一个元素的地址相同</p>
+<hr>
+<h3 id="一维数组练习"><a href="#一维数组练习" class="headerlink" title="一维数组练习"></a>一维数组练习</h3><p>练习1：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/15.</span></div><div class="line"><span class="comment">  * FileName: 0x01_array.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 数组倒置打印</span></div><div class="line"><span class="comment"> * @param argc</span></div><div class="line"><span class="comment"> * @param argv</span></div><div class="line"><span class="comment"> * @return</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 数组大小</span></div><div class="line">    <span class="keyword">int</span> num = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d \n"</span>, num);</div><div class="line"></div><div class="line">    <span class="comment">// 大小下标与临时变量。</span></div><div class="line">    <span class="keyword">int</span> index_min = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> index_max = num - <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (index_min &lt; index_max) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">printf</span>(<span class="string">"arrmin = %d---"</span>, arr[index_min]);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"arrmax = %d\n"</span>, arr[index_max]);</div><div class="line"></div><div class="line">        tmp = arr[index_min];</div><div class="line">        arr[index_min] = arr[index_max];</div><div class="line">        arr[index_max] = tmp;</div><div class="line"></div><div class="line">        index_min++;</div><div class="line">        index_max--;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[i]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>练习2：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 十只猪称体重</span></div><div class="line"><span class="comment"> * @param argc</span></div><div class="line"><span class="comment"> * @param argv</span></div><div class="line"><span class="comment"> * @return</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">123</span>, <span class="number">213</span>, <span class="number">333</span>, <span class="number">412</span>, <span class="number">234</span>, <span class="number">452</span>, <span class="number">112</span>, <span class="number">341</span>, <span class="number">122</span>, <span class="number">142</span>&#125;;</div><div class="line">    <span class="keyword">int</span> num = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);</div><div class="line">    <span class="keyword">int</span> weight = <span class="number">0</span>, pigx = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (weight &lt; arr[i]) &#123;</div><div class="line">            weight = arr[i];</div><div class="line">            pigx = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"第%d只小猪重量：%d"</span>, pigx + <span class="number">1</span>, weight);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>冒泡排序<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 冒泡排序</span></div><div class="line"><span class="comment"> * @param argc</span></div><div class="line"><span class="comment"> * @param argv</span></div><div class="line"><span class="comment"> * @return</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[] = &#123;<span class="number">3</span>, <span class="number">6</span>, <span class="number">78</span>, <span class="number">9</span>, <span class="number">64</span>, <span class="number">12</span>, <span class="number">34</span>, <span class="number">87</span>, <span class="number">55</span>, <span class="number">1</span>&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> lengh = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);</div><div class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lengh - <span class="number">1</span>; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= lengh - <span class="number">1</span> - i; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</div><div class="line">                tmp = arr[j];</div><div class="line">                arr[j] = arr[j + <span class="number">1</span>];</div><div class="line">                arr[j + <span class="number">1</span>] = tmp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; lengh; k++) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[k]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><p>二维数组的使用：<br>    数组类型 数组名称 [行数] [列数]</p>
+<pre><code>int arr[] = {{1, 2, 3, 4},{5, 6, 7, 8}}
+</code></pre><h3 id="常用定义"><a href="#常用定义" class="headerlink" title="常用定义"></a>常用定义</h3><h4 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h4><p>二维数组的首地址与首行元素的地址与首个元素的地址相同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr)</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr[<span class="number">0</span>])</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%p\n"</span>,arr[<span class="number">0</span>][<span class="number">0</span>])</div></pre></td></tr></table></figure>
+<h4 id="二维数组的大小"><a href="#二维数组的大小" class="headerlink" title="二维数组的大小"></a>二维数组的大小</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span>(<span class="string">"%u\n"</span>,<span class="keyword">sizeof</span>(arr));</div></pre></td></tr></table></figure>
+<h4 id="二维数组的行数"><a href="#二维数组的行数" class="headerlink" title="二维数组的行数"></a>二维数组的行数</h4><h4 id="二维数组的列数"><a href="#二维数组的列数" class="headerlink" title="二维数组的列数"></a>二维数组的列数</h4><h4 id="二维数组元素的个数"><a href="#二维数组元素的个数" class="headerlink" title="二维数组元素的个数"></a>二维数组元素的个数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * @param argc</span></div><div class="line"><span class="comment"> * @param argv</span></div><div class="line"><span class="comment"> * @return</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main0301</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[<span class="number">2</span>][<span class="number">5</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;,</div><div class="line">                     &#123;<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>&#125;&#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 地址</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>, arr);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>, arr[<span class="number">0</span>]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;arr[<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line"></div><div class="line">    <span class="comment">// 大小</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"数组大小：%u\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) <span class="keyword">sizeof</span>(arr));</div><div class="line">    <span class="comment">// 元素个数</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"数组行数：%u\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) (<span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>])));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"数组列数：%u\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) (<span class="keyword">sizeof</span>(arr[<span class="number">0</span>]) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>][<span class="number">0</span>])));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"元素个数：%u\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) (<span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>][<span class="number">0</span>])));</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, arr[i][j]);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>练习：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 学生成绩</span></div><div class="line"><span class="comment"> * @param argc</span></div><div class="line"><span class="comment"> * @param argv</span></div><div class="line"><span class="comment"> * @return</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main0302</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">12 23 24 56</span></div><div class="line"><span class="comment">12 42 45 32</span></div><div class="line"><span class="comment">33 22 11 42</span></div><div class="line"><span class="comment">12 54 12 53</span></div><div class="line"><span class="comment">*/</span></div><div class="line">    <span class="keyword">int</span> score[<span class="number">4</span>][<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> row = <span class="keyword">sizeof</span>(score) / <span class="keyword">sizeof</span>(score[<span class="number">0</span>]);</div><div class="line">    <span class="keyword">int</span> col = <span class="keyword">sizeof</span>(score[<span class="number">0</span>]) / <span class="keyword">sizeof</span>(score[<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;score[i][j]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"************************************\n"</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\t"</span>, score[i][j]);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"************************************\n"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</div><div class="line">            sum += score[i][j];</div><div class="line"><span class="comment">//            printf("第%d个学生的成绩为%d", i, sum);</span></div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第%d个学生的成绩为%d\n"</span>, i, sum);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"************************************\n"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; col; k++) &#123;</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</div><div class="line">            sum += score[i][k];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第%d门学科的总成绩为%d\n"</span>, k + <span class="number">1</span>, sum);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h2><p>数组的首地址 = 数组首层的地址 = 数组的首层首行的地址 = 数组的首层首行首列的地址。<br>arr = arr[0] = arr[0][0] = arr[0][0][0]</p>
+<h2 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h2><hr>
+<p>一系列连续的字符集合，没有 \0结束标记。<br>含有结束标记的，称之为 字符串。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3><pre><code>strlen() 获取字符串的字符个数，不包含`\0`
+</code></pre><h3 id="scanf-添加正则"><a href="#scanf-添加正则" class="headerlink" title="scanf 添加正则"></a>scanf 添加正则</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">scanf</span>(<span class="string">"%[.*]s"</span>, &amp;str)</div><div class="line"><span class="built_in">scanf</span>(<span class="string">"%[^\n]s"</span>, &amp;str) <span class="comment">// 获取带有空格的字符串</span></div></pre></td></tr></table></figure>
+<p>C语言中 数组中的数值必须为常量，不能为变量。</p>
+<p>```c<br>char str[] = helloworld;<br>scanf(“%s”, &amp;str);<br>/**</p>
+<ul>
+<li>最后的 \0 无法存储。<br>*/</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/15/C语言的运算符/" rel="next" title="C语言的运算符">
+                <i class="fa fa-chevron-left"></i> C语言的运算符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
+              <p class="site-author-name" itemprop="name">忘了</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组定义"><span class="nav-number">1.</span> <span class="nav-text">数组定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组"><span class="nav-number">1.1.</span> <span class="nav-text">一维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维数组练习"><span class="nav-number">1.2.</span> <span class="nav-text">一维数组练习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二维数组"><span class="nav-number">2.</span> <span class="nav-text">二维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用定义"><span class="nav-number">2.1.</span> <span class="nav-text">常用定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址"><span class="nav-number">2.1.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组的大小"><span class="nav-number">2.1.2.</span> <span class="nav-text">二维数组的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组的行数"><span class="nav-number">2.1.3.</span> <span class="nav-text">二维数组的行数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组的列数"><span class="nav-number">2.1.4.</span> <span class="nav-text">二维数组的列数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组元素的个数"><span class="nav-number">2.1.5.</span> <span class="nav-text">二维数组元素的个数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维数组"><span class="nav-number">3.</span> <span class="nav-text">三维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符数组"><span class="nav-number">4.</span> <span class="nav-text">字符数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">5.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串长度"><span class="nav-number">5.1.</span> <span class="nav-text">字符串长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scanf-添加正则"><span class="nav-number">5.2.</span> <span class="nav-text">scanf 添加正则</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">忘了</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

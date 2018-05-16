@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Shell,Linux," />
+  <meta name="keywords" content="Gmle, Blog" />
 
 
 
@@ -81,17 +81,15 @@
 
 
 
-<meta name="description" content="写了这么长时间的Shell竟然不知道乘除怎么写。。。">
-<meta name="keywords" content="Shell,Linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Shell的加减乘除操作">
-<meta property="og:url" content="http://gmle.github.io/2018/05/14/Shell中的加减乘除/index.html">
+<meta name="description" content="行者无疆，大道无垠。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忘lele">
+<meta property="og:url" content="http://gmle.github.io/page/4/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="写了这么长时间的Shell竟然不知道乘除怎么写。。。">
-<meta property="og:updated_time" content="2018-05-14T15:41:12.833Z">
+<meta property="og:description" content="行者无疆，大道无垠。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shell的加减乘除操作">
-<meta name="twitter:description" content="写了这么长时间的Shell竟然不知道乘除怎么写。。。">
+<meta name="twitter:title" content="忘lele">
+<meta name="twitter:description" content="行者无疆，大道无垠。">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/2018/05/14/Shell中的加减乘除/"/>
+  <link rel="canonical" href="http://gmle.github.io/page/4/"/>
 
 
 
 
 
-  <title>Shell的加减乘除操作 | 忘lele</title>
+  <title>忘lele</title>
   
 
 
@@ -156,7 +154,8 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,9 +268,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -284,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/14/Shell中的加减乘除/">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2017/05/03/Yarn架构详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
@@ -301,7 +300,9 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Shell的加减乘除操作</h2>
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/03/Yarn架构详解/" itemprop="url">Hadoop_Yarn架构详解</a></h2>
         
 
         <div class="post-meta">
@@ -314,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-14T23:41:12+08:00">
-                2018-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T14:37:01+08:00">
+                2017-05-03
               </time>
             
 
@@ -337,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
                   </a>
                 </span>
 
@@ -374,43 +375,22 @@
       
 
       
-        <p>写了这么长时间的Shell竟然不知道乘除怎么写。。。</p>
-<a id="more"></a>
-<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">((i=$j+$k))   i=`expr $j + $k`</div><div class="line">((i=$j-$k))   i=`expr $j -$k`</div><div class="line">((i=$j*$k))   i=`expr $j \*$k`</div><div class="line">((i=$j/$k))   i=`expr $j /$k`</div></pre></td></tr></table></figure>
-<h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><hr>
-<p>Let expressions 执行一个或多个表达式。表达式中的变量前不必有$.</p>
-<p>如果表达式中包含了空格或其他特殊字符，则必须引起来。</p>
-<hr>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let “I = I + 1”</div><div class="line"></div><div class="line">let i=i+1</div></pre></td></tr></table></figure>
-<h2 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h2><p>算术运算符指的是可以在程序中实现加、减、乘、除等数学运算的运算符。Shell中常用的数学运算符如下所示。</p>
-<hr>
-<p>— +：对两个变量做加法。</p>
-<p>— -：对两个变量做减法。</p>
-<p>— *：对两个变量做乘法。</p>
-<p>— /：对两个变量做除法。</p>
-<p>— **：对两个变量做幂运算。</p>
-<p>— %：取模运算，第一个变量除以第二个变量求余数。</p>
-<p>— +=：加等于，在自身基础上加第二个变量。</p>
-<p>— -=：减等于，在第一个变量的基础上减去第二个变量。</p>
-<p>— *=：乘等于，在第一个变量的基础上乘以第二个变量。</p>
-<p>— /=：除等于，在第一个变量的基础上除以第二个变量。</p>
-<p>— %=：取模赋值，第一个变量对第二个变量取模运算，再赋值给第一个变量。</p>
-<hr>
-<p>在使用这些运算符时，需要注意到运算顺序的问题。例如输入下面的命令，输出1+2的结果。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo 1+2</div></pre></td></tr></table></figure>
-<p>Shell并没有输出结果3，而是输出了1+2。在shell中有三种方法可以更改运算顺序。</p>
-<ul>
-<li><p>用expr改变运算顺序。可以用echo <code>expr 1 +2</code>来输出1+2的结果，用expr表示后面的表达式为一个数学运算。需要注意的是，`并不是一个单引号，而是“Tab”键上面的那个符号。</p>
-</li>
-<li><p>用let指示数学运算。可以先将运算的结果赋值给变量b，运算命令是b=let 1 + 2。然后用echo$b来输出b的值。如果没有let，则会输出1+2。</p>
-</li>
-<li><p>用$[]表示数学运算。将一个数学运算写到$[]符号的中括号中，中括号中的内容将先进行数学运算。例如命令echo$[1+2]，将输出结果3。</p>
-</li>
-</ul>
-<p>下面是一个shell程序实例，实现数学函数S=3(xy)+4x2+5y+6的运算。在程序中以位置变量的方式输入x与y的值。程序的编写步骤如下所示。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">4.4.sh</span></div><div class="line"></div><div class="line">s=0                                    #定义一个求和变量，初值为0。</div><div class="line"></div><div class="line">t=`expr$1**$2`                        #用expr改变运算顺序，求x的y次方。</div><div class="line"></div><div class="line">t=$[t*3]                               #t乘以3。</div><div class="line"></div><div class="line">s=$[s+t]                               #结果相加。</div><div class="line"></div><div class="line">t=$[$1**2]                             #求x的平方。</div><div class="line"></div><div class="line">t=$[t*4]                               #结果乘以4。</div><div class="line"></div><div class="line">s=$[s+t]                               #结果相加。</div><div class="line"></div><div class="line">t=`expr$2*5`                          #求5y的值。</div><div class="line"></div><div class="line">s=$[s+t]                               #结果相加。</div><div class="line"></div><div class="line">s=$[s+6]                               #结果加上6。</div><div class="line"></div><div class="line"><span class="meta">echo$</span><span class="bash">s                                <span class="comment">#输出结果。</span></span></div><div class="line"></div><div class="line"><span class="meta">echo$</span><span class="bash">((a%b))                          <span class="comment">#取余</span></span></div></pre></td></tr></table></figure>
-<p>在这个程序中，需要注意算术运算的写法。如果没有expr或$[]更改运算顺序，则会将运算式以字符串的形式赋值，而不会赋值运算结果。</p>
-
+        
+          <pre><code>Yarn架构概述
+Yarn Shell操作
+Yarn 高可用的配置
+</code></pre><h2 id="Yarn-架构概述"><a href="#Yarn-架构概述" class="headerlink" title="Yarn 架构概述"></a>Yarn 架构概述</h2><pre><code>* 直接源于MRv1的缺陷(原MapReduce框架的不足)
+    * JobTracker是集群事务的集中处理点，存在单点故障(一个失败，全部受影响)
+    * JobTracker需要完成的任务太多，既要维护job的状态又要维护job的task的状态，造成过多的资源消耗(扩展性受限)
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/03/Yarn架构详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -425,38 +405,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Shell/" rel="tag"># Shell</a>
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/05/14/C语言的运算符/" rel="next" title="C语言的运算符">
-                <i class="fa fa-chevron-left"></i> C语言的运算符
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -466,11 +422,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
@@ -478,8 +437,6 @@
 
 
           
-  
-
 
         </div>
         
@@ -500,17 +457,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -529,7 +477,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -540,7 +488,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -617,22 +565,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">1.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let"><span class="nav-number">2.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算术运算"><span class="nav-number">3.</span> <span class="nav-text">算术运算</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -751,10 +683,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
 
   
 
