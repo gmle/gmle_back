@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="忘lele" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="C语言中的函数：每时每刻都在用到，只要你写C。">
+<meta name="keywords" content="C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言中的函数">
+<meta property="og:url" content="http://gmle.github.io/2018/05/17/C语言的函数/index.html">
+<meta property="og:site_name" content="忘lele">
+<meta property="og:description" content="C语言中的函数：每时每刻都在用到，只要你写C。">
+<meta property="og:updated_time" content="2018-05-17T13:08:01.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言中的函数">
+<meta name="twitter:description" content="C语言中的函数：每时每刻都在用到，只要你写C。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Gmle'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gmle.github.io/2018/05/17/C语言的函数/"/>
+
+
+
+
+
+  <title>C语言中的函数 | 忘lele</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?517d912ea9ff72d8e73cc367f80d4620";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">忘lele</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reader">
+          <a href="/categories/读与感/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
+            
+            读与感
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/17/C语言的函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">C语言中的函数</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T21:08:01+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>C语言中的函数：每时每刻都在用到，只要你写C。
+</code></pre><a id="more"></a>
+<h2 id="函数："><a href="#函数：" class="headerlink" title="函数："></a>函数：</h2><hr>
+<p>完成某一特定功能的代码片段。</p>
+<hr>
+<ul>
+<li>封装函数的目的：代码复用，使代码简洁。</li>
+</ul>
+<h2 id="函数分类："><a href="#函数分类：" class="headerlink" title="函数分类："></a>函数分类：</h2><ul>
+<li>系统库函数</li>
+<li>自定义函数</li>
+</ul>
+<h2 id="函数的定义和使用："><a href="#函数的定义和使用：" class="headerlink" title="函数的定义和使用："></a>函数的定义和使用：</h2><h3 id="函数定义-函数原型-接口-："><a href="#函数定义-函数原型-接口-：" class="headerlink" title="函数定义(函数原型/接口)："></a>函数定义(函数原型/接口)：</h3><ul>
+<li>C语言中，一个函数有且只有一次<h4 id="返回值类型："><a href="#返回值类型：" class="headerlink" title="返回值类型："></a>返回值类型：</h4></li>
+<li>返回给调用者的数据类型</li>
+<li>void表示无返回<h4 id="函数名："><a href="#函数名：" class="headerlink" title="函数名："></a>函数名：</h4></li>
+<li>见名知意。推荐用英文名次。<h4 id="形参列表："><a href="#形参列表：" class="headerlink" title="形参列表："></a>形参列表：</h4></li>
+<li>形式参数列表：包含类型名，形参名，可有多个。</li>
+</ul>
+<h4 id="函数体："><a href="#函数体：" class="headerlink" title="函数体："></a>函数体：</h4><ul>
+<li>若函数有返回值，函数中必须有return关键词并有实际返回。</li>
+</ul>
+<h3 id="函数声明："><a href="#函数声明：" class="headerlink" title="函数声明："></a>函数声明：</h3><ul>
+<li>C语言中，有 0-n次。</li>
+<li><p>响编译器注册该函数。</p>
+</li>
+<li><p>使用场景：在函数调用之前没有函数定义时，需要声明。</p>
+</li>
+</ul>
+<h3 id="函数调用："><a href="#函数调用：" class="headerlink" title="函数调用："></a>函数调用：</h3><hr>
+<p>使用该函数实现对应的功能。</p>
+<hr>
+<ul>
+<li>需匹配形参列表，与形参类型严格匹配。</li>
+<li>若函数无返回值，则参数不写。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 函数引用 - 无返回值</span></div><div class="line"><span class="comment"> * @param a</span></div><div class="line"><span class="comment"> * @param b</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 函数引用 - 有返回值</span></div><div class="line"><span class="comment"> * @param a</span></div><div class="line"><span class="comment"> * @param b</span></div><div class="line"><span class="comment"> * @return</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> *a, <span class="keyword">const</span> <span class="keyword">int</span> *b)</span> </span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> a = <span class="number">19</span>, b = <span class="number">21</span>;</div><div class="line">    <span class="keyword">int</span> sum = add(&amp;a, &amp;b);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sum = %d\n"</span>, sum);</div><div class="line">    printMax(a, b);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMax</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Max = %d \n"</span>, a &gt; b ? a : b);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> *a, <span class="keyword">const</span> <span class="keyword">int</span> *b)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> *a + *b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="exit-函数："><a href="#exit-函数：" class="headerlink" title="exit()函数："></a>exit()函数：</h2><hr>
+<p>退出当前程序。</p>
+<hr>
+<ul>
+<li>exit如果包含在main函数中使用，与return作用相同，但不建议使用。</li>
+<li>return：返回当前函数条用。</li>
+</ul>
+<h2 id="多文件编译"><a href="#多文件编译" class="headerlink" title="多文件编译"></a>多文件编译</h2><hr>
+<p>一个main函数，其他源文件都是功能函数。</p>
+<hr>
+<p>文件1：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/17.</span></div><div class="line"><span class="comment">  * FileName: sorts.h.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> INC_0X005_DAY05_SORTS_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INC_0X005_DAY05_SORTS_H</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> arr[])</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//INC_0X005_DAY05_SORTS_H</span></span></div></pre></td></tr></table></figure></p>
+<p>文件2：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/17.</span></div><div class="line"><span class="comment">  * FileName: bubbleSort.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> arr[<span class="number">10</span>])</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// int lengh = sizeof(arr) / sizeof(arr[0]);</span></div><div class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lengh - <span class="number">1</span>; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">10</span> - <span class="number">1</span> - i; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</div><div class="line">                tmp = arr[j];</div><div class="line">                arr[j] = arr[j + <span class="number">1</span>];</div><div class="line">                arr[j + <span class="number">1</span>] = tmp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[k]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>文件3：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/17.</span></div><div class="line"><span class="comment">  * FileName: main.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"includes/sorts.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main001</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[<span class="number">10</span>] = &#123;<span class="number">3</span>, <span class="number">6</span>, <span class="number">78</span>, <span class="number">9</span>, <span class="number">64</span>, <span class="number">12</span>, <span class="number">34</span>, <span class="number">87</span>, <span class="number">55</span>, <span class="number">1</span>&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> lengh = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, lengh);</div><div class="line"></div><div class="line"></div><div class="line">    bubbleSort(arr[<span class="number">10</span>]);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/15/C语言的数组/" rel="next" title="C语言的数组">
+                <i class="fa fa-chevron-left"></i> C语言的数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/17/C语言中关于字符串的几个函数/" rel="prev" title="C语言字符串输入输出的几个函数">
+                C语言字符串输入输出的几个函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
+              <p class="site-author-name" itemprop="name">忘了</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数："><span class="nav-number">1.</span> <span class="nav-text">函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数分类："><span class="nav-number">2.</span> <span class="nav-text">函数分类：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的定义和使用："><span class="nav-number">3.</span> <span class="nav-text">函数的定义和使用：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数定义-函数原型-接口-："><span class="nav-number">3.1.</span> <span class="nav-text">函数定义(函数原型/接口)：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#返回值类型："><span class="nav-number">3.1.1.</span> <span class="nav-text">返回值类型：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数名："><span class="nav-number">3.1.2.</span> <span class="nav-text">函数名：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#形参列表："><span class="nav-number">3.1.3.</span> <span class="nav-text">形参列表：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数体："><span class="nav-number">3.1.4.</span> <span class="nav-text">函数体：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数声明："><span class="nav-number">3.2.</span> <span class="nav-text">函数声明：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用："><span class="nav-number">3.3.</span> <span class="nav-text">函数调用：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exit-函数："><span class="nav-number">4.</span> <span class="nav-text">exit()函数：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多文件编译"><span class="nav-number">5.</span> <span class="nav-text">多文件编译</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">忘了</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
