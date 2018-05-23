@@ -4,12 +4,32 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2018/05/20/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8C%87%E9%92%88/</loc>
-    <lastmod>2018-05-19T16:26:01.768Z</lastmod>
+    <loc>http://gmle.github.io/2018/05/23/C%E8%AF%AD%E8%A8%80%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2018-05-23T11:13:52.754Z</lastmod>
+    <data>
+        <display>
+        <title>C语言的内存管理</title>
+        <pubTime>2018-05-23T11:13:52.754Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2018/05/22/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2018-05-22T14:18:52.783Z</lastmod>
     <data>
         <display>
         <title>C语言的灵魂--指针</title>
-        <pubTime>2018-05-19T16:26:01.768Z</pubTime>
+        <pubTime>2018-05-22T14:18:52.783Z</pubTime>
         
         <tag>C</tag>
          
