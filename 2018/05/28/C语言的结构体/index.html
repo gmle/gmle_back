@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="结构体定义 结构体：通常定义为全局位置，放在.h头文件中 成员变量不允许赋初始值。 结构体仅是一个数据类型。  结构体变量定义及初始化普通变量初始化指针变量初始化1234567891011121314151617181920212223242526272829303132333435#include&amp;lt;stdio.h&amp;gt;#include&amp;lt;stdlib.h&amp;gt;#include&amp;lt">
+<meta name="description" content="结构体定义 结构体：通常定义为全局位置，放在.h头文件中 成员变量不允许赋初始值。 结构体仅是一个数据类型。">
 <meta name="keywords" content="C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言的结构体">
-<meta property="og:url" content="http://gmle.github.io/2018/05/24/C语言的结构体/index.html">
+<meta property="og:url" content="http://gmle.github.io/2018/05/28/C语言的结构体/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="结构体定义 结构体：通常定义为全局位置，放在.h头文件中 成员变量不允许赋初始值。 结构体仅是一个数据类型。  结构体变量定义及初始化普通变量初始化指针变量初始化1234567891011121314151617181920212223242526272829303132333435#include&amp;lt;stdio.h&amp;gt;#include&amp;lt;stdlib.h&amp;gt;#include&amp;lt">
-<meta property="og:updated_time" content="2018-05-24T11:18:22.296Z">
+<meta property="og:description" content="结构体定义 结构体：通常定义为全局位置，放在.h头文件中 成员变量不允许赋初始值。 结构体仅是一个数据类型。">
+<meta property="og:updated_time" content="2018-05-28T00:27:22.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言的结构体">
-<meta name="twitter:description" content="结构体定义 结构体：通常定义为全局位置，放在.h头文件中 成员变量不允许赋初始值。 结构体仅是一个数据类型。  结构体变量定义及初始化普通变量初始化指针变量初始化1234567891011121314151617181920212223242526272829303132333435#include&amp;lt;stdio.h&amp;gt;#include&amp;lt;stdlib.h&amp;gt;#include&amp;lt">
+<meta name="twitter:description" content="结构体定义 结构体：通常定义为全局位置，放在.h头文件中 成员变量不允许赋初始值。 结构体仅是一个数据类型。">
 
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/2018/05/24/C语言的结构体/"/>
+  <link rel="canonical" href="http://gmle.github.io/2018/05/28/C语言的结构体/"/>
 
 
 
@@ -284,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/24/C语言的结构体/">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/28/C语言的结构体/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T19:18:22+08:00">
-                2018-05-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T08:27:22+08:00">
+                2018-05-28
               </time>
             
 
@@ -377,7 +377,8 @@
         <h2 id="结构体定义"><a href="#结构体定义" class="headerlink" title="结构体定义"></a>结构体定义</h2><ul>
 <li>结构体：通常定义为全局位置，放在.h头文件中</li>
 <li>成员变量不允许赋初始值。</li>
-<li>结构体仅是一个数据类型。</li>
+<li>结构体仅是一个数据类型。<a id="more"></a>
+</li>
 </ul>
 <h2 id="结构体变量定义及初始化"><a href="#结构体变量定义及初始化" class="headerlink" title="结构体变量定义及初始化"></a>结构体变量定义及初始化</h2><h3 id="普通变量初始化"><a href="#普通变量初始化" class="headerlink" title="普通变量初始化"></a>普通变量初始化</h3><h3 id="指针变量初始化"><a href="#指针变量初始化" class="headerlink" title="指针变量初始化"></a>指针变量初始化</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span>&#123;</span></div><div class="line">    <span class="keyword">int</span> age;</div><div class="line">    <span class="keyword">char</span> name[<span class="number">10</span>];</div><div class="line">    <span class="keyword">int</span> num;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 定义时初始化</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu</span> = &#123;</span><span class="number">19</span>, <span class="string">"lele"</span>, <span class="number">123</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 普通变量初始化</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu2</span>;</span></div><div class="line"></div><div class="line">    stu2.age = <span class="number">10</span>;</div><div class="line">    <span class="built_in">strcpy</span>(stu2.name, <span class="string">"andy"</span>);</div><div class="line">    stu2.num = <span class="number">1234</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// 用指针初始化</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> *<span class="title">p_sut</span> = &amp;<span class="title">stu</span>;</span></div><div class="line"></div><div class="line">    p_sut-&gt;num = <span class="number">20</span>;</div><div class="line">    <span class="built_in">strcpy</span>(p_sut-&gt;name, <span class="string">"andy"</span>);</div><div class="line">    p_sut-&gt;age = <span class="number">30</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"st2 age = %d, st2 name = %s, st2 num = %d.\n"</span>, stu2.age, stu2.name, stu2.num);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
 <h3 id="非常规定义方法"><a href="#非常规定义方法" class="headerlink" title="非常规定义方法"></a>非常规定义方法</h3><h3 id="访问结构体成员的方法"><a href="#访问结构体成员的方法" class="headerlink" title="访问结构体成员的方法"></a>访问结构体成员的方法</h3><h4 id="普通变量"><a href="#普通变量" class="headerlink" title="普通变量"></a>普通变量</h4><ul>
@@ -469,6 +470,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/05/28/C语言的文件操作/" rel="prev" title="C语言的文件操作">
+                C语言的文件操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -546,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

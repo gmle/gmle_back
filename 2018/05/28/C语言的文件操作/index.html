@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="忘lele" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="读写文件与printf、scanf关联printf  : 将数据写出到屏幕    stdin    标准输入 –&amp;gt; 0scanf   : 从键盘获取用户数据   stdout   标准输出 –&amp;gt; 1perror  : 将错误信息写出到屏幕  stderr   标准错误 –&amp;gt; 2">
+<meta name="keywords" content="C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言的文件操作">
+<meta property="og:url" content="http://gmle.github.io/2018/05/28/C语言的文件操作/index.html">
+<meta property="og:site_name" content="忘lele">
+<meta property="og:description" content="读写文件与printf、scanf关联printf  : 将数据写出到屏幕    stdin    标准输入 –&amp;gt; 0scanf   : 从键盘获取用户数据   stdout   标准输出 –&amp;gt; 1perror  : 将错误信息写出到屏幕  stderr   标准错误 –&amp;gt; 2">
+<meta property="og:updated_time" content="2018-05-28T12:50:08.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言的文件操作">
+<meta name="twitter:description" content="读写文件与printf、scanf关联printf  : 将数据写出到屏幕    stdin    标准输入 –&amp;gt; 0scanf   : 从键盘获取用户数据   stdout   标准输出 –&amp;gt; 1perror  : 将错误信息写出到屏幕  stderr   标准错误 –&amp;gt; 2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Gmle'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gmle.github.io/2018/05/28/C语言的文件操作/"/>
+
+
+
+
+
+  <title>C语言的文件操作 | 忘lele</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?517d912ea9ff72d8e73cc367f80d4620";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">忘lele</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reader">
+          <a href="/categories/读与感/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
+            
+            读与感
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/05/28/C语言的文件操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">C语言的文件操作</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-28T20:50:08+08:00">
+                2018-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="读写文件与printf、scanf关联"><a href="#读写文件与printf、scanf关联" class="headerlink" title="读写文件与printf、scanf关联"></a>读写文件与printf、scanf关联</h2><p>printf  : 将数据写出到屏幕    stdin    标准输入 –&gt; 0<br>scanf   : 从键盘获取用户数据   stdout   标准输出 –&gt; 1<br>perror  : 将错误信息写出到屏幕  stderr   标准错误 –&gt; 2</p>
+<a id="more"></a>
+<p>系统文件：<br>    标准输入、标准输出。标准错误。<br>    会在程序加载到内存后运行时，由操作系统自动打开，自动关闭，</p>
+<h2 id="文件指针和普通指针的区别"><a href="#文件指针和普通指针的区别" class="headerlink" title="文件指针和普通指针的区别"></a>文件指针和普通指针的区别</h2><ul>
+<li>定义文件指针<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File *fp; <span class="comment">// 一定是野指针。</span></div><div class="line">通过fopen将fp初始化为有效指针。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="文件分类："><a href="#文件分类：" class="headerlink" title="文件分类："></a>文件分类：</h2><h3 id="设备文件"><a href="#设备文件" class="headerlink" title="设备文件"></a>设备文件</h3><p>= 屏幕、键盘等。</p>
+<h3 id="磁盘文件"><a href="#磁盘文件" class="headerlink" title="磁盘文件"></a>磁盘文件</h3><ul>
+<li>各种文件</li>
+<li>在计算机内数据以各种格式的文件存储。</li>
+</ul>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><ul>
+<li>打开文件 fopen<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">const</span> <span class="keyword">char</span> *mode )</span></span>;</div><div class="line"><span class="comment">// 1、文件路径</span></div><div class="line"><span class="comment">// 2、打开文件的方式 读/写</span></div><div class="line"><span class="comment">// 返回值：执行成功打开的文件的 “文件指针”</span></div><div class="line"><span class="comment">//      成功：指针。</span></div><div class="line"><span class="comment">//      失败：NULL。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="文件打开的方式"><a href="#文件打开的方式" class="headerlink" title="文件打开的方式"></a>文件打开的方式</h3><p>r : 读文件，若文件存在，则返回成功指针；若文件不存在，报错。<br>w : 写文件，若文件存在，则清空文件，若文件不存在，则创建文件<br>a : 追加打开。<br>r+: 读写方式打开文件，若文件存在，则返回成功指针；若文件不存在，报错。<br>w+: 读写方式打开文件，若文件存在，则清空文件，若文件不存在，则创建文件<br>a+: 追加打开。<br>b : 表示打开的是一个二进制文件。</p>
+<p>写方式打开文件：<br>写方式打开文件：</p>
+<ul>
+<li>对文件进行读写操作：<ul>
+<li>按字符读写文件：fputc(), fgetc();</li>
+<li>按行读写文件。 fgets(), fputs();</li>
+<li>找文件结束标记。（EOF）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<ul>
+<li>关闭文件，<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fclose</span><span class="params">( FILE *stream )</span></span>;</div><div class="line"><span class="comment">// 1、传入文件指针，fopen的指针值。</span></div><div class="line"><span class="comment">// 返回值：success：0，failed：-1.</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="文件访问路径"><a href="#文件访问路径" class="headerlink" title="文件访问路径"></a>文件访问路径</h2><h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><hr>
+<p>从系统根目录位置起始，描述的文件访问路径。</p>
+<hr>
+<h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><hr>
+<p>相对于当前的工作目录。不纠结编译工具。</p>
+<hr>
+<h3 id="fputc"><a href="#fputc" class="headerlink" title="fputc"></a>fputc</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputs</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span>          *str, FILE          *stream )</span></span>;</div></pre></td></tr></table></figure>
+<h3 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc"></a>fgetc</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputs</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span>          *str, FILE          *stream )</span></span>;</div></pre></td></tr></table></figure>
+<p>Example<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main0201</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    FILE *fp = fopen(<span class="string">"abc.txt"</span>,<span class="string">"w"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 输出到文件26个字母。</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">65</span>; i &lt; <span class="number">91</span>; i++) &#123;</div><div class="line">        fputc(i, fp);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    fclose(fp);</div><div class="line">    FILE *fp2 = fopen(<span class="string">"abc.txt"</span>,<span class="string">"r"</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">char</span> c = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</div><div class="line">        c = (<span class="keyword">char</span>) fgetc(fp2);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%c"</span>,c);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>文件结束标记：值为-1</p>
+<h3 id="feof函数"><a href="#feof函数" class="headerlink" title="feof函数"></a>feof函数</h3><hr>
+<p>技能判断文本文件，也能判断二进制文件的结尾，-1也可以读出来。<br>要使feof函数生效，必须在feof函数调用前进行读文件操作。</p>
+<hr>
+<h3 id="fgets"><a href="#fgets" class="headerlink" title="fgets"></a>fgets</h3><hr>
+<p>从文件中读取字符串数据，保存在存储空间中。</p>
+<hr>
+<ul>
+<li>一次读一行，一行内默认\n结束。会读取到\n。</li>
+<li>当char *str【n】空间不足，则预留\0的位置，实际读到 n-1个字符。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> * <span class="title">fgets</span><span class="params">(<span class="keyword">char</span> * str, <span class="keyword">int</span> size, FILE * stream)</span></span>;</div><div class="line"><span class="comment">// 1、存储读到的数据空间</span></div><div class="line"><span class="comment">// 2、空间大小</span></div><div class="line"><span class="comment">// 3、数据来源的文件。</span></div><div class="line"><span class="comment">// 4、返回值：成功：读到的字符串/失败：NULL/读到文件末尾：NULL</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main0301</span> <span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 文件指针</span></div><div class="line">    FILE *fp = fopen(<span class="string">"/Users/lele/Desktop/default.txt"</span>, <span class="string">"r"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 判空</span></div><div class="line">    <span class="keyword">if</span> (!fp)&#123;</div><div class="line">        perror(<span class="string">"error"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 定义存储大小</span></div><div class="line">    <span class="keyword">int</span> sizenum = <span class="keyword">sizeof</span>(<span class="keyword">char</span>)*<span class="number">4096</span>;</div><div class="line">    <span class="keyword">char</span> *str = <span class="built_in">malloc</span>((<span class="keyword">size_t</span>) sizenum);</div><div class="line"></div><div class="line">    <span class="comment">// 字符串置空</span></div><div class="line">    <span class="built_in">memset</span>(str, <span class="number">0</span>, sizenum);</div><div class="line"></div><div class="line">    <span class="comment">// 逐行打印文件内容</span></div><div class="line">    <span class="keyword">while</span> (!feof(fp)) &#123;</div><div class="line">        fgets(str, sizenum, fp);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s"</span>, str);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 释放并置空malloc的内存</span></div><div class="line">    <span class="built_in">free</span>(str);</div><div class="line">    str = <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">    fclose(fp);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="fputs"><a href="#fputs" class="headerlink" title="fputs"></a>fputs</h3><hr>
+<p>将一个字符串的数据写入到文件中，</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> * <span class="title">fgets</span><span class="params">(<span class="keyword">char</span> * str, <span class="keyword">int</span> size, FILE * stream)</span></span>;</div><div class="line"><span class="comment">// 1、存储读到的数据空间</span></div><div class="line"><span class="comment">// 2、空间大小</span></div><div class="line"><span class="comment">// 3、数据来源的文件。</span></div><div class="line"><span class="comment">// 4、返回值：成功：读到的字符串/失败：NULL/读到文件末尾：NULL</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main0401</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    FILE *fp = fopen(<span class="string">"./hello.c"</span>, <span class="string">"w"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!fp)&#123;</div><div class="line">        perror(<span class="string">"error"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> sizenum = <span class="keyword">sizeof</span>(<span class="keyword">char</span>);</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *buf = <span class="built_in">malloc</span>((<span class="keyword">size_t</span>) sizenum);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)&#123;</div><div class="line"></div><div class="line">        <span class="built_in">memset</span>(buf, <span class="number">0</span>, sizenum);</div><div class="line"></div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%[^\n]"</span>, buf);</div><div class="line">        getchar();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(buf, <span class="string">":quit"</span>) == <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="built_in">strcat</span>(buf, <span class="string">"\n"</span>);</div><div class="line"></div><div class="line">        <span class="built_in">fputs</span>(buf, fp);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">free</span>(buf);</div><div class="line">    buf = <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">    fclose(fp);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
+<h3 id="fprintf"><a href="#fprintf" class="headerlink" title="fprintf"></a>fprintf</h3><p>printf      sprintf      fprintf<br>scanf       sscanf       fscanf</p>
+<p>键盘、屏幕   string        file</p>
+<p><strong>共性：都有格式串“%d, %s, %c, %x…”，变参</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fprintf</span><span class="params">( FILE *stream, <span class="keyword">const</span> <span class="keyword">char</span> *format, ... )</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数一：待写入文件的指针</li>
+<li>参数二：格式串</li>
+<li>变参：对应格式串的数据</li>
+<li>返回值： 成功：成功写入字符串的个数/失败：-1</li>
+</ul>
+<h3 id="fscanf"><a href="#fscanf" class="headerlink" title="fscanf"></a>fscanf</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">​<span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span>          *format, ... )</span></span>;​</div></pre></td></tr></table></figure>
+<ul>
+<li>参数一：待写入文件的指针</li>
+<li>参数二：格式串</li>
+<li>变参：对应格式串的数据</li>
+<li>返回值： 成功：成功写入字符串的个数/失败：-1</li>
+</ul>
+<hr>
+<p>特性：<br>fscanf函数每次调用时，会判断下一次参数是否满足匹配条件，若不满足，提前返回</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  * Powered by Jetbrains Clion.</span></div><div class="line"><span class="comment">  * Created by 忘了.</span></div><div class="line"><span class="comment">  * Date: 2018/5/28.</span></div><div class="line"><span class="comment">  * FileName: 0x01_fscanf_sprintf.c.</span></div><div class="line"><span class="comment">  */</span></div><div class="line"></div><div class="line"><span class="comment">//***** Code is coming! *****//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">random2file</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    srand(time(<span class="literal">NULL</span>));</div><div class="line"></div><div class="line">    FILE *fp = fopen(<span class="string">"num.txt"</span>, <span class="string">"w"</span>);</div><div class="line">    <span class="keyword">if</span> (!fp) &#123;</div><div class="line">        perror(<span class="string">"fopen error"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</div><div class="line">        <span class="built_in">fprintf</span>(fp, <span class="string">"%d\n"</span>, rand() % <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    fclose(fp);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> n)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>])&#123;</div><div class="line">                tmp = arr[j];</div><div class="line">                arr[j] = arr[j+<span class="number">1</span>];</div><div class="line">                arr[j+<span class="number">1</span>] = tmp;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">file2arr</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> num = <span class="number">0</span>, i = <span class="number">0</span>;</div><div class="line"></div><div class="line">    FILE *fp = fopen(<span class="string">"num.txt"</span>, <span class="string">"r"</span>);</div><div class="line">    <span class="keyword">if</span> (!fp) &#123;</div><div class="line">        perror(<span class="string">"fopen error"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> *arr = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="number">1024</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">        <span class="built_in">fscanf</span>(fp, <span class="string">"%d\n"</span>, &amp;num);</div><div class="line">        arr[i] = num;</div><div class="line">        i++;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (feof(fp))&#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"i = %d\n"</span>, i);</div><div class="line">    BubbleSort(arr, i);</div><div class="line"></div><div class="line">    fclose(fp);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, arr[j]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    fp = fopen(<span class="string">"num.txt"</span>, <span class="string">"w"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</div><div class="line">        <span class="built_in">fprintf</span>(fp, <span class="string">"%d\n"</span>, arr[j]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="built_in">free</span>(arr);</div><div class="line">    arr = <span class="literal">NULL</span>;</div><div class="line">    fclose(fp);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    random2file();</div><div class="line">    file2arr();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Windows二进制的读写"><a href="#Windows二进制的读写" class="headerlink" title="Windows二进制的读写"></a>Windows二进制的读写</h2><hr>
+<p>二进制读写的参数，只在Windows下用b权限，在linux下不需要。</p>
+<hr>
+<h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><h3 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite"></a>fwrite</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">enum</span> &#123;</div><div class="line">    SIZE = <span class="number">5</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">double</span> a[SIZE] = &#123;<span class="number">1.21</span>, <span class="number">2.32</span>, <span class="number">3.23</span>, <span class="number">4.34</span>, <span class="number">5.45</span>&#125;;</div><div class="line"></div><div class="line">    FILE *fp = fopen(<span class="string">"test.bin"</span>, <span class="string">"wb"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// Write double array to file.</span></div><div class="line">    fwrite(a, <span class="keyword">sizeof</span>(*a), SIZE, fp);</div><div class="line">    fclose(fp);</div><div class="line"></div><div class="line">    <span class="comment">// Read file</span></div><div class="line">    <span class="keyword">double</span> b[SIZE];</div><div class="line">    fp = fopen(<span class="string">"test.bin"</span>, <span class="string">"rb"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// Return success write to file's number</span></div><div class="line">    <span class="keyword">size_t</span> ret_code = fread(b, <span class="keyword">sizeof</span>(*b), SIZE, fp);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (ret_code == SIZE) &#123;</div><div class="line">        <span class="built_in">puts</span>(<span class="string">"Read successfully!, This array contents:"</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SIZE; ++i) &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%lf "</span>, b[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// Error handling</span></div><div class="line">        <span class="keyword">if</span> (feof(fp))</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"Error reading test.bin: unexpected end of file\n"</span>);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ferror(fp)) &#123;</div><div class="line">            perror(<span class="string">"Error reading test.bin"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="文件的随机读写"><a href="#文件的随机读写" class="headerlink" title="文件的随机读写"></a>文件的随机读写</h2><h3 id="fseek"><a href="#fseek" class="headerlink" title="fseek"></a>fseek</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fseek()</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">(FILE *stream, <span class="keyword">long</span> offset, <span class="keyword">int</span> whence)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数：<ul>
+<li>参数1：文件指针</li>
+<li>参数2：偏移量（正、负)）</li>
+<li>参数3：偏移的其实文职：SEEK_SET：文档开头<pre><code>SEEK_CUR：当前位置
+seek_END：文件结尾
+</code></pre></li>
+<li>返回值：<ul>
+<li>成功：0</li>
+<li>失败：-1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ftell"><a href="#ftell" class="headerlink" title="ftell"></a>ftell</h3><hr>
+<p>光标到文件开头的偏移量</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">ftell</span><span class="params">(FILE *stream)</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li>返回值：<br>  光标到文件开头的偏移量。</li>
+</ul>
+<h3 id="rewind"><a href="#rewind" class="headerlink" title="rewind"></a>rewind</h3><hr>
+<p>将光标移动至文件起始位置。</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">(FILE *stream)</span></span></div></pre></td></tr></table></figure>
+<h2 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/C语言的结构体/" rel="next" title="C语言的结构体">
+                <i class="fa fa-chevron-left"></i> C语言的结构体
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/03/cpp_primer/" rel="prev" title="C++ Primer 读书笔记">
+                C++ Primer 读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
+              <p class="site-author-name" itemprop="name">忘了</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#读写文件与printf、scanf关联"><span class="nav-number">1.</span> <span class="nav-text">读写文件与printf、scanf关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件指针和普通指针的区别"><span class="nav-number">2.</span> <span class="nav-text">文件指针和普通指针的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件分类："><span class="nav-number">3.</span> <span class="nav-text">文件分类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设备文件"><span class="nav-number">3.1.</span> <span class="nav-text">设备文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘文件"><span class="nav-number">3.2.</span> <span class="nav-text">磁盘文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件操作"><span class="nav-number">4.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件打开的方式"><span class="nav-number">4.1.</span> <span class="nav-text">文件打开的方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件访问路径"><span class="nav-number">5.</span> <span class="nav-text">文件访问路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路径"><span class="nav-number">5.1.</span> <span class="nav-text">绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径"><span class="nav-number">5.2.</span> <span class="nav-text">相对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputc"><span class="nav-number">5.3.</span> <span class="nav-text">fputc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgetc"><span class="nav-number">5.4.</span> <span class="nav-text">fgetc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#feof函数"><span class="nav-number">5.5.</span> <span class="nav-text">feof函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets"><span class="nav-number">5.6.</span> <span class="nav-text">fgets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs"><span class="nav-number">5.7.</span> <span class="nav-text">fputs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fprintf"><span class="nav-number">5.8.</span> <span class="nav-text">fprintf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fscanf"><span class="nav-number">5.9.</span> <span class="nav-text">fscanf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows二进制的读写"><span class="nav-number">6.</span> <span class="nav-text">Windows二进制的读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fread"><span class="nav-number">6.1.</span> <span class="nav-text">fread</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fwrite"><span class="nav-number">6.2.</span> <span class="nav-text">fwrite</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的随机读写"><span class="nav-number">7.</span> <span class="nav-text">文件的随机读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fseek"><span class="nav-number">7.1.</span> <span class="nav-text">fseek</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftell"><span class="nav-number">7.2.</span> <span class="nav-text">ftell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rewind"><span class="nav-number">7.3.</span> <span class="nav-text">rewind</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stat"><span class="nav-number">8.</span> <span class="nav-text">stat</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">忘了</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
