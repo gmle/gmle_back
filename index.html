@@ -675,128 +675,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h2 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h2><p>我这种菜鸟在学习指针的时候往往会有一些困惑</p>
-<ul>
-<li>什么是 “指向int的指针”？ 指针不是地址吗？怎么还有指向类型的指针呢？</li>
-<li>scanf在使用 d% 的情况下，变量之前需要加上取地址符 <strong>&amp;</strong> 才能进行传递，为什么在使用 %s 的时候就可以不加 &amp; 了呢</li>
-<li>学习得到将数组名赋值给指针的时候，将指针和数组完全混为一谈：<ul>
-<li>将没有分配内存区域的指针当做数组进行访问</li>
-<li>将指针赋给数组</li>
-</ul>
-</li>
-</ul>
-<p>导致这一系列事件的原因是：</p>
-<ul>
-<li>C语言砌块的语法</li>
-<li>数组和指针之间微妙的兼容性</li>
-</ul>
-<p>有经验的程序员会有些疑问：</p>
-<ul>
-<li>C的声明中，[] 比 * 的优先级高，因此 char *s[10] 这样的声明意为 “指向char的指针的数组” ？</li>
-<li>搞不明白double (*p)[3]; 和 void (*func)(int a); 这样的声明到底怎么阅读。</li>
-<li>int *a中，声明a为 ”指向int的指针”。可是表达式中的指针变量前*却代表其他意思。明明是同样的符号，意义为何不同？</li>
-<li>int *a和inta[] 在什么情况下可以互换？</li>
-<li>空的[] 可以在什么地方使用，它又代表什么意思呢？</li>
-</ul>
-<h2 id="目标读者和内容结构􏰕􏰄􏰯􏱶􏱾􏱍􏰌􏱞􏰆"><a href="#目标读者和内容结构􏰕􏰄􏰯􏱶􏱾􏱍􏰌􏱞􏰆" class="headerlink" title="目标读者和内容结构􏰕􏰄􏰯􏱶􏱾􏱍􏰌􏱞􏰆"></a>目标读者和内容结构􏰕􏰄􏰯􏱶􏱾􏱍􏰌􏱞􏰆</h2><p>本书的目标读者为：</p>
-<ul>
-<li>粗略的学过C语言的基础，但对指针不太理解的人</li>
-<li>平时能自如的使用C语言，但实际对指针理解不够深入的人</li>
-</ul>
-<p>本书的内容：</p>
-<ul>
-<li>1、从基础开始–预备知识</li>
-<li>2、做个试验–C是怎样使用内存的</li>
-<li>3、解密C的语法–它到底是怎么回事</li>
-<li>4、数组和指针的常用用法</li>
-<li>5、数据结构–真正的指针使用方法</li>
-<li>6、补充</li>
-</ul>
-<p>通过printf来亲眼目睹地址的实际值，这不失为理解指针的一个非常简单有效的方式。</p>
-<p>对于那些 “尝试学习了C语言，但对指针还不太理解”的人来说，通过自己的机器实际的输出指针的值，可以将对简单的领会地址的概念</p>
-<p>阅读本书，让我们做到 知其然知其所以然。</p>
-<h1 id="第一章-从基础开始"><a href="#第一章-从基础开始" class="headerlink" title="第一章 从基础开始"></a>第一章 从基础开始</h1><h2 id="C是什么样的语言"><a href="#C是什么样的语言" class="headerlink" title="C是什么样的语言"></a>C是什么样的语言</h2><p>C语言是一门什么语言？</p>
-<ul>
-<li>为了解决眼前问题，由开发现场的人发明的。</li>
-<li>虽然使用方便，但看上去不怎么顺眼</li>
-<li>如果不熟悉的人稀里糊涂的使用了它，难免会带来悲剧的语言。</li>
-</ul>
-<h3 id="C语言的出现"><a href="#C语言的出现" class="headerlink" title="C语言的出现"></a>C语言的出现</h3><p>C原本是为了开发Unix才做系统内而设计的语言，但早起打的Unix是由汇编开发出来的。后来经过发展，出现的C语言</p>
-<h3 id="不完备和不统一的语法"><a href="#不完备和不统一的语法" class="headerlink" title="不完备和不统一的语法"></a>不完备和不统一的语法</h3><hr>
-<p>C语言是开发现场的人们根据自身的需要开发出的的语言所以具备极高的实用性。但反过来从人类工程学的角度来看，他就不是那么完美了。</p>
-<hr>
-<p>比如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a = <span class="number">5</span>) &#123; <span class="comment">// 本来应该写成==的地方却写成了=</span></div><div class="line">  <span class="comment">/* code */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>相信大家都犯过这种错误吧。</p>
-<p>或者：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (i - <span class="number">0</span>; i &lt; count; i++) &#123;</div><div class="line">  <span class="comment">/* code */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>将赋值的‘=’号写成‘-’；或者在使用switch case的时候，也经常发生忘记写breaak的错误。</p>
-<p>幸运的是，如今的编译器对于容易犯的语法错误，在很多地方可以给我们警告提示。<br>因此，不但不能无视这些警告，相反应该提高编译器的警告级别，让编译器替我们指出尽可能多的错误。</p>
-<p>C语言是在使用中成长起来的语言，因此，由于很多历史原因遗留的一些奇怪的问题。<br>具有代表性的有 <strong>位运算符“&amp;”和“|”的优先顺序问题</strong></p>
-<p>通常，如“==”的比较运算符的优先级要低于那些做计算的运算符。因此：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(a &lt; b + <span class="number">3</span>)</div></pre></td></tr></table></figure></p>
-<p>这样的表达式中，虽然可以不适用括号来写，但是当时用了位运算符的时候，就行不通了。<br>想要进行 <strong>将a和MASK进行按位与运算后的结果，再和b做比较运算</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a &amp; MASK == b)</div></pre></td></tr></table></figure></p>
-<p>按照上面的写法，因为&amp;运算符的优先级低于==运算符，所以被解释成了下面这样<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a &amp; （MASK == b）)</div></pre></td></tr></table></figure></p>
-<p>这是因为在没有“&amp;&amp;”和“||”运算符的时代，使用“&amp;“和”|”来代替而留下的后遗症。</p>
-<h3 id="C的理念"><a href="#C的理念" class="headerlink" title="C的理念"></a>C的理念</h3><hr>
-<p>C是危险的语言。<br>尤其是，在几乎所有的C语言实现中，运行时的检查总是不充分的。<br>比如：数组越界，在C的大部分处理中，总是悄悄的将数据写入，从而破坏了完全不想管的内存区域。</p>
-<hr>
-<p>C是抱着“程序员万能”的理念设计出来的。在C的设计中名优先考虑的是：</p>
-<ul>
-<li>如何才能简单的实现编译器（而不是让使用C的人们能够简单化的编程）</li>
-<li>如何才能让程序员写出能够生成高效率的执行代码的程序（而不是考虑优化编译器，使编译器生成高效率的执行代码）<br>而安全问题完全被忽略了。但无论怎样，C语言原本就是“仅仅为了自己使用”而开发出来的语言。</li>
-</ul>
-<h3 id="C的主体"><a href="#C的主体" class="headerlink" title="C的主体"></a>C的主体</h3><p>下面的单词中，哪些是C语言中规定的保留字：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">printf</span> main <span class="built_in">malloc</span> <span class="keyword">sizeof</span></div></pre></td></tr></table></figure></p>
-<p>答案是 if 和 sizeof。</p>
-<p>“printf和malloc不必多说，连main也不是C的保留字吗？”<br>请查一查手头的C语言参考书。相信大部分的C入门书籍中都有C语言保留字的列表</p>
-<p>相对于把输入输出作为语言自身功能的一部分，C语言将printf() 这样的输入输出功能从语言的主体中分离出来，让它单纯的成为库函数。对于编译器来说，printf() 函数和其他由程序员写的函数并没有什么不同。</p>
-<h3 id="C是只能使用标量的语言"><a href="#C是只能使用标量的语言" class="headerlink" title="C是只能使用标量的语言"></a>C是只能使用标量的语言</h3><p>对于标量这个词，大家可能有些陌生。<br>简单地说，标量就是指char、int、double和枚举等树枝类型以及指针。相对的，像数组，结构体和共用体这样的将多个标量进行组合的类型，我们应称之为聚合类型。<br>提问：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (str == <span class="string">"abc"</span>)</div></pre></td></tr></table></figure></p>
-<p>这样的代码为什么不能执行预期的动作呢？<br>对于这样的疑问，通常给出的答案是“这个表达式不是在比较字符串的内容，它只是在比较指针”其实还可以给出另一个答案：</p>
-<hr>
-<p>字符串其实就是char类型的数组，也就是说它不是标量，当然在C里面不能用==进行比较了。</p>
-<hr>
-<p>如今的C用过以下几个追加的功能，已经能够让我们整合的使用聚合类型了。</p>
-<ul>
-<li>结构体的一次性赋值</li>
-<li>将结构体作为函数参数值传递</li>
-<li>将结构体作为函数返回值返回</li>
-<li>auto变量的初始化</li>
-</ul>
-<h2 id="关于指针"><a href="#关于指针" class="headerlink" title="关于指针"></a>关于指针</h2><h3 id="指针究竟是什么"><a href="#指针究竟是什么" class="headerlink" title="指针究竟是什么"></a>指针究竟是什么</h3><p>关于“指针”一词，在C语言程序设计中有这样的说明：</p>
-<p><strong>指针是一种保存变量地址的变量，在C中频繁的使用。</strong></p>
-<p>C语言标准中出现过这句话：<br>指针类型可由函数类型。对象类型或不完全的类型派生，派生指针类型的类型称为引用类型。指针类型描述一个对象，该类的对象的值提供对该引用类型实体的引用由引用类型T派生的指针类型有时称为“（指向）T的指针”。从引用类型构造指针的过程称为“指针类型的派生”。这些构造派生类型的方法可以递归地应用</p>
-<p>第一句话出现了指针类型。<br>“指针类型”其实不是单独存在的，它是由其它类型派生而成的。以上对标准内容的引用中也提到 “由引用类型T派生的指针类型有时称为‘（指向）T的指针’”</p>
-<p>也就是说，实际上存在的类型是“指向int/double/char的指针类型”等等。</p>
-<p>因为“指针类型”是类型，所以它和innt类型、double类型一样，也存在“指针类型变量”和“指针类型的值”。糟糕的是，”指针类型”、“指针类型变量”和“指针类型的值”经常被简单的统称为“指针”，所以非常容易造成歧义，这一点需要提高警惕。</p>
-<p><strong>要点：</strong><br>先有“指针类型”。因为有了类型，才有了此类型的变量，才有了值。</p>
-<p>比如，在C中，使用int类型表示整数。因为int是类型，所以存在用于保存innt类型的变量，当然也存在int类型的值。</p>
-<p>指针类型同样如此，既存在指针类型的变量，也存在指针类型的值。</p>
-<p>因此，几乎所有的处理程序中，所谓的“指针类型的值”，实际是指内存的地址。</p>
-<h3 id="和指针的第一次接触"><a href="#和指针的第一次接触" class="headerlink" title="和指针的第一次接触"></a>和指针的第一次接触</h3><p>下面我们通过实际代码来尝试输出指针的值<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> a = <span class="number">5</span>;</div><div class="line">    <span class="keyword">int</span> b = <span class="number">10</span>;</div><div class="line">    <span class="keyword">int</span> *a_p = <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;a = %p\n"</span>, &amp;a);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;b = %p\n"</span>, &amp;b);</div><div class="line"></div><div class="line">    a_p = &amp;a;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;a_p = %p\n"</span>, a_p);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a_p = %d\n"</span>, *a_p);</div><div class="line"></div><div class="line">    *a_p = <span class="number">19</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;a_p = %p\n"</span>, a_p);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"a_p = %d\n"</span>, *a_p);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>变量不一定按照声明的顺序保存在内存中</strong></p>
-<p>要点：</p>
-<ul>
-<li>对变量使用&amp;运算符，可以取得该变量的地址。这个地址称为指向该变量的指针。</li>
-<li>指针变量保存了指向其他变量的地址的情况下，可以说指针变量指向其变量。</li>
-<li>对指针变量运用<em>运算符，就等于同于它指向的变量。如果指针变量指向变量，则 </em>x = x.</li>
-</ul>
-<p>补充：<br>在说明地址概念的时候，通常使用十六进制来表示地址。<br>如果想要了解地址的真面目，把地址实际的表示出来才是最好的的方式。</p>
-<h3 id="指针和地址之间的关系"><a href="#指针和地址之间的关系" class="headerlink" title="指针和地址之间的关系"></a>指针和地址之间的关系</h3><p><strong>几乎所有的程序中，所谓的“指针类型的值”，实际是指内存的地址。</strong><br>对于这句话，有人也许会产生疑问：<br>一：</p>
-<ul>
-<li>归根结底，指针就是地址，地址就是内存中那个被分配的“门牌号”。所以，指针类型和int类型应该是一回事吧。<br>实际上，从某种意义来看，这种认识也不无道理。<br>其实在很多运行环境中，int类型和指针类型的长度并不相同。</li>
-</ul>
-<p>二：</p>
-<ul>
-<li>指针就是地址吧，那么，指向int的指针、指向double的指针，他们有什么区别么？，有必要区分它们吗？<br>实际上，从某种意义来看，这种说法也有一定道理。</li>
-</ul>
-<p>对于大部分的运行环境来说，当程序运行时，不管是指向int的指针，还是指向double的指针，都保持相同的表现形式（偶尔也会有一些运行环境，它们对于指向char的指针和指向int的指针有着不一样的内部表示和位数）。</p>
-<p>不仅如此，C还为我们准备了可以指向任何类型的指针类型：void* 类型：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">5</span>;</div><div class="line"><span class="keyword">void</span> a_p;</div><div class="line">a_p = &amp;a;</div></pre></td></tr></table></figure></p>
-<p>这并不会报错，但是会出现警告：<br>void* 类型的指针无效</p>
-<p>所以需要将地址的数据类型强转为int类型：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*(<span class="keyword">int</span>*)a_p = &amp;a;</div></pre></td></tr></table></figure></p>
-<p>在大部分的运行环境里，不管是指向int的指针，还是指向double的指针，在运行时都是相同的事物。可是，通过在int类型的变量去地址锁喉利用指针间接取出来的值，不出意外肯定是int类型。为什么？ 因为int和double的内部表示完全不同。</p>
-<p>因此，如今的运行环境，像下面这样取得指向double类型变量的指针，之后将其赋给指向int的指针变量，编译器必定会提示警告。<br>伪代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> int_p;</div><div class="line"><span class="keyword">double</span> double_p;</div><div class="line">int_p = &amp;double_value;</div></pre></td></tr></table></figure></p>
-<p>将指向double变量的指针赋予指向int的指针变量会出现警告。</p>
-
-          
+          <h2 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h2><p>我这种菜鸟在学习指针的时候往往会有一些困惑</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/04/征服C指针/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
