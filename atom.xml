@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gmle.github.io/"/>
-  <updated>2018-06-06T12:24:25.907Z</updated>
+  <updated>2018-06-30T11:11:15.757Z</updated>
   <id>http://gmle.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C语言的一点语言特性</title>
+    <link href="http://gmle.github.io/2018/06/29/C%E8%AF%AD%E8%A8%80%E7%9A%84%E4%B8%80%E7%82%B9%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7/"/>
+    <id>http://gmle.github.io/2018/06/29/C语言的一点语言特性/</id>
+    <published>2018-06-29T13:47:23.022Z</published>
+    <updated>2018-06-30T11:11:15.757Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于C语言的一些特性。</p><a id="more"></a><p>这些特性可能会被称为bug，但它确实是特性。</p><h2 id="malloc开辟char字符串的内存空间"><a href="#malloc开辟char字符串的内存空间" class="headerlink" title="malloc开辟char字符串的内存空间"></a>malloc开辟char字符串的内存空间</h2><p>无论在什么时候出现这样一条语句：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">malloc</span>(<span class="built_in">strlen</span>(str));</div></pre></td></tr></table></figure><p>几乎可以判定它是错误的，而</p><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">malloc</span>(<span class="built_in">strlen</span>(str)+<span class="number">1</span>);</div></pre></td></tr></table></figure><p>才是正确的。<br>这是因为其它的字符串处理库函数几乎都包含一个额外空间，用于容纳字符串结尾处的‘\0’字符。</p><h2 id="C语言中的const并非真正的cosnt"><a href="#C语言中的const并非真正的cosnt" class="headerlink" title="C语言中的const并非真正的cosnt"></a>C语言中的const并非真正的cosnt</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> one = <span class="number">10</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">int</span> two = <span class="number">20</span>;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> str[<span class="number">10</span>] = &#123;<span class="number">10</span>&#125;;</div><div class="line"></div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,str);</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (str)&#123;</div><div class="line">        <span class="keyword">case</span> one:</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%u"</span>,one);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> two:</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%u"</span>,one);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:<span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>上面这段代码会出现编译错误，这并不是switch语句本身的错误，但这条语句展示了其const并非真正的常量。</p><h2 id="字符串的自动合并"><a href="#字符串的自动合并" class="headerlink" title="字符串的自动合并"></a>字符串的自动合并</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span>  argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">char</span> *str[] = &#123;</div><div class="line">            <span class="string">"aaa"</span>,</div><div class="line">            <span class="string">"bbb"</span>  <span class="comment">// 少了个逗号，则在编译的时候回自动合并。</span></div><div class="line">            <span class="string">"ccc"</span>,</div><div class="line">            <span class="string">"ddd"</span>,</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(str); i++) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, (<span class="keyword">char</span> *) str[i]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%s"</span>, *str);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>上例中，如果在写代码的时候不小心漏掉一个逗号，在程序编译的时候，编译器将不会报错，而是会自动合并为一个字符串。<br>而最后一个字符串的逗号存在与否都没有意义。但这种拖尾的逗号将会抑制程序的正确行为，这对程序没有任何好处。</p><h2 id="缺省关键字的可见性"><a href="#缺省关键字的可见性" class="headerlink" title="缺省关键字的可见性"></a>缺省关键字的可见性</h2><p>定义C函数或者是全局变量的时候，在缺省情况下函数名字是全局可见的。<br>可以在函数或者全局变量的前面加上‘extern’关键字，也可以不加，想过是一样的。<br>如果想限制函数或者变量的访问，则需要加上‘static’关键字。</p><p>事实上，几乎没有人所有人都没有在其前面加上村塾类型说明符的习惯，所以函数大多数是全局可见的。</p><p>根据实际经验，这种缺省的全局可见性多次被证明是个错误。这种太大范围的全局可见性会与C语言的另一个特性相互产生影响，那就是interpositioning。<br>就是用户编写和库函数同名的函数并取而代之的行为</p><p>范围过宽的问题常见于库中：一个库需要让一个对象在另一个库中可见，唯一的方法就是让它全局可见。但这样一来，它对于链接到该库的所有对象都是可见的了，在C语言中，对信息可见性的选择就是这么有限。</p><p>没有人会记得在他们之前加上static限定符，所以它们在缺省情况下是全局可见的。</p><h2 id="C语言简洁之过"><a href="#C语言简洁之过" class="headerlink" title="C语言简洁之过"></a>C语言简洁之过</h2><p>C语言中属于“误做值过”的特性，就是语言中有误导性质或者不适当的特性。这些特性有些跟C语言的简洁有关（部分与符号的过度复用有关），有些则与操作符的有限及有关。</p><h3 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h3><p>许多符号被重载的在不同的上下文环境里有不同的意义。</p><table><thead><tr><th style="text-align:center">aaa</th><th style="text-align:center">bbb</th><th style="text-align:left">ccc</th></tr></thead><tbody><tr><td style="text-align:center">aaa</td><td style="text-align:center">bbbb</td><td style="text-align:left">asdf</td></tr><tr><td style="text-align:center">aaa</td><td style="text-align:center">bbbb</td><td style="text-align:left">asdf</td></tr><tr><td style="text-align:center">aaa</td><td style="text-align:center">bbbb</td><td style="text-align:left">asdf</td></tr><tr><td style="text-align:center">aaa</td><td style="text-align:center">bbbb</td><td style="text-align:left">asdf</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于C语言的一些特性。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="http://gmle.github.io/categories/C/"/>
+    
+    
+      <category term="C" scheme="http://gmle.github.io/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>C语言练习题</title>
@@ -475,31 +497,6 @@
       <category term="Spark" scheme="http://gmle.github.io/tags/Spark/"/>
     
       <category term="Linux" scheme="http://gmle.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>对C中堆内存的理解</title>
-    <link href="http://gmle.github.io/2017/11/03/%E5%AF%B9%E5%A0%86%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://gmle.github.io/2017/11/03/对堆的内存分配的理解/</id>
-    <published>2017-11-03T09:35:17.000Z</published>
-    <updated>2017-11-03T09:35:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<pre><code>初学者对于堆栈的认识，欢迎吐槽</code></pre><a id="more"></a><h2 id="C-中内存划分"><a href="#C-中内存划分" class="headerlink" title="C++中内存划分"></a>C++中内存划分</h2><p>c++划分为五个区：</p><ul><li>堆<ul><li>堆，就是那些由new分配的内存块，他们的释放编译器不去管，由我们的应用程序去控制，一般一个new就要对应一个delete.如果程序员没有释放掉，那么在程序结束后，操作系统会自动回收。</li></ul></li><li>栈<ul><li>栈，就是那些由编译器在需要的时候分配，在不需要的时候自动清楚的变量的存储区。里面的变量通常是局部变量、函数参数等。</li></ul></li><li>自由存储区<ul><li>就是那些由malloc等分配的内存块，他和堆是十分相似的，不过它是用free来结束自己的生命的。</li></ul></li><li>全局、静态存储区<ul><li>全局变量和静态变量被分配到同一块内存中，在以前的C语言中，全局变量又分为初始化的和未初始化的，在C++里面没有这个区分了，他们共同占用同一块内存区。</li></ul></li><li>常亮存储区<ul><li>这是一块比较特殊的存储区，他们里面存放的是常量，不允许修改(当然，你要通过非正当手段也可以修改)</li></ul></li></ul><h2 id="C-内存区域中堆和栈的区别："><a href="#C-内存区域中堆和栈的区别：" class="headerlink" title="C++内存区域中堆和栈的区别："></a>C++内存区域中堆和栈的区别：</h2><h3 id="管理方式不同："><a href="#管理方式不同：" class="headerlink" title="管理方式不同："></a>管理方式不同：</h3><ul><li>栈是由编译器自动管理，无需我们手工控制。</li><li>堆的释放由程序员完成，容易产生内存泄漏。</li></ul><h3 id="空间大小不同："><a href="#空间大小不同：" class="headerlink" title="空间大小不同："></a>空间大小不同：</h3><ul><li>堆内存很大。</li><li>栈内存可修改，但默认好像非常小。</li></ul><h3 id="内存碎片："><a href="#内存碎片：" class="headerlink" title="内存碎片："></a>内存碎片：</h3><ul><li>对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。</li><li>对于栈来讲，则不会存在这个问题。</li></ul><h3 id="生长方向不同："><a href="#生长方向不同：" class="headerlink" title="生长方向不同："></a>生长方向不同：</h3><ul><li>对于堆来讲，生长方向是向上的，也就是向着内存地址增加的方向；</li><li>对于栈来讲，它的生长方式是向下的，是向着内存地址减小的方向增长。<ul><li>加深理解的话：<ul><li>在函数体中定义的变量通常是在栈上，定义一个变量，内存就少一点。就像一杯水喝一口</li><li>堆用malloc， calloc， realloc等分配内存的函数分配得到的就是在堆上<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">0</span>; <span class="comment">//全局初始化区  </span></div><div class="line"><span class="keyword">char</span> *p1; <span class="comment">//全局未初始化区  </span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> b; <span class="comment">//栈  </span></div><div class="line">    <span class="keyword">char</span> s[] = <span class="string">"abc"</span>;          <span class="comment">//栈  </span></div><div class="line">    <span class="keyword">char</span> *p2;                  <span class="comment">//栈  </span></div><div class="line">    <span class="keyword">char</span> *p3 = <span class="string">"123456"</span>;       <span class="comment">//123456&#123;post.content&#125;在常量区，p3在栈上  </span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> c = <span class="number">0</span>;          <span class="comment">//全局(静态)初始化区  </span></div><div class="line">    p1 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>);   <span class="comment">//分配得来得10字节的区域在堆区  </span></div><div class="line">    p2 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">20</span>);   <span class="comment">//分配得来得20字节的区域在堆区  </span></div><div class="line">    <span class="built_in">strcpy</span>(p1, <span class="string">"123456"</span>);      <span class="comment">//123456&#123;post.content&#125;放在常量区，编译器可能会将它与p3所指向的"123456"优化成一块  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></li></ul></li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;pre&gt;&lt;code&gt;初学者对于堆栈的认识，欢迎吐槽
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="C++" scheme="http://gmle.github.io/categories/C/"/>
-    
-    
-      <category term="C++" scheme="http://gmle.github.io/tags/C/"/>
-    
-      <category term="内存管理" scheme="http://gmle.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
