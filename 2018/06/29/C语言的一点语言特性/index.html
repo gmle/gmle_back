@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://gmle.github.io/2018/06/29/C语言的一点语言特性/index.html">
 <meta property="og:site_name" content="忘lele">
 <meta property="og:description" content="关于C语言的一些特性。">
-<meta property="og:updated_time" content="2018-06-30T11:11:15.757Z">
+<meta property="og:updated_time" content="2018-06-30T13:35:44.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言的一点语言特性">
 <meta name="twitter:description" content="关于C语言的一些特性。">
@@ -396,34 +396,141 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">aaa</th>
-<th style="text-align:center">bbb</th>
-<th style="text-align:left">ccc</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:left">意义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">aaa</td>
-<td style="text-align:center">bbbb</td>
-<td style="text-align:left">asdf</td>
+<td style="text-align:center">static</td>
+<td style="text-align:left">在函数内部，表示该便拉近的值在各个调用间一直保持延续性</td>
 </tr>
 <tr>
-<td style="text-align:center">aaa</td>
-<td style="text-align:center">bbbb</td>
-<td style="text-align:left">asdf</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">在函数这一级，表示该函数只对本文件可见</td>
 </tr>
 <tr>
-<td style="text-align:center">aaa</td>
-<td style="text-align:center">bbbb</td>
-<td style="text-align:left">asdf</td>
+<td style="text-align:center">extern</td>
+<td style="text-align:left">用于函数定义，表示全局可见（冗余）</td>
 </tr>
 <tr>
-<td style="text-align:center">aaa</td>
-<td style="text-align:center">bbbb</td>
-<td style="text-align:left">asdf</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">用于变量，表示它在其他地方定义</td>
+</tr>
+<tr>
+<td style="text-align:center">void</td>
+<td style="text-align:left">作为函数的返回类型，表示不返回任何值</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">在指针声明中，表示通用指针的类型</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">位于参数列表中目标是没有参数</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:left">乘法运算符</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">用户指针，间接引用</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">在声明中，表示指针</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:left">位运算符 AND操作符</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">取地址操作符</td>
+</tr>
+<tr>
+<td style="text-align:center">=</td>
+<td style="text-align:left">赋值运算符</td>
+</tr>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:left">比较运算符</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:left">小于等于运算符</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;==</td>
+<td style="text-align:left">左移复合运算符</td>
+</tr>
+<tr>
+<td style="text-align:center">()</td>
+<td style="text-align:left">在函数定义中，包围形式参数表</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">调用一个函数</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">改变表达式的运算顺序</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">强制类型转换</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">定义带参数的宏</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:left">包围sizeof操作符的操作数</td>
 </tr>
 </tbody>
 </table>
+<p>重载问题之例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1</span></div><div class="line">p = N * <span class="keyword">sizeof</span> * p;</div><div class="line"></div><div class="line"><span class="comment">// 2</span></div><div class="line">r = <span class="built_in">malloc</span>(p);</div><div class="line"></div><div class="line"><span class="comment">// 3 运算符优先级：先括号，所以先算sizeof(int) = 4, 后4*p</span></div><div class="line">a = <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * p;</div></pre></td></tr></table></figure>
+<p>让一个符号表达的意思越多，编译器就越难检测到这个符号在你的使用中所存在的异常情况。</p>
+<h3 id="C语言的运算符优先级问题"><a href="#C语言的运算符优先级问题" class="headerlink" title="C语言的运算符优先级问题"></a>C语言的运算符优先级问题</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">优先级问题</th>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">误以为的结果</th>
+<th style="text-align:left">实际结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.的优先级高于*， -&gt; 操作符用于消除这个问题。</td>
+<td style="text-align:left">*p.f</td>
+<td style="text-align:left">p所指对象的字段f, (*p).f</td>
+<td style="text-align:left">对p取f偏移，作为指针，然后解引用。 *(p.f)</td>
+</tr>
+<tr>
+<td style="text-align:center">[]高于*</td>
+<td style="text-align:left">int *ap[]</td>
+<td style="text-align:left">ap是个指向int数组的指针。    int (*ap)[]</td>
+<td style="text-align:left">ap是个元素为int指针的数组 int *(ap[])</td>
+</tr>
+<tr>
+<td style="text-align:center">函数()高于*</td>
+<td style="text-align:left">int *fp()</td>
+<td style="text-align:left">fp是个函数指针，所指函数返回int。 int(*fp)()</td>
+<td style="text-align:left">fp是个函数，返回int<em> . int </em>(fp())</td>
+</tr>
+<tr>
+<td style="text-align:center">逗号运算符在所有运算符中优先级最低</td>
+<td style="text-align:left">i=1,2;</td>
+<td style="text-align:left">i=(1,2)</td>
+<td style="text-align:left">(i=1),2</td>
+</tr>
+</tbody>
+</table>
+<p>我们在表达式中如果有布尔操作、算术运算、位操作等混合计算，始终应该在适当的地方加括号。</p>
 
       
     </div>
@@ -639,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#malloc开辟char字符串的内存空间"><span class="nav-number">1.</span> <span class="nav-text">malloc开辟char字符串的内存空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C语言中的const并非真正的cosnt"><span class="nav-number">2.</span> <span class="nav-text">C语言中的const并非真正的cosnt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的自动合并"><span class="nav-number">3.</span> <span class="nav-text">字符串的自动合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺省关键字的可见性"><span class="nav-number">4.</span> <span class="nav-text">缺省关键字的可见性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C语言简洁之过"><span class="nav-number">5.</span> <span class="nav-text">C语言简洁之过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重载"><span class="nav-number">5.1.</span> <span class="nav-text">重载</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#malloc开辟char字符串的内存空间"><span class="nav-number">1.</span> <span class="nav-text">malloc开辟char字符串的内存空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C语言中的const并非真正的cosnt"><span class="nav-number">2.</span> <span class="nav-text">C语言中的const并非真正的cosnt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的自动合并"><span class="nav-number">3.</span> <span class="nav-text">字符串的自动合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺省关键字的可见性"><span class="nav-number">4.</span> <span class="nav-text">缺省关键字的可见性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C语言简洁之过"><span class="nav-number">5.</span> <span class="nav-text">C语言简洁之过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重载"><span class="nav-number">5.1.</span> <span class="nav-text">重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C语言的运算符优先级问题"><span class="nav-number">5.2.</span> <span class="nav-text">C语言的运算符优先级问题</span></a></li></ol></li></ol></div>
             
 
           </div>
