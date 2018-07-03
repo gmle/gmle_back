@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="calloc 和 realloc calloc 和malloc 都是在堆区分配内存 与malloc不同的是，calloc会将空间初始化为0 calloc（个数，大小） realloc 重新分配内存 如果重新分配的内存比原来大，那么不会初始化新空间为0 先看后续空间，如果足够，那么直接扩展 如果后续空闲空间不足，那么申请足够大的空间，将原有数据拷贝到新空间下，释放掉原有空间，将新空间的首地址返回 如">
+<meta name="description" content="calloc 和 realloc">
 <meta name="keywords" content="C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言的malloc、calloc、realloc">
 <meta property="og:url" content="http://gmle.github.io/2018/07/02/C语言的calloc.malloc.realloc/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="calloc 和 realloc calloc 和malloc 都是在堆区分配内存 与malloc不同的是，calloc会将空间初始化为0 calloc（个数，大小） realloc 重新分配内存 如果重新分配的内存比原来大，那么不会初始化新空间为0 先看后续空间，如果足够，那么直接扩展 如果后续空闲空间不足，那么申请足够大的空间，将原有数据拷贝到新空间下，释放掉原有空间，将新空间的首地址返回 如">
-<meta property="og:updated_time" content="2018-07-03T00:42:57.010Z">
+<meta property="og:description" content="calloc 和 realloc">
+<meta property="og:updated_time" content="2018-07-03T11:53:41.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言的malloc、calloc、realloc">
-<meta name="twitter:description" content="calloc 和 realloc calloc 和malloc 都是在堆区分配内存 与malloc不同的是，calloc会将空间初始化为0 calloc（个数，大小） realloc 重新分配内存 如果重新分配的内存比原来大，那么不会初始化新空间为0 先看后续空间，如果足够，那么直接扩展 如果后续空闲空间不足，那么申请足够大的空间，将原有数据拷贝到新空间下，释放掉原有空间，将新空间的首地址返回 如">
+<meta name="twitter:description" content="calloc 和 realloc">
 
 
 
@@ -374,7 +374,8 @@
       
 
       
-        <h2 id="calloc-和-realloc"><a href="#calloc-和-realloc" class="headerlink" title="calloc 和 realloc"></a>calloc 和 realloc</h2><ul>
+        <h2 id="calloc-和-realloc"><a href="#calloc-和-realloc" class="headerlink" title="calloc 和 realloc"></a>calloc 和 realloc</h2><a id="more"></a>
+<ul>
 <li>calloc 和malloc 都是在堆区分配内存</li>
 <li>与malloc不同的是，calloc会将空间初始化为0</li>
 <li>calloc（个数，大小）</li>
@@ -382,8 +383,7 @@
 <li>如果重新分配的内存比原来大，那么不会初始化新空间为0</li>
 <li>先看后续空间，如果足够，那么直接扩展</li>
 <li>如果后续空闲空间不足，那么申请足够大的空间，将原有数据拷贝到新空间下，释放掉原有空间，将新空间的首地址返回</li>
-<li>如果重新分配的内存比原来小，那么释放后序空间，只有权限操作申请空间<a id="more"></a>
-</li>
+<li>如果重新分配的内存比原来小，那么释放后序空间，只有权限操作申请空间</li>
 </ul>
 </li>
 </ul>
