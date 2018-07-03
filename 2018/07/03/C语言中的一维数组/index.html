@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="1234567891011121314151617181920212223242526272829303132#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;string.h&amp;gt;int main(int argc, char *argv[]) &amp;#123;    // 一维数组名是不是指针?    int arr[5">
+<meta name="description" content="C语言中的一维数组">
 <meta name="keywords" content="C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言的一维数组">
 <meta property="og:url" content="http://gmle.github.io/2018/07/03/C语言中的一维数组/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;string.h&amp;gt;int main(int argc, char *argv[]) &amp;#123;    // 一维数组名是不是指针?    int arr[5">
-<meta property="og:updated_time" content="2018-07-03T11:08:47.762Z">
+<meta property="og:description" content="C语言中的一维数组">
+<meta property="og:updated_time" content="2018-07-03T11:59:13.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言的一维数组">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;string.h&amp;gt;int main(int argc, char *argv[]) &amp;#123;    // 一维数组名是不是指针?    int arr[5">
+<meta name="twitter:description" content="C语言中的一维数组">
 
 
 
@@ -374,7 +374,7 @@
       
 
       
-        <a id="more"></a>
+        <p>C语言中的一维数组<br><a id="more"></a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 一维数组名是不是指针?</span></div><div class="line">    <span class="keyword">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%u\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) <span class="keyword">sizeof</span>(arr));</div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">     * 两种特殊情况，一维数组不是指向第一个元素的指针：</span></div><div class="line"><span class="comment">     * sizeof。</span></div><div class="line"><span class="comment">     * 对数组名取地址，得到数组指针 步长是整个数组长度</span></div><div class="line"><span class="comment">     * */</span></div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;arr);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;arr + <span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="comment">//arr数组名  它是一个指针常量 指针的指向不可以修改的，而指针指向的值可以改 int * const a ;</span></div><div class="line">    <span class="comment">//arr[0] = 1000;</span></div><div class="line">    <span class="comment">//arr = NULL;</span></div><div class="line"></div><div class="line">    <span class="comment">//数组索引 可不可以为负数</span></div><div class="line">    <span class="keyword">int</span> * p = arr;</div><div class="line">    p = p + <span class="number">3</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,p[<span class="number">-1</span>]);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
