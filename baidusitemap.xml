@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://gmle.github.io/2018/07/03/C%E8%AF%AD%E8%A8%80%E4%B8%ADstruct%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/</loc>
+    <lastmod>2018-07-03T11:56:32.229Z</lastmod>
+    <data>
+        <display>
+        <title>C语言的深拷贝与浅拷贝</title>
+        <pubTime>2018-07-03T11:45:05.240Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gmle.github.io/2018/07/02/C%E8%AF%AD%E8%A8%80%E7%9A%84calloc.malloc.realloc/</loc>
     <lastmod>2018-07-03T11:53:41.823Z</lastmod>
     <data>
@@ -70,26 +90,6 @@
         <display>
         <title>C语言的数组选择排序</title>
         <pubTime>2018-07-03T11:18:58.068Z</pubTime>
-        
-        <tag>C</tag>
-         
-         
-           
-             
-              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://gmle.github.io/2018/07/03/C%E8%AF%AD%E8%A8%80%E4%B8%ADstruct%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/</loc>
-    <lastmod>2018-07-03T11:52:01.579Z</lastmod>
-    <data>
-        <display>
-        <title>C语言的深拷贝与浅拷贝</title>
-        <pubTime>2018-07-03T11:45:05.240Z</pubTime>
         
         <tag>C</tag>
          
