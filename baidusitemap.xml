@@ -4,12 +4,112 @@
 
     
   <url>
+    <loc>http://gmle.github.io/2018/07/05/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E5%B0%8F%E6%A1%88%E4%BE%8B/</loc>
+    <lastmod>2018-07-05T13:57:53.067Z</lastmod>
+    <data>
+        <display>
+        <title>C语言的文件读写小案例</title>
+        <pubTime>2018-07-05T13:45:32.417Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2018/05/28/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2018-07-05T13:44:05.089Z</lastmod>
+    <data>
+        <display>
+        <title>C语言的文件操作</title>
+        <pubTime>2018-05-28T12:50:08.471Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2018/07/05/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F/</loc>
+    <lastmod>2018-07-05T13:42:02.936Z</lastmod>
+    <data>
+        <display>
+        <title>C语言中结构体的偏移量与内存对齐</title>
+        <pubTime>2018-07-05T13:28:28.344Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2018/07/05/C%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E4%BA%8C%E7%BA%A7%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2018-07-05T13:18:37.342Z</lastmod>
+    <data>
+        <display>
+        <title>C语言中结构体的二级指针</title>
+        <pubTime>2018-07-05T13:17:17.743Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gmle.github.io/2018/07/03/C%E8%AF%AD%E8%A8%80%E7%9A%84sscanf/</loc>
     <lastmod>2018-07-03T12:00:29.367Z</lastmod>
     <data>
         <display>
         <title>C语言的sscanf</title>
         <pubTime>2018-07-03T00:43:30.123Z</pubTime>
+        
+        <tag>C</tag>
+         
+         
+           
+             
+              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gmle.github.io/2018/05/17/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2018-07-03T11:59:47.782Z</lastmod>
+    <data>
+        <display>
+        <title>C语言字符串输入输出的几个函数</title>
+        <pubTime>2018-05-17T13:21:24.837Z</pubTime>
         
         <tag>C</tag>
          
@@ -105,7 +205,7 @@
     
   <url>
     <loc>http://gmle.github.io/2018/07/03/C%E8%AF%AD%E8%A8%80%E4%B8%ADstruct%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/</loc>
-    <lastmod>2018-07-03T11:56:32.229Z</lastmod>
+    <lastmod>2018-07-03T11:58:12.221Z</lastmod>
     <data>
         <display>
         <title>C语言的深拷贝与浅拷贝</title>
@@ -266,26 +366,6 @@
 
     
   <url>
-    <loc>http://gmle.github.io/2018/05/28/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-05-28T12:50:08.471Z</lastmod>
-    <data>
-        <display>
-        <title>C语言的文件操作</title>
-        <pubTime>2018-05-28T12:50:08.471Z</pubTime>
-        
-        <tag>C</tag>
-         
-         
-           
-             
-              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://gmle.github.io/2018/05/28/C%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93/</loc>
     <lastmod>2018-05-28T00:27:22.648Z</lastmod>
     <data>
@@ -332,26 +412,6 @@
         <display>
         <title>C语言的灵魂--指针</title>
         <pubTime>2018-05-22T14:18:52.783Z</pubTime>
-        
-        <tag>C</tag>
-         
-         
-           
-             
-              <breadCrumb title="C" url="http://gmle.github.io/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://gmle.github.io/2018/05/17/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%87%A0%E4%B8%AA%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2018-05-17T13:21:24.837Z</lastmod>
-    <data>
-        <display>
-        <title>C语言字符串输入输出的几个函数</title>
-        <pubTime>2018-05-17T13:21:24.837Z</pubTime>
         
         <tag>C</tag>
          
