@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gmle.github.io/"/>
-  <updated>2018-07-08T13:12:08.260Z</updated>
+  <updated>2018-07-08T13:19:17.515Z</updated>
   <id>http://gmle.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://gmle.github.io/2018/07/08/Clion%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8BMacOS%E7%AF%87/"/>
     <id>http://gmle.github.io/2018/07/08/Clion的使用技巧之MacOS篇/</id>
     <published>2018-07-08T00:57:35.372Z</published>
-    <updated>2018-07-08T13:12:08.260Z</updated>
+    <updated>2018-07-08T13:19:17.515Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="CLIon介绍"><a href="#CLIon介绍" class="headerlink" title="CLIon介绍"></a>CLIon介绍</h2><p>CLion是<a href="https://jetbrains.com" target="_blank" rel="external">Jetbrains</a>公司开发的一款编写C/C++的IDE；<br>而且Jetbrains有特别多的IDE去供不同语言的开发者去使用,涵盖了大多数主流开发语言。</p><p>有句话说，Jetbrains出品，必属精品，作为一款有着昂贵收费的IDE，我在使用后就感受到了CLion的强大之处。<br><strong>我所使用的Jetbrains产品激活码由 </strong><a href="https://hsweb.me" target="_blank" rel="external">hsweb</a><strong> 作者提供，感谢支持。</strong></p><a id="more"></a><h2 id="CLion开篇"><a href="#CLion开篇" class="headerlink" title="CLion开篇"></a>CLion开篇</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p><img src="images/clion/01_start.png" alt="启动界面"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="CLIon介绍"><a href="#CLIon介绍" class="headerlink" title="CLIon介绍"></a>CLIon介绍</h2><p>CLion是<a href="https://jetbrains.com" target="_blank" rel="external">Jetbrains</a>公司开发的一款编写C/C++的IDE；<br>而且Jetbrains有特别多的IDE去供不同语言的开发者去使用,涵盖了大多数主流开发语言。</p><p>有句话说，Jetbrains出品，必属精品，作为一款有着昂贵收费的IDE，我在使用后就感受到了CLion的强大之处。<br><strong>我所使用的Jetbrains产品激活码由 </strong><a href="https://hsweb.me" target="_blank" rel="external">hsweb</a><strong> 作者提供，感谢支持。</strong></p><a id="more"></a><h2 id="CLion开篇"><a href="#CLion开篇" class="headerlink" title="CLion开篇"></a>CLion开篇</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p><img src="/images/clion/01_start.png" alt="启动界面"></p>]]></content>
     
     <summary type="html">
     
