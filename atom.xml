@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gmle.github.io/"/>
-  <updated>2018-07-08T13:19:17.515Z</updated>
+  <updated>2018-07-08T13:58:39.006Z</updated>
   <id>http://gmle.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://gmle.github.io/2018/07/08/Clion%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B9%8BMacOS%E7%AF%87/"/>
     <id>http://gmle.github.io/2018/07/08/Clion的使用技巧之MacOS篇/</id>
     <published>2018-07-08T00:57:35.372Z</published>
-    <updated>2018-07-08T13:19:17.515Z</updated>
+    <updated>2018-07-08T13:58:39.006Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="CLIon介绍"><a href="#CLIon介绍" class="headerlink" title="CLIon介绍"></a>CLIon介绍</h2><p>CLion是<a href="https://jetbrains.com" target="_blank" rel="external">Jetbrains</a>公司开发的一款编写C/C++的IDE；<br>而且Jetbrains有特别多的IDE去供不同语言的开发者去使用,涵盖了大多数主流开发语言。</p><p>有句话说，Jetbrains出品，必属精品，作为一款有着昂贵收费的IDE，我在使用后就感受到了CLion的强大之处。<br><strong>我所使用的Jetbrains产品激活码由 </strong><a href="https://hsweb.me" target="_blank" rel="external">hsweb</a><strong> 作者提供，感谢支持。</strong></p><a id="more"></a><h2 id="CLion开篇"><a href="#CLion开篇" class="headerlink" title="CLion开篇"></a>CLion开篇</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p><img src="/images/clion/01_start.png" alt="启动界面"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="CLIon介绍"><a href="#CLIon介绍" class="headerlink" title="CLIon介绍"></a>CLIon介绍</h2><p>CLion是<a href="https://jetbrains.com" target="_blank" rel="external">Jetbrains</a>公司开发的一款编写C/C++的IDE；<br>而且Jetbrains有特别多的IDE去供不同语言的开发者去使用,涵盖了大多数主流开发语言。</p><p>有句话说，Jetbrains出品，必属精品，作为一款有着昂贵收费的IDE，我在使用后就感受到了CLion的强大之处。<br><strong>我所使用的Jetbrains产品激活码由 </strong><a href="https://hsweb.me" target="_blank" rel="external">hsweb</a><strong> 作者提供，感谢支持。</strong></p><a id="more"></a><h2 id="CLion开篇"><a href="#CLion开篇" class="headerlink" title="CLion开篇"></a>CLion开篇</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><center><br>    <img src="/images/clion/01_start.png" height="50%" width="50%"><br>    启动界面<br></center><h3 id="启动界面说明"><a href="#启动界面说明" class="headerlink" title="启动界面说明"></a>启动界面说明</h3><center><br>    <img src="/images/clion/02_shuoming.png" height="50%" width="50%"><br>    启动界面说明<br></center><h3 id="各个按钮-选项说明"><a href="#各个按钮-选项说明" class="headerlink" title="各个按钮/选项说明"></a>各个按钮/选项说明</h3><h4 id="New-Project"><a href="#New-Project" class="headerlink" title="New Project"></a>New Project</h4><p>顾名思义，新建工程。点击效果图：</p><center><br>    <img src="/images/clion/03_newproject.png"><br>    新建工程界面<br></center><p><strong>页面介绍：</strong></p><ul><li>C++ Executable<ul><li>C++的可执行程序</li></ul></li><li>C++ Library<ul><li>C++的动态库/静态库</li></ul></li><li>C Executable<ul><li>C的可执行程序</li></ul></li><li>C Library<ul><li>C的动态库/静态库<br>…<br>其余不再叙述，因本帖旨在介绍C/C++的IDE，若有兴趣，读者可自行尝试。</li></ul></li></ul><h5 id="C-Library-C-Library"><a href="#C-Library-C-Library" class="headerlink" title="C++ Library/C Library"></a>C++ Library/C Library</h5><p>这两个选项提供了C/C++的动态库与静态库的生成，若是对CMake比较熟悉的人应该不会陌生，因为此两个选项只是在CMakeLists.txt中提供了一个CMake的命令</p><center><br>    <img src="/images/clion/04_cpplibrary.png"><br>    新建一个静/动态库工程<br></center><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 生成动态库</div><div class="line">ADD_LIBRARY(libname SHARED library.c library.h)</div></pre></td></tr></table></figure><h5 id="C-Executable-C-Executable"><a href="#C-Executable-C-Executable" class="headerlink" title="C++ Executable/C Executable"></a>C++ Executable/C Executable</h5>]]></content>
     
     <summary type="html">
     
