@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="队列的链表实现">
+<meta name="description" content="队列的链表存储结构实现">
 <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="队列">
+<meta property="og:title" content="队列的链表存储结构">
 <meta property="og:url" content="http://gmle.github.io/2018/07/12/队列/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="队列的链表实现">
-<meta property="og:updated_time" content="2018-07-12T13:36:59.498Z">
+<meta property="og:description" content="队列的链表存储结构实现">
+<meta property="og:updated_time" content="2018-07-12T13:46:34.467Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="队列">
-<meta name="twitter:description" content="队列的链表实现">
+<meta name="twitter:title" content="队列的链表存储结构">
+<meta name="twitter:description" content="队列的链表存储结构实现">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>队列 | 忘lele</title>
+  <title>队列的链表存储结构 | 忘lele</title>
   
 
 
@@ -301,7 +301,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">队列</h2>
+          <h2 class="post-title" itemprop="name headline">队列的链表存储结构</h2>
         
 
         <div class="post-meta">
@@ -374,7 +374,7 @@
       
 
       
-        <p>队列的链表实现</p>
+        <p>队列的链表存储结构实现</p>
 <a id="more"></a>
 <p>FILE1：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _LINKQUEUE_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _LINKQUEUE_H</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  <span class="title">QUEUENODE</span>&#123;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QUEUENODE</span> *<span class="title">next</span>;</span></div><div class="line">&#125;QueueNode;</div><div class="line"></div><div class="line"><span class="comment">// 队列结构体</span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LISTQUEUE</span>&#123;</span></div><div class="line">    QueueNode header;</div><div class="line">    <span class="keyword">int</span> ListQueueSize;</div><div class="line"></div><div class="line">    QueueNode *tail;</div><div class="line"></div><div class="line">&#125; ListQueue;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> *LinkQueue;</div><div class="line"></div><div class="line"><span class="comment">// 初始化</span></div><div class="line"><span class="function">LinkQueue <span class="title">init_LinkQueue</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 入队</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_LinkQueue</span><span class="params">(LinkQueue q, <span class="keyword">void</span> *data)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 出队</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop__LinkQueue</span><span class="params">(LinkQueue q)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 队列大小</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">size_LinkQueue</span><span class="params">(LinkQueue q)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 队列是否为空</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty_LinkQueue</span><span class="params">(LinkQueue q)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 队列头</span></div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">front_LinkQueue</span><span class="params">(LinkQueue q)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 队列尾</span></div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">back_LinkQueue</span><span class="params">(LinkQueue q)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">destory_LinkQueue</span><span class="params">(LinkQueue q)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//_LINKQUEUE_H</span></span></div></pre></td></tr></table></figure>
