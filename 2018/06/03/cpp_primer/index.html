@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://gmle.github.io/2018/06/03/cpp_primer/index.html">
 <meta property="og:site_name" content="忘lele">
 <meta property="og:description" content="做点什么吧">
-<meta property="og:updated_time" content="2018-06-03T16:53:01.932Z">
+<meta property="og:updated_time" content="2018-07-12T11:58:51.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer 读书笔记">
 <meta name="twitter:description" content="做点什么吧">
@@ -643,8 +643,8 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><hr>
 <p>C++11中新增了一种引用：所谓的<strong>“右值引用”</strong>，这种引用主要用于内置类。严格来说，当我们使用术语“引用”时，指的其实是<strong>“左值引用”</strong>。</p>
 <hr>
-<p><strong>引用</strong> 为对象起了另外一个名字，引用类型医用另外一种类型。<br>通过将声明写成 &amp;d 的形式来定义引用类型，其中d是声明的变量名。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ival = <span class="number">1024</span>;</div><div class="line"><span class="keyword">int</span> &amp;refival = ival; <span class="comment">//refval指向ival（ival的另一个名字）</span></div><div class="line"><span class="keyword">int</span> &amp;refval2; <span class="comment">//报错：引用必须初始化</span></div></pre></td></tr></table></figure></p>
-<p>一般在初始化变量时，初始值会被拷贝到新建的对象中，然而定义引用时，程序吧引用和它的滁州市值绑定在一起，而不是将初始值拷贝给引用。<br>一旦初始化完成，引用将和他的初始值对象一直绑顶在一起，因为无法令引用重新把那个顶到另外一个对象，因此引用必须初始化。</p>
+<p><strong>引用</strong> 为对象起了另外一个名字，引用类型引用另外一种类型。<br>通过将声明写成 &amp;d 的形式来定义引用类型，其中d是声明的变量名。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> ival = <span class="number">1024</span>;</div><div class="line"><span class="keyword">int</span> &amp;refival = ival; <span class="comment">//refval指向ival（ival的另一个名字）</span></div><div class="line"><span class="keyword">int</span> &amp;refval2; <span class="comment">//报错：引用必须初始化</span></div></pre></td></tr></table></figure></p>
+<p>一般在初始化变量时，初始值会被拷贝到新建的对象中，然而定义引用时，程序会把引用和它的初始值绑定在一起，而不是将初始值拷贝给引用。<br>一旦初始化完成，引用将和他的初始值对象一直绑顶在一起，因为无法令引用重新把那个顶到另外一个对象，因此引用必须初始化。</p>
 <h4 id="引用即别名"><a href="#引用即别名" class="headerlink" title="引用即别名"></a>引用即别名</h4><hr>
 <p>引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。</p>
 <hr>
@@ -869,7 +869,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -880,7 +880,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -891,7 +891,7 @@ iostream 库中包含两个基础类型 istream 和 ostream，分别表示输入
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
