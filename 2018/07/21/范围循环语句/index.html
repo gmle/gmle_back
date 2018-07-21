@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Gmle, Blog" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -81,15 +81,17 @@
 
 
 
-<meta name="description" content="行者无疆，大道无垠。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="忘lele">
-<meta property="og:url" content="http://gmle.github.io/tags/ACL/index.html">
+<meta name="description" content="范围for语句是C++11的特性，这种语句可以遍历容器或其他序列的所有元素。">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="范围for语句">
+<meta property="og:url" content="http://gmle.github.io/2018/07/21/范围循环语句/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="行者无疆，大道无垠。">
+<meta property="og:description" content="范围for语句是C++11的特性，这种语句可以遍历容器或其他序列的所有元素。">
+<meta property="og:updated_time" content="2018-07-21T13:06:45.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="忘lele">
-<meta name="twitter:description" content="行者无疆，大道无垠。">
+<meta name="twitter:title" content="范围for语句">
+<meta name="twitter:description" content="范围for语句是C++11的特性，这种语句可以遍历容器或其他序列的所有元素。">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/tags/ACL/"/>
+  <link rel="canonical" href="http://gmle.github.io/2018/07/21/范围循环语句/"/>
 
 
 
 
 
-  <title>标签: ACL | 忘lele</title>
+  <title>范围for语句 | 忘lele</title>
   
 
 
@@ -154,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,54 +270,173 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>ACL<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/07/21/范围循环语句/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/05/03/玩转HDFS-ACL/" itemprop="url">
-              
-                <span itemprop="name">Hadoop_玩转 HDFS之 ACL</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">范围for语句</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-03T14:38:39+08:00"
-              content="2017-05-03" >
-          05-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-21T21:02:16+08:00">
+                2018-07-21
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>范围for语句是C++11的特性，这种语句可以遍历容器或其他序列的所有元素。</p>
+<a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[<span class="number">10</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 范围for语句语法：</span></div><div class="line">    <span class="comment">// 范围变量必须是引用类型，这样才能对元素执行写操作。</span></div><div class="line">    <span class="comment">// 对于arr中的每个元素 ：</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;i:arr)&#123;  </div><div class="line">        i *= <span class="number">2</span>; <span class="comment">// 将arr中的每个元素值翻倍。</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"\n®----------------------"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;i:arr)&#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>- </p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/21/运算符重载/" rel="next" title="运算符重载">
+                <i class="fa fa-chevron-left"></i> 运算符重载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -323,6 +444,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -569,6 +692,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
