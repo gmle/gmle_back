@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://gmle.github.io/2018/07/21/%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2018-07-21T12:16:47.698Z</lastmod>
+    <data>
+        <display>
+        <title>友元函数</title>
+        <pubTime>2018-07-21T11:29:27.206Z</pubTime>
+        
+        <tag>C++</tag>
+         
+         
+           
+             
+              <breadCrumb title="C++" url="http://gmle.github.io/categories/C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gmle.github.io/2018/07/21/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</loc>
     <lastmod>2018-07-21T11:52:07.102Z</lastmod>
     <data>
@@ -50,26 +70,6 @@
         <display>
         <title>构造、析构。拷贝构造</title>
         <pubTime>2018-07-21T11:35:00.189Z</pubTime>
-        
-        <tag>C++</tag>
-         
-         
-           
-             
-              <breadCrumb title="C++" url="http://gmle.github.io/categories/C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://gmle.github.io/2018/07/21/%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2018-07-21T11:35:32.626Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式：单例</title>
-        <pubTime>2018-07-21T11:29:27.206Z</pubTime>
         
         <tag>C++</tag>
          
