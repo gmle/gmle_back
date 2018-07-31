@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gmle.github.io/"/>
-  <updated>2018-07-21T13:55:41.669Z</updated>
+  <updated>2018-07-30T12:04:48.763Z</updated>
   <id>http://gmle.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>for与while循环</title>
+    <link href="http://gmle.github.io/2018/07/30/for&amp;while/"/>
+    <id>http://gmle.github.io/2018/07/30/for&amp;while/</id>
+    <published>2018-07-30T12:02:11.266Z</published>
+    <updated>2018-07-30T12:04:48.763Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>C/C++中for循环和while循环的使用时机</code></pre><a id="more"></a><p>在循环次数已知的情况下，显然使用for循环更加合适，而且更为简洁<br>而循环次数未知时，使用while循环。用特定条件控制while循环是否继续执行，循环体中的条件语句可能会影响循环判定条件发生变化。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;C/C++中for循环和while循环的使用时机
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://gmle.github.io/categories/Cpp/"/>
+    
+    
+      <category term="Cpp" scheme="http://gmle.github.io/tags/Cpp/"/>
+    
+  </entry>
   
   <entry>
     <title>范围for语句</title>
@@ -460,28 +483,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;选择排序的核心：&lt;/strong&gt;&lt;br&gt;开始认定最小值下标为i，从j = i+1的位置起找真实最小值下标，如果计算的真实最小值下标与i不等，互换元素。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="C" scheme="http://gmle.github.io/categories/C/"/>
-    
-    
-      <category term="C" scheme="http://gmle.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言中的二维数组指针</title>
-    <link href="http://gmle.github.io/2018/07/03/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88/"/>
-    <id>http://gmle.github.io/2018/07/03/C语言中的二维数组指针/</id>
-    <published>2018-07-03T11:18:58.068Z</published>
-    <updated>2018-07-03T11:59:42.086Z</updated>
-    
-    <content type="html"><![CDATA[<p>C语言中的一维数组指针<br><a id="more"></a></p><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> arr[<span class="number">3</span>][<span class="number">3</span>] = &#123;</div><div class="line">            &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,</div><div class="line">            &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;,</div><div class="line">            &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 除两种特殊情况外，二维数组名称是指向第一个一维数组的指针。</span></div><div class="line"><span class="comment">     * 1、sizeof</span></div><div class="line"><span class="comment">     * 2、对数组名取地址，获取的是二维数组的数组指针，步长是整个二维数组的长度。</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%u\n"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) <span class="keyword">sizeof</span>(arr));</div><div class="line"></div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="keyword">int</span> (*pArr)[<span class="number">3</span>] = arr;</div><div class="line"></div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="keyword">int</span> (*pArr2)[<span class="number">3</span>][<span class="number">3</span>] = &amp;arr;</div><div class="line"></div><div class="line">    assert(arr[<span class="number">1</span>][<span class="number">2</span>] == *(*(pArr + <span class="number">1</span>) +<span class="number">2</span>));</div><div class="line"></div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, arr[<span class="number">1</span>][<span class="number">2</span>]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *(*(pArr + <span class="number">1</span>) +<span class="number">2</span>));</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// static void print2Arr(int (*arr)[3], int len)&#123;</span></div><div class="line"><span class="comment">// static void print2Arr(int arr[][3], int len)&#123;</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print2Arr</span><span class="params">(<span class="keyword">int</span> arr[<span class="number">3</span>][<span class="number">3</span>], <span class="keyword">int</span> len)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[i][j]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">//    test01();</span></div><div class="line"></div><div class="line">    <span class="keyword">int</span> arr[<span class="number">3</span>][<span class="number">3</span>] = &#123;</div><div class="line">            &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,</div><div class="line">            &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;,</div><div class="line">            &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;</div><div class="line">    &#125;;</div><div class="line">    print2Arr(arr, <span class="number">3</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;C语言中的一维数组指针&lt;br&gt;
     
     </summary>
     

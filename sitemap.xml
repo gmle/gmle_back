@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://gmle.github.io/2018/07/30/for&while/</loc>
+    
+    <lastmod>2018-07-30T12:04:48.763Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gmle.github.io/2017/08/04/C++%E6%A0%87%E5%87%86%E5%BA%93/</loc>
+    
+    <lastmod>2018-07-22T01:35:40.719Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gmle.github.io/2018/07/21/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</loc>
     
     <lastmod>2018-07-21T13:55:56.456Z</lastmod>
@@ -61,13 +75,6 @@
     <loc>http://gmle.github.io/2018/06/03/cpp_primer/</loc>
     
     <lastmod>2018-07-21T13:54:23.971Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gmle.github.io/2017/08/04/C++%E6%A0%87%E5%87%86%E5%BA%93/</loc>
-    
-    <lastmod>2018-07-21T13:54:09.386Z</lastmod>
     
   </url>
   
