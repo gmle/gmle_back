@@ -7,9 +7,9 @@ var config_default = {
 	emitterNum : 10,
 
 	preface : [
-		"Tap to open my greeting card~",
-		"Well, continue~",
-		"Don't stop tapping until you know my meaning ^_^"
+		"陈老Si~",
+		"教师节快乐~",
+		"要一直点哦~ ^_^"
 	],
 	prefaceFontSize: 20,
 
