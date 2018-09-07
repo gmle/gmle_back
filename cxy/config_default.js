@@ -9,7 +9,8 @@ var config_default = {
 	preface : [
 		"陈老Si~",
 		"教师节快乐~",
-		"要一直点哦~ ^_^"
+        "一张贺卡表达不了，所以用这种方式~",
+		"要一直点哦 ^_^"
 	],
 	prefaceFontSize: 20,
 
