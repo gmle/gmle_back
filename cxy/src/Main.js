@@ -47,10 +47,10 @@ window.rAF = (function(){
 
 function main () {
 	var loadList = [
-		"./src/Sprite.js",
-		"./src/Particle.js",
-		"./src/Stage.js",
-		"./src/Txt.js"
+		"https://gmle.club/cxy/src/Sprite.js",
+		"https://gmle.club/cxy/src/Particle.js",
+		"https://gmle.club/cxy/src/Stage.js",
+		"https://gmle.club/cxy/src/Txt.js"
 	];
 
 	var startLoad = function (configPath) {
@@ -93,7 +93,7 @@ function main () {
 	var configFileQueryStr = getQueryStringByName("config_file");
 
 	if (configFileQueryStr === null) {
-		startLoad("./config.js");
+		startLoad("https://gmle.club/cxy/config.js");
 	} else {
 		startLoad(configFileQueryStr);
 	}
