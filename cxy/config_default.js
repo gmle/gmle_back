@@ -1,5 +1,5 @@
 var config_default = {
-	documentTitle : "Greeting Card",
+	documentTitle : "陈老Si，教师节快乐~",
 	stageW : 800,
 	stageH : 480,
 	col : 40,
