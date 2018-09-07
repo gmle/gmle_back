@@ -53,4 +53,8 @@ Sprite.prototype = {
 
 		s.alpha -= 0.05;
 
-		if (s.alpha 
+		if (s.alpha <= 0) {
+			s.mode = Sprite.MODE_DISAPPEAR;
+		}
+	}
+};

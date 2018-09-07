@@ -190,4 +190,60 @@ function addStage () {
 function addInstructions () {
 	var text;
 
-	if (config.preface.length 
+	if (config.preface.length <= 0) {
+		text = "";
+	} else {
+		text = config.preface[prefaceIndex];
+	}
+
+	prefaceTxt = new Txt(text);
+	showList.push(prefaceTxt);
+}
+
+function getParticlesPosition () {
+	if (!config.matrix) {
+		return;
+	}
+
+	for (var i = 0, l = config.matrix.length; i < l; i++) {
+		var item = config.matrix[i];
+
+		for (var j = 0, n = item.length; j < n; j++) {
+			if (item[j]) {
+				positionList.push({x : j * particleW, y : i * particleH});
+			}
+		}
+	}
+}
+
+function addParticle (startX, startY) {
+	var index = Math.floor(Math.random() * (positionList.length - 1)),
+	pos = positionList[index];
+
+	if (!pos) {
+		return;
+	}
+
+	var particle = new Particle(startX, startY, pos.x, pos.y);
+	showList.push(particle);
+
+	positionList.splice(index, 1);
+}
+
+function scaleOffsetX (v) {
+	return (v - marginLeft) * config.stageW / canvasStyleWidth;
+}
+
+function scaleOffsetY (v) {
+	return (v - marginTop) * config.stageH / canvasStyleHeight;
+}
+
+function loop () {
+	ctx.clearRect(0, 0, canvasTag.width, canvasTag.height);
+
+	for (var i = 0, l = showList.length; i < l; i++) {
+		showList[i].loop();
+	}
+
+	window.rAF(loop);
+}
