@@ -379,33 +379,23 @@
 </code></pre><h2 id="2016-04-21-–-更新"><a href="#2016-04-21-–-更新" class="headerlink" title="2016.04.21 – 更新"></a>2016.04.21 – 更新</h2><p>下面哪个程序负责 HDFS 数据存储？<br>    a)NameNode<br>    b)Jobtracker<br>    <font color="#ff0000">c)Datanode</font><br>    d)secondaryNameNode<br>    e)tasktracker</p>
 <a id="more"></a>
 <p>HDfS 中的 block 默认保存几份？<br>    <font color="#ff0000">a)3 份</font><br>    b)2 份<br>    c)1 份<br>    d)不确定</p>
-<p>下列哪个程序通常与 NameNode 在一个节点启动？<br>    a)SecondaryNameNode<br>    b)DataNode<br>    c)TaskTracker<br>    <font color="#ff0000">d)Jobtracker</font></p>
-<pre><code>&gt;此题分析：
-    hadoop的集群是基于master/slave模式，namenode和jobtracker属于master，datanode和tasktracker属于slave，master只有一个，而slave有多个SecondaryNameNode内存需求和NameNode在一个数量级上，所以通常secondary NameNode（运行在单独的物理机器上）和NameNode运行在不同的机器上。
+<p>下列哪个程序通常与 NameNode 在一个节点启动？<br>    a)SecondaryNameNode<br>    b)DataNode<br>    c)TaskTracker<br>    <font color="#ff0000">d)Jobtracker</font><br>        &gt;此题分析：<br>            hadoop的集群是基于master/slave模式，namenode和jobtracker属于master，datanode和tasktracker属于slave，master只有一个，而slave有多个SecondaryNameNode内存需求和NameNode在一个数量级上，所以通常secondary NameNode（运行在单独的物理机器上）和NameNode运行在不同的机器上。</p>
+<pre><code>JobTracker和TaskTracker；
+JobTracker 对应于 NameNode；
+TaskTracker 对应于 DataNode；
+DataNode 和NameNode 是针对数据存放来而言的；
+JobTracker和TaskTracker是对于MapReduce执行而言的。
 
-    JobTracker和TaskTracker；
-    JobTracker 对应于 NameNode；
-    TaskTracker 对应于 DataNode；
-    DataNode 和NameNode 是针对数据存放来而言的；
-    JobTracker和TaskTracker是对于MapReduce执行而言的。
+mapreduce中几个主要概念，mapreduce整体上可以分为这么几条执行线索：obclient，JobTracker与TaskTracker。
 
-    mapreduce中几个主要概念，mapreduce整体上可以分为这么几条执行线索：obclient，JobTracker与TaskTracker。
+1、JobClient会在用户端通过JobClient类将应用已经配置参数打包成jar文件存储到hdfs，并把路径提交到Jobtracker,然后由JobTracker创建每一个Task（即MapTask和ReduceTask）并将它们分发到各个TaskTracker服务中去执行。
 
-    1、JobClient会在用户端通过JobClient类将应用已经配置参数打包成jar文件存储到hdfs，并把路径提交到Jobtracker,然后由JobTracker创建每一个Task（即MapTask和ReduceTask）并将它们分发到各个TaskTracker服务中去执行。
+2、JobTracker是一个master服务，软件启动之后JobTracker接收Job，负责调度Job的每一个子任务task运行于TaskTracker上，并监控它们，如果发现有失败的task就重新运行它。一般情况应该把JobTracker部署在单独的机器上。
 
-    2、JobTracker是一个master服务，软件启动之后JobTracker接收Job，负责调度Job的每一个子任务task运行于TaskTracker上，并监控它们，如果发现有失败的task就重新运行它。一般情况应该把JobTracker部署在单独的机器上。
-
-    3、TaskTracker是运行在多个节点上的slaver服务。TaskTracker主动与JobTracker通信，接收作业，并负责直接执行每一个任务。TaskTracker都需要运行在HDFS的DataNode上。
+3、TaskTracker是运行在多个节点上的slaver服务。TaskTracker主动与JobTracker通信，接收作业，并负责直接执行每一个任务。TaskTracker都需要运行在HDFS的DataNode上。
 </code></pre><p>Hadoop 作者 答案C Doug cutting<br>    a)Martin Fowler<br>    b)Kent Beck<br>    <font color="#ff0000">c)Doug cutting</font></p>
-<p>下列哪项通常是集群的最主要瓶颈:<br>    a)CPU<br>    b)网络<br>    <font color="#ff0000">c)磁盘IO</font><br>    d)内存</p>
-<pre><code>&gt;该题解析：
-    首先集群的目的是为了节省成本，用廉价的pc机，取代小型机及大型机。小型机和大型机有什么特点？
-    1.cpu处理能力强
-    2.内存够大
-    所以集群的瓶颈不可能是a和d
-    3.网络是一种稀缺资源，但是并不是瓶颈。
-    4.由于大数据面临海量数据，读写数据都需要io，然后还要冗余数据，hadoop一般备3份数据，所以IO就会打折扣。
-</code></pre><p>关于 SecondaryNameNode 哪项是正确的？<br>    a)它是 NameNode 的热备<br>    b)它对内存没有要求<br>    <font color="#ff0000">c)它的目的是帮助 NameNode 合并编辑日志，减少 NameNode 启动时间</font><br>    d)SecondaryNameNode 应与 NameNode 部署到一个节点。</p>
+<p>下列哪项通常是集群的最主要瓶颈:<br>    a)CPU<br>    b)网络<br>    <font color="#ff0000">c)磁盘IO</font><br>    d)内存<br>        &gt;该题解析：<br>            首先集群的目的是为了节省成本，用廉价的pc机，取代小型机及大型机。小型机和大型机有什么特点？<br>            1.cpu处理能力强<br>            2.内存够大<br>            所以集群的瓶颈不可能是a和d<br>            3.网络是一种稀缺资源，但是并不是瓶颈。<br>            4.由于大数据面临海量数据，读写数据都需要io，然后还要冗余数据，hadoop一般备3份数据，所以IO就会打折扣。</p>
+<p>关于 SecondaryNameNode 哪项是正确的？<br>    a)它是 NameNode 的热备<br>    b)它对内存没有要求<br>    <font color="#ff0000">c)它的目的是帮助 NameNode 合并编辑日志，减少 NameNode 启动时间</font><br>    d)SecondaryNameNode 应与 NameNode 部署到一个节点。</p>
 <p>下列哪项可以作为集群的管理？<br>    <font color="#ff0000">a)Puppet</font><br>    <font color="#ff0000">b)Pdsh</font><br>    c)Cloudera Manager<br>    <font color="#ff0000">d)Zookeeper</font></p>
 <p>Cloudera 提供哪几种安装 CDH 的方法？<br>    <font color="#ff0000"><br>    a)Cloudera manager<br>    b)Tarball<br>    c)Yum<br>    d)Rpm<br>    </font></p>
 <p>Ganglia 不仅可以进行监控，也可以进行告警。（ 正确）</p>
@@ -603,7 +593,7 @@ ClusterID
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -614,7 +604,7 @@ ClusterID
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

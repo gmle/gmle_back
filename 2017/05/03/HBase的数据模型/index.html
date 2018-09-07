@@ -380,10 +380,8 @@
 <a id="more"></a>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><pre><code>HBase 的数据模型是继 Bigtable 数据模型的之后的克隆版，特别适用于密集的数据系统。
 也就是HBase是通过Google的BigTable演变而来
-</code></pre><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>看简单点，HBase可以概括成一个Map</p>
-<pre><code>&gt;Map&lt;byte[], Map&lt;byte[], Map&lt;byte[], Map&lt;Long, byte[]&gt;&gt;&gt;
-
-第一个Map是映射从 row keys 到 column families。
+</code></pre><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>看简单点，HBase可以概括成一个Map<br>    &gt;Map&lt;byte[], Map&lt;byte[], Map&lt;byte[], Map&lt;Long, byte[]&gt;&gt;&gt;</p>
+<pre><code>第一个Map是映射从 row keys 到 column families。
 第二个Map是映射从 column families 到他们的 column keys。
 第三个Map是映射从 column keys 到他们的 timestamps 。
 最后，最后的Map映射 timestamps 到一个单一的值。
@@ -528,7 +526,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -539,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

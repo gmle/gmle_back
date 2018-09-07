@@ -377,19 +377,19 @@
       
         <pre><code>Hadoop与HDFS文件操作的一些常用命令，记个笔记。
 </code></pre><h3 id="Hadoop启动"><a href="#Hadoop启动" class="headerlink" title="Hadoop启动"></a>Hadoop启动</h3><a id="more"></a>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo ./sbin/start-dfs.sh</div><div class="line">sudo ./sbin/start-yarn.sh</div></pre></td></tr></table></figure>
-<h4 id="启动之后的访问地址"><a href="#启动之后的访问地址" class="headerlink" title="启动之后的访问地址"></a>启动之后的访问地址</h4><h6 id="查看任务的运行情况"><a href="#查看任务的运行情况" class="headerlink" title="查看任务的运行情况"></a>查看任务的运行情况</h6><p><a href="http://localhost:8088/" target="_blank" rel="external">http://localhost:8088/</a></p>
-<h6 id="查看-NameNode-和-Datanode-信息，还可以在线查看-HDFS-中的文件。"><a href="#查看-NameNode-和-Datanode-信息，还可以在线查看-HDFS-中的文件。" class="headerlink" title="查看 NameNode 和 Datanode 信息，还可以在线查看 HDFS 中的文件。"></a>查看 NameNode 和 Datanode 信息，还可以在线查看 HDFS 中的文件。</h6><p><a href="http://localhost:50070" target="_blank" rel="external">http://localhost:50070</a></p>
-<h3 id="HDFS命令"><a href="#HDFS命令" class="headerlink" title="HDFS命令"></a>HDFS命令</h3><h4 id="查看HDFS基本统计信息"><a href="#查看HDFS基本统计信息" class="headerlink" title="查看HDFS基本统计信息"></a>查看HDFS基本统计信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs  dfsadmin -report</div></pre></td></tr></table></figure>
-<h4 id="格式化namenode"><a href="#格式化namenode" class="headerlink" title="格式化namenode"></a>格式化namenode</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs namenode -format</div></pre></td></tr></table></figure>
-<h4 id="HSFS文件操作"><a href="#HSFS文件操作" class="headerlink" title="HSFS文件操作"></a>HSFS文件操作</h4><h6 id="列出跟目录下所有的文件"><a href="#列出跟目录下所有的文件" class="headerlink" title="列出跟目录下所有的文件"></a>列出跟目录下所有的文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs -ls /</div></pre></td></tr></table></figure>
-<h6 id="path"><a href="#path" class="headerlink" title="path"></a>path</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs -rm -r /path</div></pre></td></tr></table></figure>
-<h6 id="增加一个path目录"><a href="#增加一个path目录" class="headerlink" title="增加一个path目录"></a>增加一个path目录</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs -mkdir /path</div></pre></td></tr></table></figure>
-<h6 id="列出跟目录下所有的文件-1"><a href="#列出跟目录下所有的文件-1" class="headerlink" title="列出跟目录下所有的文件"></a>列出跟目录下所有的文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs -ls /</div></pre></td></tr></table></figure>
-<h6 id="递归显示path下的所有文件"><a href="#递归显示path下的所有文件" class="headerlink" title="递归显示path下的所有文件"></a>递归显示path下的所有文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs -lsr /path</div></pre></td></tr></table></figure>
-<h6 id="将本地文件或目录localSrc上传到HDFS中的dest路径"><a href="#将本地文件或目录localSrc上传到HDFS中的dest路径" class="headerlink" title="将本地文件或目录localSrc上传到HDFS中的dest路径"></a>将本地文件或目录localSrc上传到HDFS中的dest路径</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs –put /localSrc /dest</div></pre></td></tr></table></figure>
-<h6 id="与-put命令相同"><a href="#与-put命令相同" class="headerlink" title="与-put命令相同"></a>与-put命令相同</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs –copyFromLocal /localSrc /dest</div></pre></td></tr></table></figure>
-<h6 id="显示文件内容到标准输出上。"><a href="#显示文件内容到标准输出上。" class="headerlink" title="显示文件内容到标准输出上。"></a>显示文件内容到标准输出上。</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./bin/hdfs dfs –cat /filename</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ./sbin/start-dfs.sh</span><br><span class="line">sudo ./sbin/start-yarn.sh</span><br></pre></td></tr></table></figure>
+<h4 id="启动之后的访问地址"><a href="#启动之后的访问地址" class="headerlink" title="启动之后的访问地址"></a>启动之后的访问地址</h4><h6 id="查看任务的运行情况"><a href="#查看任务的运行情况" class="headerlink" title="查看任务的运行情况"></a>查看任务的运行情况</h6><p><a href="http://localhost:8088/" target="_blank" rel="noopener">http://localhost:8088/</a></p>
+<h6 id="查看-NameNode-和-Datanode-信息，还可以在线查看-HDFS-中的文件。"><a href="#查看-NameNode-和-Datanode-信息，还可以在线查看-HDFS-中的文件。" class="headerlink" title="查看 NameNode 和 Datanode 信息，还可以在线查看 HDFS 中的文件。"></a>查看 NameNode 和 Datanode 信息，还可以在线查看 HDFS 中的文件。</h6><p><a href="http://localhost:50070" target="_blank" rel="noopener">http://localhost:50070</a></p>
+<h3 id="HDFS命令"><a href="#HDFS命令" class="headerlink" title="HDFS命令"></a>HDFS命令</h3><h4 id="查看HDFS基本统计信息"><a href="#查看HDFS基本统计信息" class="headerlink" title="查看HDFS基本统计信息"></a>查看HDFS基本统计信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs  dfsadmin -report</span><br></pre></td></tr></table></figure>
+<h4 id="格式化namenode"><a href="#格式化namenode" class="headerlink" title="格式化namenode"></a>格式化namenode</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs namenode -format</span><br></pre></td></tr></table></figure>
+<h4 id="HSFS文件操作"><a href="#HSFS文件操作" class="headerlink" title="HSFS文件操作"></a>HSFS文件操作</h4><h6 id="列出跟目录下所有的文件"><a href="#列出跟目录下所有的文件" class="headerlink" title="列出跟目录下所有的文件"></a>列出跟目录下所有的文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs -ls /</span><br></pre></td></tr></table></figure>
+<h6 id="path"><a href="#path" class="headerlink" title="path"></a>path</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs -rm -r /path</span><br></pre></td></tr></table></figure>
+<h6 id="增加一个path目录"><a href="#增加一个path目录" class="headerlink" title="增加一个path目录"></a>增加一个path目录</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs -mkdir /path</span><br></pre></td></tr></table></figure>
+<h6 id="列出跟目录下所有的文件-1"><a href="#列出跟目录下所有的文件-1" class="headerlink" title="列出跟目录下所有的文件"></a>列出跟目录下所有的文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs -ls /</span><br></pre></td></tr></table></figure>
+<h6 id="递归显示path下的所有文件"><a href="#递归显示path下的所有文件" class="headerlink" title="递归显示path下的所有文件"></a>递归显示path下的所有文件</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs -lsr /path</span><br></pre></td></tr></table></figure>
+<h6 id="将本地文件或目录localSrc上传到HDFS中的dest路径"><a href="#将本地文件或目录localSrc上传到HDFS中的dest路径" class="headerlink" title="将本地文件或目录localSrc上传到HDFS中的dest路径"></a>将本地文件或目录localSrc上传到HDFS中的dest路径</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs –put /localSrc /dest</span><br></pre></td></tr></table></figure>
+<h6 id="与-put命令相同"><a href="#与-put命令相同" class="headerlink" title="与-put命令相同"></a>与-put命令相同</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs –copyFromLocal /localSrc /dest</span><br></pre></td></tr></table></figure>
+<h6 id="显示文件内容到标准输出上。"><a href="#显示文件内容到标准输出上。" class="headerlink" title="显示文件内容到标准输出上。"></a>显示文件内容到标准输出上。</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs dfs –cat /filename</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -526,7 +526,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -537,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
