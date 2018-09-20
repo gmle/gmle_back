@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C,SSL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="忘lele" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="写在SSL之前加密必须要有明文，密文，加密算法。">
+<meta name="keywords" content="C,SSL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSL秘钥协商过程">
+<meta property="og:url" content="http://gmle.github.io/2018/09/19/SSL秘钥协商过程/index.html">
+<meta property="og:site_name" content="忘lele">
+<meta property="og:description" content="写在SSL之前加密必须要有明文，密文，加密算法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-20T02:21:52.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSL秘钥协商过程">
+<meta name="twitter:description" content="写在SSL之前加密必须要有明文，密文，加密算法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Gmle'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gmle.github.io/2018/09/19/SSL秘钥协商过程/"/>
+
+
+
+
+
+  <title>SSL秘钥协商过程 | 忘lele</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?517d912ea9ff72d8e73cc367f80d4620";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">忘lele</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reader">
+          <a href="/categories/读与感/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
+            
+            读与感
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/09/19/SSL秘钥协商过程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="忘了">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="忘lele">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SSL秘钥协商过程</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T10:32:24+08:00">
+                2018-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSL/" itemprop="url" rel="index">
+                    <span itemprop="name">SSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在SSL之前"><a href="#写在SSL之前" class="headerlink" title="写在SSL之前"></a>写在SSL之前</h2><p>加密必须要有明文，密文，加密算法。</p>
+<a id="more"></a>
+<h2 id="常见加密"><a href="#常见加密" class="headerlink" title="常见加密"></a>常见加密</h2><ul>
+<li><p>对称加密-秘钥长度越长，加密效率越低，但是安全性高</p>
+<ul>
+<li>DES：已经被破解<ul>
+<li>要求秘钥长度八字节</li>
+<li>在对数据进行加密之前先对数据按每组八个字节进行分组，然后分段加密，最后在将每一段加密数据进行组合</li>
+</ul>
+</li>
+<li>3DES：效率低<ul>
+<li>秘钥疮毒24字节，内部会将秘钥分为三分</li>
+<li>需要加密的数据线按每组8个字节进行分组，然后分别使用3份秘钥进行加密-&gt;解密-&gt;加密；</li>
+<li>若三份秘钥都相同，加密成功。</li>
+</ul>
+</li>
+<li>TAES<ul>
+<li>使用最广泛的对称加密算法</li>
+<li>16、24、32字节</li>
+</ul>
+</li>
+<li>TDEA</li>
+<li>……</li>
+</ul>
+</li>
+<li><p>非对称加密-非对称加密对数据加密的效率低，但是加密的强度高</p>
+<ul>
+<li>RSA(数字签名和密钥交换)</li>
+<li>ECC(椭圆曲线加密算法)</li>
+</ul>
+</li>
+<li><p>Hash算法<br>不可逆，不用于加密，只用于计算，将任意长度的数据，生成一个固定长度的字符串</p>
+</li>
+<li>MD4/MD5<ul>
+<li>散列值长度16、32字节</li>
+</ul>
+</li>
+<li>SHA-1/2</li>
+<li>…..</li>
+</ul>
+<h2 id="加密过程-摘自TSL协议"><a href="#加密过程-摘自TSL协议" class="headerlink" title="加密过程(摘自TSL协议)"></a>加密过程(摘自TSL协议)</h2><pre><code>Client                            Server
+
+ClientHello           --------&gt;
+                                  ServerHello
+                                  Certificate*
+                                  ServerKeyExchange*
+                                  CertificateRequest*
+                      &lt;--------   ServerHelloDone
+Certificate*
+ClientKeyExchange
+CertificateVerify*
+[ChangeCipherSpec]
+Finished              --------&gt;
+                                  [ChangeCipherSpec]
+                      &lt;--------   Finished
+Application Data      &lt;-------&gt;   Application Data
+</code></pre><p>简单的说便是：<br>SSL客户端在TCP链接建立之后，发起一个握手请求ClientHello，这个消息里面包含了自己可实现的加密算法列表和自己的相关信息；<br>SSL的服务器端会回应一个ServerHello，这里面确定了这次通信所需要的算法，然后发过去自己的证书（里面包含了身份和自己的公钥）。<br>Client在收到这个消息后会生成一个秘密消息，用SSL服务器的公钥加密后传过去，<br>SSL服务器端用自己的私钥解密后，会话密钥协商成功，<br>双方可以用同一份会话密钥来通信了。</p>
+<p>如果上面的说明不够清晰，这里我们用个形象的比喻，我们假设A与B通信，A是SSL客户端，B是SSL服务器端，加密后的消息放在方括号[]里，以突出明文消息的区别。双方的处理动作的说明用圆括号（）括起。</p>
+<p>A：我想和你安全的通话，我这里的对称加密算法有DES,RC5,密钥交换算法有RSA和DH，摘要算法有MD5和SHA。</p>
+<p>B：我们用DES－RSA－SHA这对组合好了。<br>  这是我的证书，里面有我的名字和公钥，你拿去验证一下我的身份（把证书发给A）。<br>  目前没有别的可说的了。</p>
+<p>A：（查看证书上B的名字是否无误，并通过手头早已有的CA的证书验证了B的证书的真实性，如果其中一项有误，发出警告并断开连接，这一步保证了B的公钥的真实性）<br>  （产生一份秘密消息，这份秘密消息处理后将用作加密密钥，加密初始化向量和hmac的密钥。将这份秘密消息-协议中称为 per_master_secret-用B的公钥加密，封装成称作ClientKeyExchange的消息。由于用了B的公钥，保证了第三方无法窃听）<br>  我生成了一份秘密消息，并用你的公钥加密了，给你（把ClientKeyExchange发给B）<br>  注意，下面我就要用加密的办法给你发消息了！<br>  （将秘密消息进行处理，生成加密密钥，加密初始化向量和hmac的密钥）<br>  [我说完了]</p>
+<p>B：（用自己的私钥将ClientKeyExchange中的秘密消息解密出来，然后将秘密消息进行处理，生成加密密钥，加密初始化向量和hmac的密钥，这时双方已经安全的协商出一套加密办法了）<br>  注意，我也要开始用加密的办法给你发消息了！<br>  [我说完了]</p>
+<p>A: [我的秘密是…]</p>
+<p>B: [其它人不会听到的…]  </p>
+<h2 id="OpenSSL"><a href="#OpenSSL" class="headerlink" title="OpenSSL"></a>OpenSSL</h2><p>OpenSSL是一个安全套接字层密码库，C语言实现。<br>主要提供于Internet上提供加密传输。</p>
+<p>openssl提供了两种运行模式：交互模式/批处理模式</p>
+<ul>
+<li>直接输入openssl回车进入交互模式，输入带命令选项的openssl进入批处理模式。</li>
+</ul>
+<p>OpenSSL整个软件包大概可以分成三个主要的功能部分：密码算法库、SSL协议库以及应用程序。<br>OpenSSL的目录结构自然也是围绕这三个功能部分进行规划的。</p>
+<h3 id="消息摘要算法应用"><a href="#消息摘要算法应用" class="headerlink" title="消息摘要算法应用"></a>消息摘要算法应用</h3><p>Example:消息摘要算法<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 用SHA1算法计算文件file.txt的哈西值，输出到<span class="built_in">stdout</span></span><br><span class="line">openssl dgst -sha1 file.txt</span><br><span class="line"></span><br><span class="line"># 用SHA1算法计算文件file.txt的哈西值，输出到文件digest.txt：</span><br><span class="line">openssl sha1 -out digest.txt file.txt</span><br><span class="line"></span><br><span class="line"># 用DSS1(SHA1)算法为文件file.txt签名，输出到文件dsasign.bin。签名的<span class="keyword">private</span> key必须为DSA算法产生的，保存在文件dsakey.pem中。</span><br><span class="line">openssl dgst -dss1 -sign dsakey.pem -out dsasign.bin file.txt</span><br><span class="line"></span><br><span class="line"># 用dss1算法验证file.txt的数字签名dsasign.bin，验证的<span class="keyword">private</span> key为DSA算法产生的文件dsakey.pem。</span><br><span class="line">openssl dgst -dss1 -prverify dsakey.pem -signature dsasign.bin file.txt</span><br><span class="line"></span><br><span class="line"># 用sha1算法为文件file.txt签名,输出到文件rsasign.bin，签名的<span class="keyword">private</span> key为RSA算法产生的文件rsaprivate.pem。</span><br><span class="line">openssl sha1 -sign rsaprivate.pem -out rsasign.bin file.txt</span><br><span class="line"></span><br><span class="line"># 用sha1算法验证file.txt的数字签名rsasign.bin，验证的<span class="keyword">public</span> key为RSA算法生成的rsapublic.pem。</span><br><span class="line">openssl sha1 -verify rsapublic.pem -signature rsasign.bin file.txt</span><br></pre></td></tr></table></figure></p>
+<h3 id="对称加密算法应用"><a href="#对称加密算法应用" class="headerlink" title="对称加密算法应用"></a>对称加密算法应用</h3><p>Example:对称加密算法<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#对称加密应用例子，用DES3算法的CBC模式加密文件plaintext.doc，加密结果输出到文件ciphertext.bin。</span><br><span class="line">openssl enc -des3 -salt -in plaintext.doc -out ciphertext.bin</span><br><span class="line"></span><br><span class="line"># 用DES3算法的OFB模式解密文件ciphertext.bin，提供的口令为trousers，输出到文件plaintext.doc。注意：因为模式不同，该命令不能对以上的文件进行解密。</span><br><span class="line">openssl enc -des-ede3-ofb -d -in ciphertext.bin -out plaintext.doc -pass pass:trousers</span><br><span class="line"></span><br><span class="line"># 用Blowfish的CFB模式加密plaintext.doc，口令从环境变量PASSWORD中取，输出到文件ciphertext.bin。</span><br><span class="line">openssl bf-cfb -salt -in plaintext.doc -out ciphertext.bin -pass env:PASSWORD</span><br><span class="line"></span><br><span class="line">#给文件ciphertext.bin用base64编码，输出到文件base64.txt。</span><br><span class="line">openssl base64 -in ciphertext.bin -out base64.txt</span><br></pre></td></tr></table></figure></p>
+<h3 id="DSA"><a href="#DSA" class="headerlink" title="DSA"></a>DSA</h3><p>Example:DSA<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 生成<span class="number">1024</span>位DSA参数集，并输出到文件dsaparam.pem。</span><br><span class="line">openssl dsaparam -out dsaparam.pem <span class="number">1024</span></span><br><span class="line"></span><br><span class="line"># 使用参数文件dsaparam.pem生成DSA私钥匙，采用<span class="number">3</span>DES加密后输出到文件dsaprivatekey.pem</span><br><span class="line">openssl gendsa -out dsaprivatekey.pem -des3 dsaparam.pem</span><br><span class="line"></span><br><span class="line"># 使用私钥匙dsaprivatekey.pem生成公钥匙，输出到dsapublickey.pem</span><br><span class="line">openssl dsa -in dsaprivatekey.pem -pubout -out dsapublickey.pem</span><br><span class="line"></span><br><span class="line"># 从dsaprivatekey.pem中读取私钥匙，解密并输入新口令进行加密，然后写回文件dsaprivatekey.pem</span><br><span class="line">openssl dsa -in dsaprivatekey.pem -out dsaprivatekey.pem -des3 -passin</span><br></pre></td></tr></table></figure></p>
+<h3 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># 产生<span class="number">1024</span>位RSA私匙，用<span class="number">3</span>DES加密它，口令为trousers，输出到文件rsaprivatekey.pem</span><br><span class="line">openssl genrsa -out rsaprivatekey.pem -passout pass:trousers -des3 <span class="number">1024</span></span><br><span class="line"></span><br><span class="line"># 从文件rsaprivatekey.pem读取私匙，用口令trousers解密，生成的公钥匙输出到文件rsapublickey.pem</span><br><span class="line">openssl rsa -in rsaprivatekey.pem -passin pass:trousers -pubout -out rsapubckey.pem</span><br><span class="line"></span><br><span class="line"># 用公钥匙rsapublickey.pem加密文件plain.txt，输出到文件cipher.txt</span><br><span class="line">openssl rsautl -encrypt -pubin -inkey rsapublickey.pem -in plain.txt -out cipher.txt</span><br><span class="line"></span><br><span class="line"># 使用私钥匙rsaprivatekey.pem解密密文cipher.txt，输出到文件plain.txt</span><br><span class="line">openssl rsautl -decrypt -inkey rsaprivatekey.pem -in cipher.txt -out plain.txt</span><br><span class="line"></span><br><span class="line"># 用私钥匙rsaprivatekey.pem给文件plain.txt签名，输出到文件signature.bin</span><br><span class="line">openssl rsautl -sign -inkey rsaprivatekey.pem -in plain.txt -out signature.bin</span><br><span class="line"></span><br><span class="line"># 用公钥匙rsapublickey.pem验证签名signature.bin，输出到文件plain.txt</span><br><span class="line">openssl rsautl -verify -pubin -inkey rsapublickey.pem -in signature.bin -out plain</span><br><span class="line"></span><br><span class="line"># 从X<span class="number">.509</span>证书文件cert.pem中获取公钥匙，用<span class="number">3</span>DES加密mail.txt，输出到文件mail.enc</span><br><span class="line">openssl smime -encrypt -in mail.txt -des3 -out mail.enc cert.pem</span><br><span class="line"></span><br><span class="line"># 从X<span class="number">.509</span>证书文件cert.pem中获取接收人的公钥匙，用私钥匙key.pem解密S/MIME消息mail.enc，结果输出到文件mail.txt</span><br><span class="line">openssl smime -decrypt -in mail.enc -recip cert.pem -inkey key.pem -out mail.txt</span><br><span class="line"></span><br><span class="line"><span class="meta"># cert.pem为X.509证书文件，用私匙key,pem为mail.txt签名，证书被包含在S/MIME消息中，输出到文件mail.sgn</span></span><br><span class="line">openssl smime -sign -in mail.txt -signer cert.pem -inkey key.pem -out mail.sgn</span><br><span class="line"></span><br><span class="line"># 验证S/MIME消息mail.sgn，输出到文件mail.txt，签名者的证书应该作为S/MIME消息的一部分包含在mail.sgn中</span><br><span class="line">openssl smime -verify -in mail.sgn -out mail.txt</span><br></pre></td></tr></table></figure>
+<h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/md5.h&gt; // md5 头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getMD5</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str, <span class="keyword">char</span> *result)</span> </span>&#123;</span><br><span class="line">    MD5_CTX ctx;</span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    MD5_Init(&amp;ctx);</span><br><span class="line">    <span class="comment">// 添加数据</span></span><br><span class="line">    MD5_Update(&amp;ctx, str, <span class="built_in">strlen</span>(str)); <span class="comment">// 计算结果</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> md[<span class="number">16</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    MD5_Final(md, &amp;ctx);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">16</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">sprintf</span>(&amp;result[i * <span class="number">2</span>], <span class="string">"%02x"</span>, md[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> result[<span class="number">33</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    getMD5(<span class="string">"hello, md5"</span>, result);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"md5 value: %s\n"</span>, result);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="HMAC"><a href="#HMAC" class="headerlink" title="HMAC"></a>HMAC</h3><p>此处两个示例，第一个不能在win下使用。</p>
+<p>Example1：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/hmac.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> key[] = <span class="string">"012345678"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> data[] = <span class="string">"hello world"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *result;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> len = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    result = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>) * len);</span><br><span class="line"></span><br><span class="line">    HMAC_CTX ctx;</span><br><span class="line">    HMAC_CTX_init(&amp;ctx);</span><br><span class="line"></span><br><span class="line">    HMAC_Init_ex(&amp;ctx, key, (<span class="keyword">int</span>) <span class="built_in">strlen</span>(key), EVP_sha1(), <span class="literal">NULL</span>);</span><br><span class="line">    HMAC_Update(&amp;ctx, (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) &amp;data, <span class="built_in">strlen</span>(data));</span><br><span class="line">    HMAC_Final(&amp;ctx, result, &amp;len);</span><br><span class="line">    HMAC_CTX_cleanup(&amp;ctx);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"HMAC digest: "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != len; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%02x"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) result[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(result);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Example2：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/hmac.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> key[] = <span class="string">"1999"</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> data[] = <span class="string">"Hello"</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *md = <span class="built_in">malloc</span>(EVP_MAX_MD_SIZE);</span><br><span class="line">    <span class="built_in">memset</span>(md, <span class="number">0x00</span>, EVP_MAX_MD_SIZE);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> len_md = <span class="keyword">sizeof</span>(md);</span><br><span class="line"></span><br><span class="line">    HMAC(EVP_sha1(), key, (<span class="keyword">int</span>) <span class="built_in">strlen</span>(key), (<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *) data, <span class="built_in">strlen</span>(data), md, &amp;len_md);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"data = %s,len = %d\n"</span>, md, len_md);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> mdString[<span class="number">40</span>] = &#123;<span class="string">'\0'</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)</span><br><span class="line">        <span class="built_in">sprintf</span>(&amp;mdString[i * <span class="number">2</span>], <span class="string">"%02x"</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>) md[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"HMAC digest: %s\n"</span>, mdString);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(md);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/SSL/" rel="tag"># SSL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/18/结构体数据对齐/" rel="next" title="结构体数据对齐详解">
+                <i class="fa fa-chevron-left"></i> 结构体数据对齐详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="忘了" />
+            
+              <p class="site-author-name" itemprop="name">忘了</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                    
+                      <i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                Friends
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jetbrains.org.cn" title="常大爷" target="_blank">常大爷</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在SSL之前"><span class="nav-number">1.</span> <span class="nav-text">写在SSL之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见加密"><span class="nav-number">2.</span> <span class="nav-text">常见加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密过程-摘自TSL协议"><span class="nav-number">3.</span> <span class="nav-text">加密过程(摘自TSL协议)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenSSL"><span class="nav-number">4.</span> <span class="nav-text">OpenSSL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息摘要算法应用"><span class="nav-number">4.1.</span> <span class="nav-text">消息摘要算法应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密算法应用"><span class="nav-number">4.2.</span> <span class="nav-text">对称加密算法应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DSA"><span class="nav-number">4.3.</span> <span class="nav-text">DSA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA"><span class="nav-number">4.4.</span> <span class="nav-text">RSA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序示例"><span class="nav-number">5.</span> <span class="nav-text">程序示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MD5"><span class="nav-number">5.1.</span> <span class="nav-text">MD5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMAC"><span class="nav-number">5.2.</span> <span class="nav-text">HMAC</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">忘了</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
