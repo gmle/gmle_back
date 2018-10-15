@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="fastDFS是用c写的一款开源的分布式文件系统，可以很容易">
+<meta name="description" content="fastDFS是用c写的一款开源的分布式文件系统，可以很容易地搭建一套分布式文件系统。">
 <meta name="keywords" content="fastDFS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fastDFS使用与介绍">
 <meta property="og:url" content="http://gmle.github.io/2018/10/14/fastDFS/index.html">
 <meta property="og:site_name" content="忘lele">
-<meta property="og:description" content="fastDFS是用c写的一款开源的分布式文件系统，可以很容易">
+<meta property="og:description" content="fastDFS是用c写的一款开源的分布式文件系统，可以很容易地搭建一套分布式文件系统。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-14T08:14:59.075Z">
+<meta property="og:updated_time" content="2018-10-15T07:31:52.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fastDFS使用与介绍">
-<meta name="twitter:description" content="fastDFS是用c写的一款开源的分布式文件系统，可以很容易">
+<meta name="twitter:description" content="fastDFS是用c写的一款开源的分布式文件系统，可以很容易地搭建一套分布式文件系统。">
 
 
 
@@ -375,7 +375,7 @@
       
 
       
-        <p>fastDFS是用c写的一款开源的分布式文件系统，可以很容易</p>
+        <p>fastDFS是用c写的一款开源的分布式文件系统，可以很容易地搭建一套分布式文件系统。</p>
 <a id="more"></a>
 <h2 id="fastDFS中的三个角色"><a href="#fastDFS中的三个角色" class="headerlink" title="fastDFS中的三个角色"></a>fastDFS中的三个角色</h2><ul>
 <li>追踪器(Tracker)-&gt;管理者：管理存储节点，类似于Hadoop中的namenode<ul>
@@ -386,7 +386,7 @@
 <li>存储节点(storage)-&gt;存储节点：存储数据，类似于Hadoop中的DataNode</li>
 <li>(实现)客户端(client)-&gt;界面管理：上传下载功能的实现</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载 libfastcommon与fastdfs<br>安装过程相同：<br>    先安装libfastcommon<br>    ./make.sh &amp;&amp; ./make.sh install<br>    再安装fastdfs<br>    ./make.sh &amp;&amp; ./make.sh install</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载 libfastcommon与fastdfs<br>安装过程相同：<br>​    先安装libfastcommon<br>​    ./make.sh &amp;&amp; ./make.sh install<br>​    再安装fastdfs<br>​    ./make.sh &amp;&amp; ./make.sh install</p>
 <h2 id="工作顺序"><a href="#工作顺序" class="headerlink" title="工作顺序"></a>工作顺序</h2><ul>
 <li>启动Tracker<ul>
 <li>Tracker接收storage的心跳信息并与其建立映射</li>
@@ -423,7 +423,70 @@
 </ul>
 </li>
 </ul>
-<h2 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h2>
+<h2 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>libfastcommon-1.36.zip（fastdfs的基础库包 ）</p>
+<ul>
+<li>unzip libfastcommon-1.36.zip </li>
+<li>./make.sh </li>
+<li>./make.sh install</li>
+</ul>
+<p>fastdfs-5.10.tar.gz<br>​    tar zxvf fastdfs-5.10.tar.gz<br>​    ./make.sh<br>​    ./make.sh install</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>fastDFS安装的所有的可执行程序: /usr/bin/fdfs_*</span><br><span class="line">fdfs_test</span><br></pre></td></tr></table></figure>
+<h3 id="fastDFS配置文件"><a href="#fastDFS配置文件" class="headerlink" title="fastDFS配置文件"></a>fastDFS配置文件</h3><hr>
+<p>配置文件默认位置: /etc/fdfs</p>
+<ul>
+<li>client.conf.sample</li>
+<li>storage.conf.sample</li>
+<li>storage_ids.conf.sample</li>
+<li>tracker.conf.sample</li>
+</ul>
+<hr>
+<h4 id="tracker-conf"><a href="#tracker-conf" class="headerlink" title="tracker.conf"></a>tracker.conf</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 将追踪器和部署的主机的IP地址进程绑定, 也可以不指定</span><br><span class="line"><span class="meta">#</span> 如果不指定, 会自动绑定当前主机IP, 如果是云服务器建议不要写 bind_addr=192.168.247.135</span><br><span class="line"><span class="meta">#</span> 追踪器监听的端口</span><br><span class="line">port=22122</span><br><span class="line"><span class="meta">#</span> 追踪器存储日志信息的目录, xxx.pid文件, 必须是一个存在的目录 base_path=/home/yuqing/fastdfs</span><br></pre></td></tr></table></figure>
+<h4 id="storage-conf"><a href="#storage-conf" class="headerlink" title="storage.conf"></a>storage.conf</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 当前存储节点对应的主机属于哪一个组 group_name=group1</span><br><span class="line">  group_name=group1</span><br><span class="line"><span class="meta">#</span> 当前存储节点和所应该的主机进行IP地址的绑定, 如果不写, 有fastdfs自动绑定 bind_addr=</span><br><span class="line"><span class="meta">#</span> 存储节点绑定的端口</span><br><span class="line">port=23000</span><br><span class="line"><span class="meta">#</span> 存储节点写log日志的路径 base_path=/home/yuqing/fastdfs</span><br><span class="line"><span class="meta">#</span> 存储节点提供的存储文件的路径个数 store_path_count=2</span><br><span class="line"><span class="meta">#</span> 具体的存储路径 store_path0=/home/yuqing/fastdfs store_path1=/home/yuqing/fastdfs1</span><br><span class="line"><span class="meta">#</span> 追踪器的地址信息 tracker_server=192.168.247.135:22122 tracker_server=192.168.247.136:22122</span><br><span class="line">tracker_server=192.168.247.135:22122</span><br><span class="line">tracker_server=192.168.247.136:22122</span><br></pre></td></tr></table></figure>
+<h4 id="client-conf"><a href="#client-conf" class="headerlink" title="client.conf"></a>client.conf</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 客户端写log日志的目录</span><br><span class="line"><span class="meta">#</span> 该路径必须存在</span><br><span class="line"><span class="meta">#</span> 当前的用户对于该路径中的文件有读写权限</span><br><span class="line"><span class="meta">#</span> 当前用户robin</span><br><span class="line"><span class="meta">#</span> 指定的路径属于root base_path=/home/yuqing/fastdfs</span><br><span class="line"><span class="meta">#</span> 要连接的追踪器的地址信息 tracker_server=192.168.247.135:22122 tracker_server=192.168.247.136:22122</span><br></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><h4 id="tracker追踪器的启动"><a href="#tracker追踪器的启动" class="headerlink" title="tracker追踪器的启动"></a>tracker追踪器的启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 启动程序在 /usr/bin/fdfs_*</span><br><span class="line"><span class="meta">#</span> 启动</span><br><span class="line">fdfs_trackerd 追踪器的配置文件(/etc/fdfs/tracker.conf)</span><br><span class="line"><span class="meta">#</span> 关闭</span><br><span class="line">fdfs_trackerd 追踪器的配置文件(/etc/fdfs/tracker.conf) stop</span><br><span class="line"><span class="meta">#</span> 重启</span><br><span class="line">fdfs_trackerd 追踪器的配置文件(/etc/fdfs/tracker.conf) restart</span><br></pre></td></tr></table></figure>
+<h4 id="storage存储节点的启动"><a href="#storage存储节点的启动" class="headerlink" title="storage存储节点的启动"></a>storage存储节点的启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 启动</span><br><span class="line">fdfs_storaged 存储节点的配置文件(/etc/fdfs/stroga.conf)</span><br><span class="line"><span class="meta">#</span> 关闭</span><br><span class="line">fdfs_storaged 存储节点的配置文件(/etc/fdfs/stroga.conf) stop</span><br><span class="line"><span class="meta">#</span> 重启</span><br><span class="line">fdfs_storaged 存储节点的配置文件(/etc/fdfs/stroga.conf) restart</span><br></pre></td></tr></table></figure>
+<h4 id="client客户端启动"><a href="#client客户端启动" class="headerlink" title="client客户端启动"></a>client客户端启动</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 上传</span><br><span class="line">fdfs_upload_file 客户端的配置文件(/etc/fdfs/client.conf) 要上传的文件</span><br><span class="line"><span class="meta">#</span> 得到的结果字符串: group1/M00/00/00/wKj3h1vC-PuAJ09iAAAHT1YnUNE31352.c</span><br><span class="line"><span class="meta">#</span> 下载</span><br><span class="line">fdfs_download_file 客户端的配置文件(/etc/fdfs/client.conf) 上传成功之后得到的字符串(fileID)</span><br></pre></td></tr></table></figure>
+<h4 id="fastdfs状态检测"><a href="#fastdfs状态检测" class="headerlink" title="fastdfs状态检测"></a>fastdfs状态检测</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 检测命令</span><br><span class="line">fdfs_monitor /etc/fdfs/client.conf</span><br></pre></td></tr></table></figure>
+<p>storage的七种状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:INIT:初始化，尚未得到同步已有数据的源服务器</span><br><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:WAIT_SYNC :等待同步，已得到同步已有数据的源服务器</span><br><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:SYNCING:同步中</span><br><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:DELETED:已删除，该服务器从本组中摘除</span><br><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:OFFLINE:离线</span><br><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:ONLINE:在线，尚不能提供服务</span><br><span class="line"><span class="meta">#</span> FDFS_STORAGE_STATUS:ACTIVE:在线，可以提供服务</span><br></pre></td></tr></table></figure>
+<h2 id="fileID"><a href="#fileID" class="headerlink" title="fileID"></a>fileID</h2><p>file.md -&gt; group1/M00/00/00wKhS_VlrEf0AdIZyAAAJT0wCgr43848.md</p>
+<ul>
+<li>group1<ul>
+<li>文件上传到的存储节点的哪个组</li>
+<li>如果有多个组，组名是变化的</li>
+</ul>
+</li>
+<li>M00<ul>
+<li>虚拟目录</li>
+<li>和存储节点的配置项映射<ul>
+<li>store_path0=/home/yuqing/fastdfs/data -&gt; M00</li>
+<li>store_path1=/home/yuqing/fastdfs1/data -&gt; M01</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>00/00<ul>
+<li>实际路径</li>
+<li>可变</li>
+</ul>
+</li>
+<li>wKhS_VlrEfOAdIZyAAAJTOwCGr43848.md<ul>
+<li>文件名包含的信息，</li>
+<li>Base64编码，信息包括：<ul>
+<li>源storage server ip地址</li>
+<li>文件创建时间</li>
+<li>文件大小</li>
+<li>文件CRC32校验码<ul>
+<li>循环冗余校验</li>
+</ul>
+</li>
+<li>随机数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -638,7 +701,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fastDFS中的三个角色"><span class="nav-number">1.</span> <span class="nav-text">fastDFS中的三个角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作顺序"><span class="nav-number">3.</span> <span class="nav-text">工作顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试安装"><span class="nav-number">4.</span> <span class="nav-text">测试安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fastDFS中的三个角色"><span class="nav-number">1.</span> <span class="nav-text">fastDFS中的三个角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作顺序"><span class="nav-number">3.</span> <span class="nav-text">工作顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试安装"><span class="nav-number">4.</span> <span class="nav-text">测试安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-1"><span class="nav-number">4.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">4.2.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fastDFS配置文件"><span class="nav-number">4.3.</span> <span class="nav-text">fastDFS配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tracker-conf"><span class="nav-number">4.3.1.</span> <span class="nav-text">tracker.conf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#storage-conf"><span class="nav-number">4.3.2.</span> <span class="nav-text">storage.conf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#client-conf"><span class="nav-number">4.3.3.</span> <span class="nav-text">client.conf</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">4.4.</span> <span class="nav-text">启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tracker追踪器的启动"><span class="nav-number">4.4.1.</span> <span class="nav-text">tracker追踪器的启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#storage存储节点的启动"><span class="nav-number">4.4.2.</span> <span class="nav-text">storage存储节点的启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#client客户端启动"><span class="nav-number">4.4.3.</span> <span class="nav-text">client客户端启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fastdfs状态检测"><span class="nav-number">4.4.4.</span> <span class="nav-text">fastdfs状态检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fileID"><span class="nav-number">5.</span> <span class="nav-text">fileID</span></a></li></ol></div>
             
 
           </div>
