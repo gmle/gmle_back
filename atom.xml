@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gmle.github.io/"/>
-  <updated>2018-10-16T06:52:27.392Z</updated>
+  <updated>2018-10-16T09:02:29.766Z</updated>
   <id>http://gmle.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://gmle.github.io/2018/10/16/%E5%A5%87%E7%AE%80%E4%BA%91%E4%B8%80%E9%9D%A2/"/>
     <id>http://gmle.github.io/2018/10/16/奇简云一面/</id>
     <published>2018-10-16T03:25:41.923Z</published>
-    <updated>2018-10-16T06:52:27.392Z</updated>
+    <updated>2018-10-16T09:02:29.766Z</updated>
     
-    <content type="html"><![CDATA[<p>该公司主推数据库产品，所以招聘需求为算法岗。<br>面试过程中学到了很多(因为被虐很惨)。</p><a id="more"></a><h2 id="简单谈一下对数据库的认识"><a href="#简单谈一下对数据库的认识" class="headerlink" title="简单谈一下对数据库的认识"></a>简单谈一下对数据库的认识</h2><ul><li>数据库分为关系型和非关系型数据库</li><li>数据库是按照数据结构来组织、存储和管理数据的仓库</li><li>数据按照一定格式存放，数据大都持久化在磁盘</li><li>数据的共享性高、冗余度低，容易扩充</li></ul><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>有一个坐标(x,y)(data)带了一个数据实现一个稀疏矩阵，现有两种存储方式供选择：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;x,<span class="built_in">map</span>&lt;y, data&gt;&gt;</span><br><span class="line"><span class="built_in">map</span>&lt;pair&lt;x,y&gt;, data&gt;</span><br></pre></td></tr></table></figure><p><img src="/images/terark/01_matrix.png" alt="稀疏矩阵"></p>]]></content>
+    <content type="html"><![CDATA[<p>该公司主推数据库产品，所以招聘需求为算法岗。<br>面试过程中学到了很多(因为被虐很惨)。</p><a id="more"></a><h2 id="简单谈一下对数据库的认识"><a href="#简单谈一下对数据库的认识" class="headerlink" title="简单谈一下对数据库的认识"></a>简单谈一下对数据库的认识</h2><ul><li>数据库分为关系型和非关系型数据库</li><li>数据库是按照数据结构来组织、存储和管理数据的仓库</li><li>数据按照一定格式存放，数据大都持久化在磁盘</li><li>数据的共享性高、冗余度低，容易扩充</li></ul><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>有一个坐标(x,y)(data)带了一个数据实现一个稀疏矩阵，现有两种存储方式供选择：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;pair&lt;x,y&gt;, data&gt;</span><br><span class="line"><span class="built_in">map</span>&lt;x,<span class="built_in">map</span>&lt;y, data&gt;&gt;</span><br></pre></td></tr></table></figure><p>据此计算出两者的时间复杂度。</p><p><img src="/images/terark/01_matrix.png" alt="(x,y)(data)所实现的稀疏矩阵"></p><h3 id="一维"><a href="#一维" class="headerlink" title="一维"></a>一维</h3><p>对于一维map，因为在索引data的时候可以直接查找x并判断y是否相等即可。<br>若存在条件 x&gt;y,则时间复杂度为 O(x);<br>若存在条件 x&lt;y,则时间复杂度为 O(y);</p><h3 id="二维"><a href="#二维" class="headerlink" title="二维"></a>二维</h3><p>对于二维map，在索引data的时候，需要先找出x，再找出y，<br>所以时间复杂度应该为O(n²)</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在数据足够多的情况下，一维的时间复杂度总是要比二维的时间复杂度小。</p><h2 id="map实现通讯录-国外-的存储方式"><a href="#map实现通讯录-国外-的存储方式" class="headerlink" title="map实现通讯录(国外)的存储方式"></a>map实现通讯录(国外)的存储方式</h2><p>通讯录面对国外用户，首先想到的应该是大小写字母和排序问题。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例：Jack Davied</span></span><br><span class="line"><span class="comment">// 排序问题需要map中的一个</span></span><br><span class="line"><span class="built_in">map</span>&lt;"JACK DAVIED", "Jack Davied"&gt;</span><br></pre></td></tr></table></figure><p>重载比较运算符进行排序</p>]]></content>
     
     <summary type="html">
     
