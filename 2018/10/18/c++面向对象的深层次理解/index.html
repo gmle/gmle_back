@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -50,19 +50,19 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -85,11 +85,11 @@
 <meta name="keywords" content="Cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++面向对象">
-<meta property="og:url" content="http://gmle.github.io/2018/10/18/c++面向对象的深层次理解/index.html">
+<meta property="og:url" content="http://gmle.github.io/2018/10/18/C++面向对象的深层次理解/index.html">
 <meta property="og:site_name" content="忘lele">
 <meta property="og:description" content="对面向对象的含义，大概每个人都会有每个人的看法吧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-19T13:47:12.323Z">
+<meta property="og:updated_time" content="2018-11-16T00:39:49.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++面向对象">
 <meta name="twitter:description" content="对面向对象的含义，大概每个人都会有每个人的看法吧。">
@@ -100,8 +100,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    version: '5.1.3',
+    scheme: 'Muse',
+    version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://gmle.github.io/2018/10/18/c++面向对象的深层次理解/"/>
+  <link rel="canonical" href="http://gmle.github.io/2018/10/18/C++面向对象的深层次理解/"/>
 
 
 
@@ -173,7 +173,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description"></h1>
+        <p class="site-subtitle"></p>
       
   </div>
 
@@ -248,7 +248,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
             
-            读与感
+            reader
           </a>
         </li>
       
@@ -285,12 +285,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/10/18/c++面向对象的深层次理解/">
+    <link itemprop="mainEntityOfPage" href="http://gmle.github.io/2018/10/18/C++面向对象的深层次理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="忘了">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -302,12 +302,11 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">C++面向对象</h2>
+          <h1 class="post-title" itemprop="name headline">C++面向对象</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -390,6 +389,14 @@
 <li>可以对父类的方法进行重写来更加符合特殊需求</li>
 <li>继承是子类共享父类数据和方法的机制</li>
 </ul>
+<h5 id="派生类与虚函数-纯虚函数"><a href="#派生类与虚函数-纯虚函数" class="headerlink" title="派生类与虚函数/纯虚函数"></a>派生类与虚函数/纯虚函数</h5><p>基类中的虚函数被派生类继承过去之后，是希望派生类根据自己的实际需求进行重新定义，以实现特定的功能。</p>
+<p>如果派生类没有重新定义基类中的某个虚函数，则在调用的时候会使用基类中定义的版本。</p>
+<p>但如果基类存在纯虚函数(基类应称之为虚基类)，则会编译错误。</p>
+<p>基类中被声明为虚函数，在派生类中也依然是虚函数。</p>
+<p>派生类中函数的声明必须和基类中定义的方式完全匹配。</p>
+<p>继承之后，在派生类中对纯虚函数进行重新定义，然后这个派生类才是我们常见的正常的类。</p>
+<p>如果在派生类中没有对这个纯虚函数重新定义，那么这个派生类也将成为虚基类。</p>
+<p>虚函数在派生类中是可以不重新被定义的，但是纯虚函数在派生类中必须得被重新定义。</p>
 <h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p>在子类里面重新实现父类已有的方法，重新实现包含了重写和重载</p>
 <ul>
 <li>重写：覆盖写，将子类从父类继承下来的方法重新实现</li>
@@ -443,6 +450,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/10/20/STL中各个容器的实现原理/" rel="prev" title="STL中各个容器实现的原理">
+                STL中各个容器实现的原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -469,7 +480,9 @@
 
 
           
+
   
+
 
 
         </div>
@@ -505,12 +518,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.png"
-                alt="忘了" />
-            
               <p class="site-author-name" itemprop="name">忘了</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">行者无疆，大道无垠。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -520,7 +529,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -542,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -559,38 +568,38 @@
             </div>
           
 
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/gmle" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://plus.google.com/gmle" target="_blank" title="Google">
-                    
-                      <i class="fa fa-fw fa-google"></i>Google</a>
-                </span>
-              
-            
-          </div>
-
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gmle" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:e.le.lee.leee@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/gmle" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+            </div>
           
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-globe"></i>
+                <i class="fa  fa-fw fa-link"></i>
                 Friends
               </div>
               <ul class="links-of-blogroll-list">
@@ -618,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装，继承，多态"><span class="nav-number">2.</span> <span class="nav-text">封装，继承，多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象编程"><span class="nav-number">2.1.</span> <span class="nav-text">面向对象编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">2.1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">2.1.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">2.1.3.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型编程"><span class="nav-number">2.2.</span> <span class="nav-text">泛型编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开篇"><span class="nav-number">1.</span> <span class="nav-text">开篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装，继承，多态"><span class="nav-number">2.</span> <span class="nav-text">封装，继承，多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象编程"><span class="nav-number">2.1.</span> <span class="nav-text">面向对象编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">2.1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">2.1.2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#派生类与虚函数-纯虚函数"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">派生类与虚函数/纯虚函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">2.1.3.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型编程"><span class="nav-number">2.2.</span> <span class="nav-text">泛型编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -638,7 +647,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -674,6 +683,8 @@
       </div>
     
 
+    
+
   </div>
 
   
@@ -695,8 +706,6 @@
   
 
 
-  
-
 
 
 
@@ -708,49 +717,58 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -783,6 +801,10 @@
 
 
 
+
+
+
+
   
 
 
@@ -792,22 +814,10 @@
   
 
   
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
+  
 
+  
   
 
   
