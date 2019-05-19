@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="忘lele">
 <meta property="og:description" content="写了这么长时间的Shell竟然不知道乘除怎么写。。。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T01:26:55.685Z">
+<meta property="og:updated_time" content="2018-10-18T01:26:55.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell的加减乘除操作">
 <meta name="twitter:description" content="写了这么长时间的Shell竟然不知道乘除怎么写。。。">
@@ -243,12 +243,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-reader">
-          <a href="/categories/读与感/" rel="section">
+        <li class="menu-item menu-item-readbooks">
+          <a href="/books/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-wpforms"></i> <br />
             
-            reader
+            ReadBooks
           </a>
         </li>
       
@@ -408,7 +408,7 @@
 </li>
 </ul>
 <p>下面是一个shell程序实例，实现数学函数S=3(xy)+4x2+5y+6的运算。在程序中以位置变量的方式输入x与y的值。程序的编写步骤如下所示。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>4.4.sh</span><br><span class="line"></span><br><span class="line">s=0                                    #定义一个求和变量，初值为0。</span><br><span class="line"></span><br><span class="line">t=`expr$1**$2`                        #用expr改变运算顺序，求x的y次方。</span><br><span class="line"></span><br><span class="line">t=$[t*3]                               #t乘以3。</span><br><span class="line"></span><br><span class="line">s=$[s+t]                               #结果相加。</span><br><span class="line"></span><br><span class="line">t=$[$1**2]                             #求x的平方。</span><br><span class="line"></span><br><span class="line">t=$[t*4]                               #结果乘以4。</span><br><span class="line"></span><br><span class="line">s=$[s+t]                               #结果相加。</span><br><span class="line"></span><br><span class="line">t=`expr$2*5`                          #求5y的值。</span><br><span class="line"></span><br><span class="line">s=$[s+t]                               #结果相加。</span><br><span class="line"></span><br><span class="line">s=$[s+6]                               #结果加上6。</span><br><span class="line"></span><br><span class="line"><span class="meta">echo$</span>s                                #输出结果。</span><br><span class="line"></span><br><span class="line"><span class="meta">echo$</span>((a%b))                          #取余</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">4.4.sh</span></span><br><span class="line"></span><br><span class="line">s=0                                    #定义一个求和变量，初值为0。</span><br><span class="line"></span><br><span class="line">t=`expr$1**$2`                        #用expr改变运算顺序，求x的y次方。</span><br><span class="line"></span><br><span class="line">t=$[t*3]                               #t乘以3。</span><br><span class="line"></span><br><span class="line">s=$[s+t]                               #结果相加。</span><br><span class="line"></span><br><span class="line">t=$[$1**2]                             #求x的平方。</span><br><span class="line"></span><br><span class="line">t=$[t*4]                               #结果乘以4。</span><br><span class="line"></span><br><span class="line">s=$[s+t]                               #结果相加。</span><br><span class="line"></span><br><span class="line">t=`expr$2*5`                          #求5y的值。</span><br><span class="line"></span><br><span class="line">s=$[s+t]                               #结果相加。</span><br><span class="line"></span><br><span class="line">s=$[s+6]                               #结果加上6。</span><br><span class="line"></span><br><span class="line"><span class="meta">echo$</span><span class="bash">s                                <span class="comment">#输出结果。</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">echo$</span><span class="bash">((a%b))                          <span class="comment">#取余</span></span></span><br></pre></td></tr></table></figure>
 <p>在这个程序中，需要注意算术运算的写法。如果没有expr或$[]更改运算顺序，则会将运算式以字符串的形式赋值，而不会赋值运算结果。</p>
 
       
@@ -442,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/14/C语言的字符串&输入输出/" rel="next" title="C语言字符串与处理">
-                <i class="fa fa-chevron-left"></i> C语言字符串与处理
+              <a href="/2018/03/16/不同编译器对C++的一些影响/" rel="next" title="不同编译器下的差异">
+                <i class="fa fa-chevron-left"></i> 不同编译器下的差异
               </a>
             
           </div>
@@ -452,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/15/C语言的运算符/" rel="prev" title="C语言的运算符">
-                C语言的运算符 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/04/征服C指针/" rel="prev" title="征服C指针">
+                征服C指针 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -531,7 +531,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -553,7 +553,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
